@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDFページシャッフル | 無料オンラインツール</title>
-    <meta name="description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
-    <meta name="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
+    <title data-i18n="title">PDFページシャッフル | 無料オンラインツール</title>
+    <meta name="description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
+    <meta name="keywords" data-i18n="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
     <meta name="author" content="PDF Shuffle Tool">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourusername.github.io/pdf-shuffle/">
-    <meta property="og:title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="og:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    <meta property="og:url" content="https://tyama11.github.io/ShufflePDF/">
+    <meta property="og:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="og:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yourusername.github.io/pdf-shuffle/">
-    <meta property="twitter:title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="twitter:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    <meta property="twitter:url" content="https://tyama11.github.io/ShufflePDF/">
+    <meta property="twitter:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="twitter:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
     
-    <link rel="canonical" href="https://yourusername.github.io/pdf-shuffle/">
+    <link rel="canonical" href="https://tyama11.github.io/ShufflePDF/">
     
+    <!-- SEO: Language Alternates -->
+    <link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="zh" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
         * {
@@ -464,7 +470,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>📄 PDFページシャッフル</h1>
+            <h1 data-i18n="headline">📄 PDFページシャッフル</h1>
         </header>
 
         <main>
@@ -473,89 +479,262 @@
                     <label class="switch-label">
                         <input type="checkbox" id="preserveFirstPage" class="switch-input">
                         <span class="switch-slider"></span>
-                        <span class="switch-text">最初のページを固定</span>
+                        <span class="switch-text" data-i18n="fixFirst">最初のページを固定</span>
                     </label>
                 </div>
                 <div class="option-group">
                     <label class="switch-label">
                         <input type="checkbox" id="preserveLastPage" class="switch-input">
                         <span class="switch-slider"></span>
-                        <span class="switch-text">最後のページを固定</span>
+                        <span class="switch-text" data-i18n="fixLast">最後のページを固定</span>
                     </label>
                 </div>
             </section>
 
             <section class="upload-area" id="uploadArea">
                 <div class="upload-icon">📁</div>
-                <div class="upload-text">PDFファイルをここにドラッグ＆ドロップ</div>
-                <div class="upload-text">または</div>
-                <button class="btn" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-text" data-i18n="dropHere">PDFファイルをここにドラッグ＆ドロップ</div>
+                <div class="upload-text" data-i18n="or">または</div>
+                <button class="btn" onclick="document.getElementById('fileInput').click()" data-i18n="chooseFile">
                     ファイルを選択
                 </button>
                 <input type="file" id="fileInput" class="file-input" accept=".pdf">
             </section>
 
             <div id="status" class="status" style="display: none;"></div>
-            
+
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <div>PDFを処理中...</div>
+                <div data-i18n="loadingText">PDFを処理中...</div>
             </div>
 
             <div id="pageInfo" class="page-info" style="display: none;">
-                <h3>📋 PDF情報</h3>
+                <h3 data-i18n="pageInfoTitle">📋 PDF情報</h3>
                 <div id="pageCount"></div>
             </div>
 
             <div class="controls">
-                <button class="btn" id="shuffleBtn" onclick="shufflePDF()" disabled>
+                <button class="btn" id="shuffleBtn" onclick="shufflePDF()" disabled data-i18n="shuffleBtnText">
                     🔀 ページをシャッフル
                 </button>
-                <button class="btn btn-secondary" id="downloadBtn" onclick="downloadShuffledPDF()" disabled style="display: none;">
+                <button class="btn btn-secondary" id="downloadBtn" onclick="downloadShuffledPDF()" disabled style="display: none;" data-i18n="downloadBtnText">
                     💾 シャッフル済みPDFをダウンロード
                 </button>
             </div>
 
             <section class="features">
-                <h2>✨ 機能</h2>
+                <h2 data-i18n="featuresTitle">✨ 機能</h2>
                 <div class="description">
-                    <p>このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
+                    <p data-i18n="descriptionText">このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
                 </div>
                 <div class="feature-list">
-                    <div class="feature">🔀 ランダムシャッフル</div>
-                    <div class="feature">📌 ページ固定オプション</div>
-                    <div class="feature">📄 全ページ対応</div>
-                    <div class="feature">💾 即座にダウンロード</div>
-                    <div class="feature">🔒 プライバシー保護</div>
+                    <div class="feature" data-i18n="featureShuffle">🔀 ランダムシャッフル</div>
+                    <div class="feature" data-i18n="featureFix">📌 ページ固定オプション</div>
+                    <div class="feature" data-i18n="featureAllPages">📄 全ページ対応</div>
+                    <div class="feature" data-i18n="featureDownload">💾 即座にダウンロード</div>
+                    <div class="feature" data-i18n="featurePrivacy">🔒 プライバシー保護</div>
                 </div>
             </section>
 
             <section class="share-section">
-                <h3>📢 このツールをシェア</h3>
+                <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
                 <div class="share-buttons">
                     <button class="share-btn twitter" onclick="shareToTwitter()">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
-                        X でシェア
+                        <span data-i18n="shareTwitter">X でシェア</span>
                     </button>
                     <button class="share-btn copy" onclick="copyLink()" id="copyBtn">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                         </svg>
-                        リンクをコピー
+                        <span data-i18n="copyLink">リンクをコピー</span>
                     </button>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
-            <p>機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
+            <p data-i18n="footerText1">&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
+            <p data-i18n="footerText2">機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
         </footer>
     </div>
 
     <script>
+        // 多言語翻訳データ
+        const translations = {
+            ja: {
+                title: "PDFページシャッフル | 無料オンラインツール",
+                metaDesc: "PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。",
+                keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー",
+                headline: "📄 PDFページシャッフル",
+                fixFirst: "最初のページを固定",
+                fixLast: "最後のページを固定",
+                dropHere: "PDFファイルをここにドラッグ＆ドロップ",
+                or: "または",
+                chooseFile: "ファイルを選択",
+                loadingText: "PDFを処理中...",
+                pageInfoTitle: "📋 PDF情報",
+                pageCountText: "総ページ数: ${pageCount}ページ",
+                shuffleBtnText: "🔀 ページをシャッフル",
+                downloadBtnText: "💾 シャッフル済みPDFをダウンロード",
+                featuresTitle: "✨ 機能",
+                descriptionText: "このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。",
+                featureShuffle: "🔀 ランダムシャッフル",
+                featureFix: "📌 ページ固定オプション",
+                featureAllPages: "📄 全ページ対応",
+                featureDownload: "💾 即座にダウンロード",
+                featurePrivacy: "🔒 プライバシー保護",
+                shareTitle: "📢 このツールをシェア",
+                shareTwitter: "X でシェア",
+                copyLink: "リンクをコピー",
+                copyBtnCopied: "コピー完了！",
+                footerText1: "© 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。",
+                footerText2: '機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。',
+                statusPdfOnly: "PDFファイルを選択してください。",
+                statusFileLoaded: 'PDFファイル "${fileName}" を読み込みました！',
+                statusLoadError: "PDFファイルの読み込みに失敗しました。破損していないか確認してください。",
+                statusSelectFirst: "まずPDFファイルを選択してください。",
+                statusNoPages: "PDFにページが含まれていません。",
+                statusAllFixed: "全てのページが固定されているため、順序は変更されませんでした。",
+                statusShuffled: "${shuffledCount}ページをシャッフルしました！",
+                statusShuffledWithFixed: "${shuffledCount}ページをシャッフルしました！ (${fixedPages}は固定)",
+                firstPage: "最初のページ",
+                lastPage: "最後のページ",
+                statusShuffleError: "PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。",
+                statusShuffleFirst: "まずPDFをシャッフルしてください。",
+                statusDownloaded: "シャッフル済みPDFをダウンロードしました！",
+                statusDownloadError: "ファイルのダウンロードに失敗しました。",
+                statusCopySuccess: "リンクをクリップボードにコピーしました！",
+                statusCopyError: "リンクのコピーに失敗しました。",
+                hashtags: "PDF,シャッフル,無料ツール,オンライン",
+            },
+            en: {
+                title: "PDF Page Shuffle | Free Online Tool",
+                metaDesc: "Free online tool to shuffle PDF pages randomly. Privacy protected, with options to lock cover and back pages. Works entirely in your browser.",
+                keywords: "PDF,shuffle,page,random,free,online,tool,privacy",
+                headline: "📄 PDF Page Shuffle",
+                fixFirst: "Fix the first page",
+                fixLast: "Fix the last page",
+                dropHere: "Drag & drop your PDF file here",
+                or: "or",
+                chooseFile: "Choose file",
+                loadingText: "Processing PDF...",
+                pageInfoTitle: "📋 PDF Information",
+                pageCountText: "Total pages: ${pageCount}",
+                shuffleBtnText: "🔀 Shuffle Pages",
+                downloadBtnText: "💾 Download Shuffled PDF",
+                featuresTitle: "✨ Features",
+                descriptionText: "This PDF Page Shuffle tool is a web application that allows you to randomly reorder the pages of a PDF file. Since it runs entirely in your browser, your files are not sent to a server, ensuring complete privacy. You can protect pages you don't want to move, such as the cover or back page, with the fix option. After processing, the file is available for immediate download, with '_shuffled' appended to the original file name.",
+                featureShuffle: "🔀 Random Shuffle",
+                featureFix: "📌 Page Fix Option",
+                featureAllPages: "📄 All Pages Supported",
+                featureDownload: "💾 Instant Download",
+                featurePrivacy: "🔒 Privacy Protection",
+                shareTitle: "📢 Share This Tool",
+                shareTwitter: "Share on X",
+                copyLink: "Copy Link",
+                copyBtnCopied: "Copied!",
+                footerText1: "© 2025 PDF Shuffle Tool. An open-source tool that runs in your browser.",
+                footerText2: 'If you have feature requests or find bugs, please report them on <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
+                statusPdfOnly: "Please select a PDF file.",
+                statusFileLoaded: 'Loaded PDF file "${fileName}"!',
+                statusLoadError: "Failed to load PDF file. Please check if it is corrupted.",
+                statusSelectFirst: "Please select a PDF file first.",
+                statusNoPages: "The PDF contains no pages.",
+                statusAllFixed: "All pages are fixed, so the order was not changed.",
+                statusShuffled: "Shuffled ${shuffledCount} pages!",
+                statusShuffledWithFixed: "Shuffled ${shuffledCount} pages! (${fixedPages} are fixed)",
+                firstPage: "the first page",
+                lastPage: "the last page",
+                statusShuffleError: "Failed to shuffle PDF. Please check if the file is corrupted.",
+                statusShuffleFirst: "Please shuffle the PDF first.",
+                statusDownloaded: "Downloaded the shuffled PDF!",
+                statusDownloadError: "Failed to download the file.",
+                statusCopySuccess: "Copied the link to your clipboard!",
+                statusCopyError: "Failed to copy the link.",
+                hashtags: "PDF,Shuffle,FreeTool,OnlineTool",
+            },
+            zh: {
+                title: "PDF页面随机排序 | 免费在线工具",
+                metaDesc: "免费的在线工具，可随机打乱PDF页面顺序。保护您的隐私，可选择固定首页和末页。完全在您的浏览器中运行。",
+                keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私",
+                headline: "📄 PDF页面随机排序",
+                fixFirst: "固定第一页",
+                fixLast: "固定最后一页",
+                dropHere: "将PDF文件拖放到此处",
+                or: "或",
+                chooseFile: "选择文件",
+                loadingText: "正在处理PDF...",
+                pageInfoTitle: "📋 PDF信息",
+                pageCountText: "总页数: ${pageCount}页",
+                shuffleBtnText: "🔀 随机排序页面",
+                downloadBtnText: "💾 下载排序后的PDF",
+                featuresTitle: "✨ 功能特性",
+                descriptionText: "此PDF页面随机排序工具是一个Web应用程序，可让您随机重排PDF文件的页面顺序。由于它完全在您的浏览器中运行，您的文件不会被发送到服务器，从而确保了完全的隐私。您可以使用固定选项保护不想移动的页面，例如封面或封底。处理后，文件可立即下载，文件名后会附加“_shuffled”。",
+                featureShuffle: "🔀 随机排序",
+                featureFix: "📌 页面固定选项",
+                featureAllPages: "📄 支持所有页面",
+                featureDownload: "💾 即时下载",
+                featurePrivacy: "🔒 隐私保护",
+                shareTitle: "📢 分享此工具",
+                shareTwitter: "在 X 上分享",
+                copyLink: "复制链接",
+                copyBtnCopied: "已复制！",
+                footerText1: "© 2025 PDF Shuffle Tool. 一个在浏览器中运行的开源工具。",
+                footerText2: '如果您有功能建议或发现错误，请在 <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> 上报告。',
+                statusPdfOnly: "请选择一个PDF文件。",
+                statusFileLoaded: '已加载PDF文件 "${fileName}"！',
+                statusLoadError: "加载PDF文件失败。请检查文件是否损坏。",
+                statusSelectFirst: "请先选择一个PDF文件。",
+                statusNoPages: "该PDF不包含任何页面。",
+                statusAllFixed: "所有页面均已固定，因此顺序未改变。",
+                statusShuffled: "已随机排序 ${shuffledCount} 个页面！",
+                statusShuffledWithFixed: "已随机排序 ${shuffledCount} 个页面！ (${fixedPages}已固定)",
+                firstPage: "第一页",
+                lastPage: "最后一页",
+                statusShuffleError: "PDF排序失败。请检查文件是否损坏。",
+                statusShuffleFirst: "请先对PDF进行排序。",
+                statusDownloaded: "已下载排序后的PDF！",
+                statusDownloadError: "文件下载失败。",
+                statusCopySuccess: "已将链接复制到剪贴板！",
+                statusCopyError: "复制链接失败。",
+                hashtags: "PDF,随机排序,免费工具,在线工具",
+            }
+        };
+
+        function getUserLanguage() {
+            const lang = navigator.language.toLowerCase();
+            if (lang.startsWith("ja")) {
+                return "ja";
+            }
+            if (lang.startsWith("zh")) {
+                return "zh";
+            }
+            return "en";
+        }
+        const userLang = getUserLanguage();
+        document.documentElement.lang = userLang;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                const translation = translations[userLang]?.[key];
+                if (translation) {
+                    if (el.tagName.toLowerCase() === "meta") {
+                        el.setAttribute("content", translation);
+                    } else if (el.tagName.toLowerCase() === "title") {
+                        el.textContent = translation;
+                    } else if (key === 'footerText2') {
+                        el.innerHTML = translation;
+                    } else {
+                        el.textContent = translation;
+                    }
+                }
+            });
+        });
+
         let originalPdfBytes = null;
         let shuffledPdfBytes = null;
         let originalFileName = '';
@@ -599,7 +778,11 @@
             }
         }
 
-        function showStatus(message, type) {
+        function showStatus(key, type, replacements = {}) {
+            let message = translations[userLang][key] || key;
+            for (const placeholder in replacements) {
+                message = message.replace(`\${${placeholder}}`, replacements[placeholder]);
+            }
             status.textContent = message;
             status.className = `status ${type}`;
             status.style.display = 'block';
@@ -615,7 +798,7 @@
 
         async function handleFile(file) {
             if (file.type !== 'application/pdf') {
-                showStatus('PDFファイルを選択してください。', 'error');
+                showStatus('statusPdfOnly', 'error');
                 return;
             }
 
@@ -631,16 +814,16 @@
                 const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
                 const pageCount = pdfDoc.getPageCount();
                 
-                document.getElementById('pageCount').textContent = `総ページ数: ${pageCount}ページ`;
+                document.getElementById('pageCount').textContent = translations[userLang].pageCountText.replace('${pageCount}', pageCount);
                 pageInfo.style.display = 'block';
                 shuffleBtn.disabled = false;
                 downloadBtn.style.display = 'none';
                 shuffledPdfBytes = null;
                 
-                showStatus(`PDFファイル "${file.name}" を読み込みました！`, 'success');
+                showStatus('statusFileLoaded', 'success', { fileName: file.name });
             } catch (error) {
                 console.error('PDF読み込みエラー:', error);
-                showStatus('PDFファイルの読み込みに失敗しました。破損していないか確認してください。', 'error');
+                showStatus('statusLoadError', 'error');
             } finally {
                 showLoading(false);
             }
@@ -648,7 +831,7 @@
 
         async function shufflePDF() {
             if (!originalPdfBytes) {
-                showStatus('まずPDFファイルを選択してください。', 'error');
+                showStatus('statusSelectFirst', 'error');
                 return;
             }
 
@@ -662,7 +845,7 @@
                 const pageCount = originalDoc.getPageCount();
                 
                 if (pageCount === 0) {
-                    showStatus('PDFにページが含まれていません。', 'error');
+                    showStatus('statusNoPages', 'error');
                     return;
                 }
                 
@@ -684,7 +867,7 @@
                         const [copiedPage] = await newDoc.copyPages(originalDoc, [i]);
                         newDoc.addPage(copiedPage);
                     }
-                    showStatus('全てのページが固定されているため、順序は変更されませんでした。', 'info');
+                    showStatus('statusAllFixed', 'info');
                 } else {
                     // シャッフル対象のページインデックス配列を作成
                     const shuffleIndices = [];
@@ -713,17 +896,22 @@
                         newDoc.addPage(lastPage);
                     }
                     
-                    let shuffledCount = shuffleIndices.length;
-                    let message = `${shuffledCount}ページをシャッフルしました！`;
+                    const shuffledCount = shuffleIndices.length;
                     
                     if (preserveFirst || preserveLast) {
-                        let fixedPages = [];
-                        if (preserveFirst) fixedPages.push('最初のページ');
-                        if (preserveLast) fixedPages.push('最後のページ');
-                        message += ` (${fixedPages.join('と')}は固定)`;
+                        const fixedPageParts = [];
+                        if (preserveFirst) fixedPageParts.push(translations[userLang].firstPage);
+                        if (preserveLast) fixedPageParts.push(translations[userLang].lastPage);
+                        const conjunctions = {
+                            ja: 'と',
+                            en: ' and ',
+                            zh: '和'
+                        };
+                        const fixedPages = fixedPageParts.join(conjunctions[userLang] || ' and ');
+                        showStatus('statusShuffledWithFixed', 'success', { shuffledCount, fixedPages });
+                    } else {
+                        showStatus('statusShuffled', 'success', { shuffledCount });
                     }
-                    
-                    showStatus(message, 'success');
                 }
                 
                 // PDFをバイト配列に変換
@@ -733,7 +921,7 @@
                 
             } catch (error) {
                 console.error('シャッフルエラー:', error);
-                showStatus('PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。', 'error');
+                showStatus('statusShuffleError', 'error');
             } finally {
                 showLoading(false);
                 shuffleBtn.disabled = false;
@@ -750,7 +938,7 @@
 
         function downloadShuffledPDF() {
             if (!shuffledPdfBytes) {
-                showStatus('まずPDFをシャッフルしてください。', 'error');
+                showStatus('statusShuffleFirst', 'error');
                 return;
             }
 
@@ -767,18 +955,18 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 
-                showStatus('シャッフル済みPDFをダウンロードしました！', 'success');
+                showStatus('statusDownloaded', 'success');
             } catch (error) {
                 console.error('ダウンロードエラー:', error);
-                showStatus('ファイルのダウンロードに失敗しました。', 'error');
+                showStatus('statusDownloadError', 'error');
             }
         }
 
         // ソーシャルメディア共有機能
         function shareToTwitter() {
             const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('PDFページシャッフル - PDFファイルのページをランダムに並び替えできる無料オンラインツール！プライバシー保護で安心です。');
-            const hashtags = encodeURIComponent('PDF,シャッフル,無料ツール,オンライン');
+            const text = encodeURIComponent(translations[userLang].metaDesc);
+            const hashtags = encodeURIComponent(translations[userLang].hashtags);
             
             const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
             window.open(twitterUrl, '_blank', 'width=550,height=420');
@@ -819,10 +1007,10 @@
                 if (successful) {
                     showCopySuccess();
                 } else {
-                    showStatus('リンクのコピーに失敗しました。', 'error');
+                    showStatus('statusCopyError', 'error');
                 }
             } catch (err) {
-                showStatus('リンクのコピーに失敗しました。', 'error');
+                showStatus('statusCopyError', 'error');
             }
             
             document.body.removeChild(textArea);
@@ -830,19 +1018,21 @@
 
         function showCopySuccess() {
             const copyBtn = document.getElementById('copyBtn');
-            const originalText = copyBtn.innerHTML;
+            const originalContent = copyBtn.innerHTML;
             
             copyBtn.classList.add('copied');
             copyBtn.innerHTML = `
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
                 </svg>
-                コピー完了！
+                <span>${translations[userLang].copyBtnCopied}</span>
             `;
+            
+            showStatus('statusCopySuccess', 'success');
             
             setTimeout(() => {
                 copyBtn.classList.remove('copied');
-                copyBtn.innerHTML = originalText;
+                copyBtn.innerHTML = originalContent;
             }, 2000);
         }
 
