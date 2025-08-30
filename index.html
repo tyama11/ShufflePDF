@@ -1028,8 +1028,6 @@
                 <span>${translations[userLang].copyBtnCopied}</span>
             `;
             
-            showStatus('statusCopySuccess', 'success');
-            
             setTimeout(() => {
                 copyBtn.classList.remove('copied');
                 copyBtn.innerHTML = originalContent;
