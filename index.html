@@ -16,7 +16,7 @@
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yourusername.github.io/pdf-shuffle/">
+    <meta property="twitter:url" content="https://tyama11.github.io/ShufflePDF/">
     <meta property="twitter:title" content="PDFページシャッフル | 無料オンラインツール">
     <meta property="twitter:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
     
@@ -297,6 +297,78 @@
             font-weight: bold;
         }
 
+        .share-section {
+            margin: 40px 0;
+            text-align: center;
+            padding: 25px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .share-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .share-btn svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .share-btn.twitter {
+            background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+        }
+
+        .share-btn.facebook {
+            background: linear-gradient(135deg, #4267b2, #365899);
+        }
+
+        .share-btn.line {
+            background: linear-gradient(135deg, #00c300, #00a000);
+        }
+
+        .share-btn.linkedin {
+            background: linear-gradient(135deg, #0077b5, #005885);
+        }
+
+        .share-btn.copy {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+        }
+
+        .share-btn.copy.copied {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -341,6 +413,17 @@
             .feature {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .share-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
             }
         }
 
@@ -444,6 +527,42 @@
                     <div class="feature">📄 全ページ対応</div>
                     <div class="feature">💾 即座にダウンロード</div>
                     <div class="feature">🔒 プライバシー保護</div>
+                </div>
+            </section>
+
+            <section class="share-section">
+                <h3>📢 このツールをシェア</h3>
+                <div class="share-buttons">
+                    <button class="share-btn twitter" onclick="shareToTwitter()">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                        X でシェア
+                    </button>
+                    <button class="share-btn facebook" onclick="shareToFacebook()">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Facebook でシェア
+                    </button>
+                    <button class="share-btn line" onclick="shareToLine()">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.889 8.889c0 .146-.146.292-.292.292H8.403c-.146 0-.292-.146-.292-.292V9.111c0-.146.146-.292.292-.292h8.194c.146 0 .292.146.292.292v1.778zm0 3.556c0 .146-.146.292-.292.292H8.403c-.146 0-.292-.146-.292-.292v-1.778c0-.146.146-.292.292-.292h8.194c.146 0 .292.146.292.292v1.778z"/>
+                        </svg>
+                        LINE でシェア
+                    </button>
+                    <button class="share-btn linkedin" onclick="shareToLinkedIn()">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn でシェア
+                    </button>
+                    <button class="share-btn copy" onclick="copyLink()" id="copyBtn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        リンクをコピー
+                    </button>
                 </div>
             </section>
         </main>
@@ -673,28 +792,102 @@
             }
         }
 
-        // サービスワーカー登録（オフライン対応、オプション）
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('ServiceWorker registration failed: ', registrationError);
-                    });
-            });
+        // ソーシャルメディア共有機能
+        function shareToTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('PDFページシャッフル - PDFファイルのページをランダムに並び替えできる無料オンラインツール！プライバシー保護で安心です。');
+            const hashtags = encodeURIComponent('PDF,シャッフル,無料ツール,オンライン');
+            
+            const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+
+        function shareToFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            window.open(facebookUrl, '_blank', 'width=580,height=296');
+        }
+
+        function shareToLine() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('PDFページシャッフル - PDFファイルのページをランダムに並び替えできる無料オンラインツール！');
+            
+            const lineUrl = `https://social-plugins.line.me/lineit/share?url=${url}&text=${text}`;
+            window.open(lineUrl, '_blank');
+        }
+
+        function shareToLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('PDFページシャッフル | 無料オンラインツール');
+            const summary = encodeURIComponent('PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。');
+            
+            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`;
+            window.open(linkedinUrl, '_blank');
+        }
+
+        function copyLink() {
+            const copyBtn = document.getElementById('copyBtn');
+            const url = window.location.href;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                // モダンブラウザ対応
+                navigator.clipboard.writeText(url).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(url);
+                });
+            } else {
+                // 古いブラウザ対応
+                fallbackCopyTextToClipboard(url);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            // 画面外に配置
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopySuccess();
+                } else {
+                    showStatus('リンクのコピーに失敗しました。', 'error');
+                }
+            } catch (err) {
+                showStatus('リンクのコピーに失敗しました。', 'error');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess() {
+            const copyBtn = document.getElementById('copyBtn');
+            const originalText = copyBtn.innerHTML;
+            
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                </svg>
+                コピー完了！
+            `;
+            
+            showStatus('リンクをクリップボードにコピーしました！', 'success');
+            
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = originalText;
+            }, 2000);
         }
     </script>
-
-    <!-- Google Analytics（必要に応じて有効化）
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    -->
 </body>
 </html>
