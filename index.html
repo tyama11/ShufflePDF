@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDFページシャッフル | 無料オンラインツール</title>
+    <meta name="description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
+    <meta name="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
+    <meta name="author" content="PDF Shuffle Tool">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/pdf-shuffle/">
+    <meta property="og:title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="og:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourusername.github.io/pdf-shuffle/">
+    <meta property="twitter:title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="twitter:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    
+    <link rel="canonical" href="https://yourusername.github.io/pdf-shuffle/">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .options-panel {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .option-group {
+            margin-bottom: 15px;
+        }
+
+        .option-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .switch-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .switch-input {
+            display: none;
+        }
+
+        .switch-slider {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 26px;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .switch-slider::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .switch-input:checked + .switch-slider {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .switch-input:checked + .switch-slider::before {
+            transform: translateX(24px);
+        }
+
+        .switch-text {
+            user-select: none;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(102, 126, 234, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: rgba(118, 75, 162, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: rgba(118, 75, 162, 0.15);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .status.info {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .status.success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 2px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .status.error {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 2px solid rgba(220, 53, 69, 0.3);
+        }
+
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            border: 4px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .page-info {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .features {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .features h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .description p {
+            color: #555;
+            font-size: 1rem;
+            text-align: left;
+            margin: 0;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 20px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .upload-area {
+                padding: 40px 15px;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+            }
+
+            .feature-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* アクセシビリティ対応 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ダークモード対応 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            }
+
+            .container {
+                background: rgba(45, 55, 72, 0.95);
+                color: #e2e8f0;
+            }
+
+            h1 {
+                color: #e2e8f0;
+            }
+
+            .upload-text, .description p {
+                color: #cbd5e0;
+            }
+
+            .switch-text {
+                color: #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 PDFページシャッフル</h1>
+        </header>
+
+        <main>
+            <section class="options-panel">
+                <div class="option-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="preserveFirstPage" class="switch-input">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text">最初のページを固定</span>
+                    </label>
+                </div>
+                <div class="option-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="preserveLastPage" class="switch-input">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text">最後のページを固定</span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">PDFファイルをここにドラッグ＆ドロップ</div>
+                <div class="upload-text">または</div>
+                <button class="btn" onclick="document.getElementById('fileInput').click()">
+                    ファイルを選択
+                </button>
+                <input type="file" id="fileInput" class="file-input" accept=".pdf">
+            </section>
+
+            <div id="status" class="status" style="display: none;"></div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div>PDFを処理中...</div>
+            </div>
+
+            <div id="pageInfo" class="page-info" style="display: none;">
+                <h3>📋 PDF情報</h3>
+                <div id="pageCount"></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn" id="shuffleBtn" onclick="shufflePDF()" disabled>
+                    🔀 ページをシャッフル
+                </button>
+                <button class="btn btn-secondary" id="downloadBtn" onclick="downloadShuffledPDF()" disabled style="display: none;">
+                    💾 シャッフル済みPDFをダウンロード
+                </button>
+            </div>
+
+            <section class="features">
+                <h2>✨ 機能</h2>
+                <div class="description">
+                    <p>このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
+                </div>
+                <div class="feature-list">
+                    <div class="feature">🔀 ランダムシャッフル</div>
+                    <div class="feature">📌 ページ固定オプション</div>
+                    <div class="feature">📄 全ページ対応</div>
+                    <div class="feature">💾 即座にダウンロード</div>
+                    <div class="feature">🔒 プライバシー保護</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
+            <p><a href="https://github.com/yourusername/pdf-shuffle" target="_blank" rel="noopener">GitHub</a> で利用可能です。</p>
+        </footer>
+    </div>
+
+    <script>
+        let originalPdfBytes = null;
+        let shuffledPdfBytes = null;
+        let originalFileName = '';
+
+        // ドラッグ＆ドロップ機能
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const status = document.getElementById('status');
+        const loading = document.getElementById('loading');
+        const pageInfo = document.getElementById('pageInfo');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // イベントリスナーの設定
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileInput);
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        }
+
+        function handleDragLeave() {
+            uploadArea.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFileInput(e) {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        }
+
+        function showStatus(message, type) {
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            status.style.display = 'none';
+        }
+
+        function showLoading(show = true) {
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        async function handleFile(file) {
+            if (file.type !== 'application/pdf') {
+                showStatus('PDFファイルを選択してください。', 'error');
+                return;
+            }
+
+            originalFileName = file.name;
+            showLoading(true);
+            hideStatus();
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                originalPdfBytes = new Uint8Array(arrayBuffer);
+                
+                // PDF情報を取得
+                const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+                const pageCount = pdfDoc.getPageCount();
+                
+                document.getElementById('pageCount').textContent = `総ページ数: ${pageCount}ページ`;
+                pageInfo.style.display = 'block';
+                shuffleBtn.disabled = false;
+                downloadBtn.style.display = 'none';
+                shuffledPdfBytes = null;
+                
+                showStatus(`PDFファイル "${file.name}" を読み込みました！`, 'success');
+            } catch (error) {
+                console.error('PDF読み込みエラー:', error);
+                showStatus('PDFファイルの読み込みに失敗しました。破損していないか確認してください。', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function shufflePDF() {
+            if (!originalPdfBytes) {
+                showStatus('まずPDFファイルを選択してください。', 'error');
+                return;
+            }
+
+            showLoading(true);
+            shuffleBtn.disabled = true;
+            hideStatus();
+
+            try {
+                // 元のPDFを読み込み
+                const originalDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+                const pageCount = originalDoc.getPageCount();
+                
+                if (pageCount === 0) {
+                    showStatus('PDFにページが含まれていません。', 'error');
+                    return;
+                }
+                
+                // 新しいPDFドキュメントを作成
+                const newDoc = await PDFLib.PDFDocument.create();
+                
+                // オプション設定を取得
+                const preserveFirst = document.getElementById('preserveFirstPage').checked;
+                const preserveLast = document.getElementById('preserveLastPage').checked;
+                
+                // シャッフル対象のページインデックスを決定
+                let startIndex = preserveFirst ? 1 : 0;
+                let endIndex = preserveLast ? pageCount - 1 : pageCount;
+                
+                // 全ページが固定されている場合の処理
+                if (startIndex >= endIndex) {
+                    // 全ページをそのままコピー
+                    for (let i = 0; i < pageCount; i++) {
+                        const [copiedPage] = await newDoc.copyPages(originalDoc, [i]);
+                        newDoc.addPage(copiedPage);
+                    }
+                    showStatus('全てのページが固定されているため、順序は変更されませんでした。', 'info');
+                } else {
+                    // シャッフル対象のページインデックス配列を作成
+                    const shuffleIndices = [];
+                    for (let i = startIndex; i < endIndex; i++) {
+                        shuffleIndices.push(i);
+                    }
+                    
+                    // シャッフル対象のページをシャッフル
+                    shuffleArray(shuffleIndices);
+                    
+                    // 最初のページを追加（固定の場合）
+                    if (preserveFirst && pageCount > 0) {
+                        const [firstPage] = await newDoc.copyPages(originalDoc, [0]);
+                        newDoc.addPage(firstPage);
+                    }
+                    
+                    // シャッフルされた中間ページを追加
+                    for (const pageIndex of shuffleIndices) {
+                        const [copiedPage] = await newDoc.copyPages(originalDoc, [pageIndex]);
+                        newDoc.addPage(copiedPage);
+                    }
+                    
+                    // 最後のページを追加（固定の場合）
+                    if (preserveLast && pageCount > 0) {
+                        const [lastPage] = await newDoc.copyPages(originalDoc, [pageCount - 1]);
+                        newDoc.addPage(lastPage);
+                    }
+                    
+                    let shuffledCount = shuffleIndices.length;
+                    let message = `${shuffledCount}ページをシャッフルしました！`;
+                    
+                    if (preserveFirst || preserveLast) {
+                        let fixedPages = [];
+                        if (preserveFirst) fixedPages.push('最初のページ');
+                        if (preserveLast) fixedPages.push('最後のページ');
+                        message += ` (${fixedPages.join('と')}は固定)`;
+                    }
+                    
+                    showStatus(message, 'success');
+                }
+                
+                // PDFをバイト配列に変換
+                shuffledPdfBytes = await newDoc.save();
+                downloadBtn.disabled = false;
+                downloadBtn.style.display = 'inline-block';
+                
+            } catch (error) {
+                console.error('シャッフルエラー:', error);
+                showStatus('PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。', 'error');
+            } finally {
+                showLoading(false);
+                shuffleBtn.disabled = false;
+            }
+        }
+
+        function shuffleArray(array) {
+            // Fisher-Yates シャッフルアルゴリズム
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function downloadShuffledPDF() {
+            if (!shuffledPdfBytes) {
+                showStatus('まずPDFをシャッフルしてください。', 'error');
+                return;
+            }
+
+            try {
+                const blob = new Blob([shuffledPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                const baseName = originalFileName.replace(/\.pdf$/i, '');
+                a.download = `${baseName}_shuffled.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showStatus('シャッフル済みPDFをダウンロードしました！', 'success');
+            } catch (error) {
+                console.error('ダウンロードエラー:', error);
+                showStatus('ファイルのダウンロードに失敗しました。', 'error');
+            }
+        }
+
+        // サービスワーカー登録（オフライン対応、オプション）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('ServiceWorker registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Google Analytics（必要に応じて有効化）
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+</body>
+</html>
