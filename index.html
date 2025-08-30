@@ -213,19 +213,19 @@
 
         .status.info {
             background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            color: #313c94; /* コントラスト比を改善 */
             border: 2px solid rgba(102, 126, 234, 0.3);
         }
 
         .status.success {
             background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
+            color: #155724; /* コントラスト比を改善 */
             border: 2px solid rgba(40, 167, 69, 0.3);
         }
 
         .status.error {
             background: rgba(220, 53, 69, 0.1);
-            color: #dc3545;
+            color: #721c24; /* コントラスト比を改善 */
             border: 2px solid rgba(220, 53, 69, 0.3);
         }
 
@@ -465,6 +465,13 @@
                 color: #e2e8f0;
             }
         }
+
+        /* アクセシビリティ: フォーカス状態の強調 */
+        :focus-visible {
+            outline: 3px solid #005fcc;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -501,9 +508,9 @@
                 <input type="file" id="fileInput" class="file-input" accept=".pdf">
             </section>
 
-            <div id="status" class="status" style="display: none;"></div>
+            <div id="status" class="status" style="display: none;" aria-live="polite"></div>
 
-            <div class="loading" id="loading">
+            <div class="loading" id="loading" role="status" aria-live="polite">
                 <div class="spinner"></div>
                 <div data-i18n="loadingText">PDFを処理中...</div>
             </div>
@@ -539,14 +546,14 @@
             <section class="share-section">
                 <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
                 <div class="share-buttons">
-                    <button class="share-btn twitter" onclick="shareToTwitter()">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                    <button class="share-btn twitter" onclick="shareToTwitter()" aria-label="Xでシェア">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
                         <span data-i18n="shareTwitter">X でシェア</span>
                     </button>
-                    <button class="share-btn copy" onclick="copyLink()" id="copyBtn">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                    <button class="share-btn copy" onclick="copyLink()" id="copyBtn" aria-label="リンクをコピー">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                         </svg>
                         <span data-i18n="copyLink">リンクをコピー</span>
@@ -1022,7 +1029,7 @@
             
             copyBtn.classList.add('copied');
             copyBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
                 </svg>
                 <span>${translations[userLang].copyBtnCopied}</span>
