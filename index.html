@@ -645,6 +645,34 @@
                     </button>
                 </div>
             </section>
+
+            <section class="faq">
+                <h2 data-i18n="faqTitle">よくある質問 (FAQ)</h2>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ1">このツールは本当に無料ですか？</summary>
+                        <p data-i18n="faqA1">はい、完全に無料です。すべての機能を登録不要、無制限でご利用いただけます。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ2">ファイルは安全ですか？プライバシーは保護されますか？</summary>
+                        <p data-i18n="faqA2">はい、安全です。このツールはあなたのブラウザ上でのみ動作し、PDFファイルがサーバーにアップロードされることは一切ありません。あなたのプライバシーは完全に保護されます。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ3">どんなPDFファイルでも使えますか？</summary>
+                        <p data-i18n="faqA3">標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ4">シャッフル後に元に戻すことはできますか？</summary>
+                        <p data-i18n="faqA4">シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。</p>
+                    </details>
+                </div>
+            </section>
         </main>
 
         <footer class="footer">
@@ -872,6 +900,12 @@
                     if (el.tagName.toLowerCase() === "meta") {
                         el.setAttribute("content", translation);
                     } else if (el.tagName.toLowerCase() === "title") {
+                        el.textContent = translation;
+                    } else if (key === 'shareTwitter') {
+                        el.parentElement.setAttribute('aria-label', translation);
+                        el.textContent = translation;
+                    } else if (key === 'copyLink') {
+                        el.parentElement.setAttribute('aria-label', translation);
                         el.textContent = translation;
                     } else if (key === 'themeToggle') {
                         el.setAttribute('aria-label', translation);
