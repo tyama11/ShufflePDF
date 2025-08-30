@@ -513,6 +513,46 @@
             border-radius: 4px;
         }
 
+        /* --- FAQセクションのスタイル --- */
+        .faq {
+            margin-top: 50px;
+            text-align: left;
+        }
+        .faq h2 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+        .faq-item {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .faq-item summary {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-color);
+            position: relative;
+            list-style: none; /* デフォルトのマーカーを非表示 */
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .faq-item details[open] > summary::after { transform: rotate(45deg); }
+        .faq-item p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-color-light);
+            line-height: 1.6;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -662,6 +702,15 @@
                 statusCopyError: "リンクのコピーに失敗しました。",
                 hashtags: "PDF,シャッフル,無料ツール,オンライン",
                 themeToggle: "テーマを切り替え (ライト/ダーク)",
+                faqTitle: "よくある質問 (FAQ)",
+                faqQ1: "このツールは本当に無料ですか？",
+                faqA1: "はい、完全に無料です。すべての機能を登録不要、無制限でご利用いただけます。",
+                faqQ2: "ファイルは安全ですか？プライバシーは保護されますか？",
+                faqA2: "はい、安全です。このツールはあなたのブラウザ上でのみ動作し、PDFファイルがサーバーにアップロードされることは一切ありません。あなたのプライバシーは完全に保護されます。",
+                faqQ3: "どんなPDFファイルでも使えますか？",
+                faqA3: "標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。",
+                faqQ4: "シャッフル後に元に戻すことはできますか？",
+                faqA4: "シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。",
             },
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
@@ -709,6 +758,15 @@
                 statusCopyError: "Failed to copy the link.",
                 hashtags: "PDF,Shuffle,FreeTool,OnlineTool",
                 themeToggle: "Toggle theme (Light/Dark)",
+                faqTitle: "Frequently Asked Questions (FAQ)",
+                faqQ1: "Is this tool really free?",
+                faqA1: "Yes, it is completely free. All features are available without registration or limits.",
+                faqQ2: "Are my files secure? Is my privacy protected?",
+                faqA2: "Yes, it's secure. This tool operates entirely within your browser. Your PDF files are never uploaded to a server, ensuring your privacy is fully protected.",
+                faqQ3: "Can I use any PDF file?",
+                faqA3: "Most standard PDF files are supported. However, password-protected or specially formatted files may not be processed correctly.",
+                faqQ4: "Can I undo the shuffle?",
+                faqA4: "The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.",
             },
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
@@ -756,6 +814,15 @@
                 statusCopyError: "复制链接失败。",
                 hashtags: "PDF,随机排序,免费工具,在线工具",
                 themeToggle: "切换主题 (亮/暗)",
+                faqTitle: "常见问题 (FAQ)",
+                faqQ1: "这个工具真的免费吗？",
+                faqA1: "是的，完全免费。所有功能无需注册，无限制使用。",
+                faqQ2: "我的文件安全吗？隐私会受到保护吗？",
+                faqA2: "是的，非常安全。此工具完全在您的浏览器中运行，PDF文件绝不会上传到服务器。您的隐私将得到完全保护。",
+                faqQ3: "任何PDF文件都可以使用吗？",
+                faqA3: "大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。",
+                faqQ4: "随机排序后可以撤销吗？",
+                faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
             }
         };
 
