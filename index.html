@@ -35,10 +35,39 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        /* --- テーマ変数定義 --- */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --text-color-light: #666;
+            --panel-bg: rgba(102, 126, 234, 0.05);
+            --panel-border: rgba(102, 126, 234, 0.2);
+            --primary-color: #667eea;
+            --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --switch-bg: #ccc;
+            --footer-border: rgba(102, 126, 234, 0.2);
+            --focus-outline: #005fcc;
+        }
 
+        html[data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            --container-bg: rgba(45, 55, 72, 0.95);
+            --text-color: #e2e8f0;
+            --text-color-light: #cbd5e0;
+            --panel-bg: rgba(255, 255, 255, 0.05);
+            --panel-border: rgba(255, 255, 255, 0.2);
+            --primary-color: #a3bffa;
+            --primary-gradient: linear-gradient(135deg, #82aaff, #a3bffa);
+            --switch-bg: #555;
+            --footer-border: rgba(255, 255, 255, 0.1);
+            --focus-outline: #5a9bff;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-gradient);
             min-height: 100vh;
             padding: 20px;
         }
@@ -46,7 +75,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--container-bg);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -54,22 +83,50 @@
         }
 
         h1 {
-            text-align: center;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 30px;
             font-size: 2.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .theme-toggle-btn:hover {
+            background: var(--panel-bg);
+        }
+        .theme-toggle-btn svg { width: 24px; height: 24px; }
+        .theme-toggle-btn .moon { display: none; }
+
         .options-panel {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid var(--panel-border);
         }
 
         .option-group {
@@ -85,7 +142,7 @@
             align-items: center;
             cursor: pointer;
             font-size: 1.1rem;
-            color: #333;
+            color: var(--text-color);
             font-weight: 500;
         }
 
@@ -97,7 +154,7 @@
             position: relative;
             width: 50px;
             height: 26px;
-            background: #ccc;
+            background: var(--switch-bg);
             border-radius: 26px;
             transition: all 0.3s ease;
             margin-right: 15px;
@@ -117,7 +174,7 @@
         }
 
         .switch-input:checked + .switch-slider {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
         }
 
         .switch-input:checked + .switch-slider::before {
@@ -129,11 +186,11 @@
         }
 
         .upload-area {
-            border: 3px dashed #667eea;
+            border: 3px dashed var(--primary-color);
             border-radius: 15px;
             padding: 60px 20px;
             text-align: center;
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             transition: all 0.3s ease;
             cursor: pointer;
             margin-bottom: 30px;
@@ -153,12 +210,12 @@
 
         .upload-icon {
             font-size: 4rem;
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .upload-text {
-            color: #666;
+            color: var(--text-color-light);
             font-size: 1.2rem;
             margin-bottom: 15px;
         }
@@ -168,7 +225,7 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -242,7 +299,7 @@
 
         .spinner {
             border: 4px solid rgba(102, 126, 234, 0.1);
-            border-left: 4px solid #667eea;
+            border-left-color: var(--primary-color);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -256,7 +313,7 @@
         }
 
         .page-info {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
@@ -269,12 +326,12 @@
         }
 
         .features h2 {
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 20px;
         }
 
         .description {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
@@ -282,7 +339,7 @@
         }
 
         .description p {
-            color: #555;
+            color: var(--text-color-light);
             font-size: 1rem;
             text-align: left;
             margin: 0;
@@ -296,10 +353,10 @@
         }
 
         .feature {
-            background: rgba(102, 126, 234, 0.1);
+            background: var(--panel-bg);
             padding: 15px 20px;
             border-radius: 10px;
-            color: #667eea;
+            color: var(--primary-color);
             font-weight: bold;
         }
 
@@ -307,13 +364,13 @@
             margin: 40px 0;
             text-align: center;
             padding: 25px;
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 15px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid var(--panel-border);
         }
 
         .share-section h3 {
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 20px;
             font-size: 1.3rem;
         }
@@ -378,21 +435,20 @@
         .footer {
             margin-top: 50px;
             text-align: center;
-            color: #666;
+            color: var(--text-color-light);
             font-size: 0.9rem;
             padding: 20px;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-top: 1px solid var(--footer-border);
         }
 
         .footer a {
-            color: #667eea;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
         .footer a:hover {
             text-decoration: underline;
         }
-
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
             .container {
@@ -442,42 +498,31 @@
             }
         }
 
-        /* ダークモード対応 */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            }
-
-            .container {
-                background: rgba(45, 55, 72, 0.95);
-                color: #e2e8f0;
-            }
-
-            h1 {
-                color: #e2e8f0;
-            }
-
-            .upload-text, .description p {
-                color: #cbd5e0;
-            }
-
-            .switch-text {
-                color: #e2e8f0;
-            }
+        /* ダークモードのアイコン切り替え */
+        html[data-theme="dark"] .theme-toggle-btn .sun {
+            display: none;
+        }
+        html[data-theme="dark"] .theme-toggle-btn .moon {
+            display: block;
         }
 
         /* アクセシビリティ: フォーカス状態の強調 */
         :focus-visible {
-            outline: 3px solid #005fcc;
+            outline: 3px solid var(--focus-outline);
             outline-offset: 2px;
             border-radius: 4px;
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1 data-i18n="headline">📄 PDFページシャッフル</h1>
+            <button id="theme-toggle" class="theme-toggle-btn" data-i18n="themeToggle" aria-label="Toggle theme">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zm-11.457 11.457a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.061zm11.457 0a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM5.106 18.894a.75.75 0 01-1.06 0l-1.59-1.59a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM4.5 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H5.25a.75.75 0 01-.75-.75zM12 19.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 19.5z"/></svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.945.75.75 0 01.981.981A10.503 10.503 0 0118 18a10.5 10.5 0 01-10.5-10.5c0-1.562.32-3.056.9-4.402a.75.75 0 01.819-.162z" clip-rule="evenodd" /></svg>
+            </button>
         </header>
 
         <main>
@@ -616,6 +661,7 @@
                 statusCopySuccess: "リンクをクリップボードにコピーしました！",
                 statusCopyError: "リンクのコピーに失敗しました。",
                 hashtags: "PDF,シャッフル,無料ツール,オンライン",
+                themeToggle: "テーマを切り替え (ライト/ダーク)",
             },
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
@@ -662,6 +708,7 @@
                 statusCopySuccess: "Copied the link to your clipboard!",
                 statusCopyError: "Failed to copy the link.",
                 hashtags: "PDF,Shuffle,FreeTool,OnlineTool",
+                themeToggle: "Toggle theme (Light/Dark)",
             },
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
@@ -708,6 +755,7 @@
                 statusCopySuccess: "已将链接复制到剪贴板！",
                 statusCopyError: "复制链接失败。",
                 hashtags: "PDF,随机排序,免费工具,在线工具",
+                themeToggle: "切换主题 (亮/暗)",
             }
         };
 
@@ -724,6 +772,31 @@
         const userLang = getUserLanguage();
         document.documentElement.lang = userLang;
 
+        // --- テーマ切り替え機能 ---
+        const themeToggle = document.getElementById('theme-toggle');
+
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        const toggleTheme = () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // 初期テーマ設定
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersDark ? 'dark' : 'light');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll("[data-i18n]").forEach(el => {
                 const key = el.getAttribute("data-i18n");
@@ -733,6 +806,8 @@
                         el.setAttribute("content", translation);
                     } else if (el.tagName.toLowerCase() === "title") {
                         el.textContent = translation;
+                    } else if (key === 'themeToggle') {
+                        el.setAttribute('aria-label', translation);
                     } else if (key === 'footerText2') {
                         el.innerHTML = translation;
                     } else {
