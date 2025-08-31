@@ -22,11 +22,7 @@
     
     <link rel="canonical" href="https://tyama11.github.io/ShufflePDF/">
     
-    <!-- SEO: Language Alternates -->
-    <link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/">
-    <link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/">
-    <link rel="alternate" hreflang="es" href="https://tyama11.github.io/ShufflePDF/">
-    <link rel="alternate" hreflang="zh" href="https://tyama11.github.io/ShufflePDF/">
+
     <link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
@@ -567,52 +563,57 @@
         </header>
 
         <main>
-            <section class="options-panel">
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="shuffleAllPages" class="switch-input exclusive-switch" checked>
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" data-i18n="shuffleAllPages">全てのページをシャッフル</span>
-                    </label>
-                </div>
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="fixFirstPageSimple" class="switch-input exclusive-switch">
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" data-i18n="fixFirstPageSimple">1ページ目のみ固定（本文は1ページ単位）</span>
-                    </label>
-                </div>
+            <fieldset class="options-panel">
+                <legend class="sr-only">シャッフルオプション</legend> <!-- スクリーンリーダー用 -->
+                <fieldset class="option-group">
+                    <legend class="sr-only">基本シャッフル</legend>
+                    <div class="option-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="shuffleAllPages" class="switch-input exclusive-switch" checked>
+                            <span class="switch-slider"></span>
+                            <span class="switch-text" data-i18n="shuffleAllPages">全てのページをシャッフル</span>
+                        </label>
+                    </div>
+                    <div class="option-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="fixFirstPageSimple" class="switch-input exclusive-switch">
+                            <span class="switch-slider"></span>
+                            <span class="switch-text" data-i18n="fixFirstPageSimple">1ページ目のみ固定（本文は1ページ単位）</span>
+                        </label>
+                    </div>
+                </fieldset>
                 <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="fixCover" class="switch-input exclusive-switch">
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" data-i18n="fixCover">1ページ目のみ固定（本文は見開き）</span>
-                    </label>
-                </div>
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="fixFirstSpread" class="switch-input exclusive-switch">
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" data-i18n="fixFirstSpread">1-2ページ目を固定（本文は見開き）</span>
-                    </label>
-                </div>
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="allSpreads" class="switch-input exclusive-switch">
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" data-i18n="allSpreads">全体を見開きでシャッフル</span>
-                    </label>
-                </div>
+                <fieldset class="option-group">
+                    <legend class="sr-only">見開きシャッフル</legend>
+                    <div class="option-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="fixCover" class="switch-input exclusive-switch">
+                            <span class="switch-slider"></span>
+                            <span class="switch-text" data-i18n="fixCover">1ページ目のみ固定（本文は見開き）</span>
+                        </label>
+                    </div>
+                    <div class="option-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="fixFirstSpread" class="switch-input exclusive-switch">
+                            <span class="switch-slider"></span>
+                            <span class="switch-text" data-i18n="fixFirstSpread">1-2ページ目を固定（本文は見開き）</span>
+                        </label>
+                    </div>
+                    <div class="option-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="allSpreads" class="switch-input exclusive-switch">
+                            <span class="switch-slider"></span>
+                            <span class="switch-text" data-i18n="allSpreads">全体を見開きでシャッフル</span>
+                        </label>
+                    </div>
+                </fieldset>
                 <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
-                <div class="option-group">
-                    <label class="switch-label">
-                        <input type="checkbox" id="preserveLastPage" class="switch-input">
-                        <span class="switch-slider"></span>
-                        <span class="switch-text" id="lastPageFixLabel">最後のページを固定</span>
-                    </label>
-                </div>
-            </section>
+                <label class="switch-label">
+                    <input type="checkbox" id="preserveLastPage" class="switch-input">
+                    <span class="switch-slider"></span>
+                    <span class="switch-text" id="lastPageFixLabel" data-i18n-target="lastPageFixLabel">最後のページを固定</span>
+                </label>
+            </fieldset>
 
             <section class="upload-area" id="uploadArea">
                 <div class="upload-icon">📁</div>
@@ -727,11 +728,11 @@
                 metaDesc: "PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。",
                 keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き",
                 headline: "📄 PDFページシャッフル",
-                shuffleAllPages: "全てのページをシャッフル",
-                fixFirstPageSimple: "1ページ目以外をシャッフル", // ページ単位
-                fixCover: "1ページ目を固定、以降は2ページごとにシャッフル",
-                fixFirstSpread: "1-2ページ目を固定、以降は2ページごとにシャッフル",
-                allSpreads: "全体を2ページごとにシャッフル",
+                shuffleAllPages: "全てのページをシャッフル", // UIの文言と一致
+                fixFirstPageSimple: "1ページ目のみ固定（本文は1ページ単位）",
+                fixCover: "1ページ目のみ固定（本文は見開き）",
+                fixFirstSpread: "1-2ページ目を固定（本文は見開き）",
+                allSpreads: "全体を見開きでシャッフル",
                 fixLastPage: "最後のページを固定",
                 fixLastSpread: "最後の見開きを固定",
                 dropHere: "PDFファイルをここにドラッグ＆ドロップ",
@@ -786,8 +787,8 @@
                 faqA3: "標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。",
                 faqQ4: "シャッフル後に元に戻すことはできますか？",
                 faqA4: "シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。",
-                faqQ5: "2ページごとにシャッフルできますか？",
-                faqA5: "はい、2ページ単位でシャッフルするオプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目を固定、以降は2ページごとにシャッフル」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定、以降は2ページごとにシャッフル」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を2ページごとにシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>これらのオプションは、「全てのページをシャッフル」や「1ページ目以外をシャッフル」とは排他的に動作します。",
+                faqQ5: "見開きを維持したシャッフルはできますか？",
+                faqA5: "はい、複数の見開き対応オプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目のみ固定（本文は見開き）」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定（本文は見開き）」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を見開きでシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>どのオプションも選択しない場合は、1ページ単位でシャッフルされます。",
             },
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
@@ -795,10 +796,10 @@
                 keywords: "PDF,shuffle,page,random,free,online,tool,privacy,spread",
                 headline: "📄 PDF Page Shuffle",
                 shuffleAllPages: "Shuffle all pages",
-                fixFirstPageSimple: "Shuffle all except page 1", // page by page
-                fixCover: "Fix page 1, shuffle the rest by 2-page units",
-                fixFirstSpread: "Fix pages 1-2, shuffle the rest by 2-page units",
-                allSpreads: "Shuffle all by 2-page units",
+                fixFirstPageSimple: "Fix page 1 (shuffle page by page)",
+                fixCover: "Fix page 1 (shuffle by spreads)",
+                fixFirstSpread: "Fix pages 1-2 (shuffle by spreads)",
+                allSpreads: "Shuffle all by spreads",
                 fixLastPage: "Fix the last page",
                 fixLastSpread: "Fix the last spread",
                 dropHere: "Drag & drop your PDF file here",
@@ -854,7 +855,7 @@
                 faqQ4: "Can I undo the shuffle?",
                 faqA4: "The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.",
                 faqQ5: "Can I shuffle by 2-page units (spreads)?",
-                faqA5: "Yes, there are options to shuffle by 2-page units. Only one can be selected at a time.<br>• <b>'Fix page 1, shuffle the rest by 2-page units'</b>: Fixes the cover (p. 1) and shuffles the body in pairs like pages 2-3, 4-5, etc.<br>• <b>'Fix pages 1-2, shuffle the rest by 2-page units'</b>: Fixes the first spread (pp. 1-2) and shuffles the body in pairs like pages 3-4, 5-6, etc.<br>• <b>'Shuffle all by 2-page units'</b>: Shuffles the entire PDF in pairs like pages 1-2, 3-4, etc.<br>These options are mutually exclusive with 'Shuffle all pages' and 'Shuffle all except page 1'.",
+                faqA5: "Yes, there are several spread-aware options, only one of which can be selected at a time.<br>• <b>'Fix page 1 (shuffle by spreads)'</b>: Fixes the cover (p. 1) and shuffles the body in pairs like pages 2-3, 4-5, etc.<br>• <b>'Fix pages 1-2 (shuffle by spreads)'</b>: Fixes the first spread (pp. 1-2) and shuffles the body in pairs like pages 3-4, 5-6, etc.<br>• <b>'Shuffle all by spreads'</b>: Shuffles the entire PDF in pairs like pages 1-2, 3-4, etc.<br>If no spread option is chosen, pages are shuffled individually.",
             },
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
@@ -862,10 +863,10 @@
                 keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私,跨页",
                 headline: "📄 PDF页面随机排序",
                 shuffleAllPages: "随机排序所有页面",
-                fixFirstPageSimple: "除第1页外全部随机排序", // 逐页
-                fixCover: "固定第1页，其余按2页单位排序",
-                fixFirstSpread: "固定第1-2页，其余按2页单位排序",
-                allSpreads: "全部按2页单位随机排序",
+                fixFirstPageSimple: "固定第1页（逐页排序）",
+                fixCover: "固定第1页（按跨页排序）",
+                fixFirstSpread: "固定第1-2页（按跨页排序）",
+                allSpreads: "全部按跨页随机排序",
                 fixLastPage: "固定最后一页",
                 fixLastSpread: "固定最后一个跨页",
                 dropHere: "将PDF文件拖放到此处",
@@ -920,8 +921,8 @@
                 faqA3: "大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。",
                 faqQ4: "随机排序后可以撤销吗？",
                 faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
-                faqQ5: "可以按2页单位（跨页）进行排序吗？",
-                faqA5: "是的，有按2页单位进行排序的选项。这些选项一次只能选择一个。<br>・<b>'固定第1页，其余按2页单位排序'</b>: 固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>'固定第1-2页，其余按2页单位排序'</b>: 固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>'全部按2页单位随机排序'</b>: 将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>这些选项与“随机排序所有页面”和“除第1页外全部随机排序”互斥。",
+                faqQ5: "可以保持跨页进行排序吗？",
+                faqA5: "是的，有多个支持跨页的选项，一次只能选择一个。<br>・<b>'固定第1页（按跨页排序）'</b>: 固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>'固定第1-2页（按跨页排序）'</b>: 固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>'全部按跨页随机排序'</b>: 将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>如果未选择跨页选项，则会逐页进行排序。",
             },
             es: {
                 title: "Mezclar Páginas de PDF | Herramienta Gratuita en Línea",
@@ -929,10 +930,10 @@
                 keywords: "PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad, pliego",
                 headline: "📄 Mezclador de Páginas PDF",
                 shuffleAllPages: "Mezclar todas las páginas",
-                fixFirstPageSimple: "Mezclar todo excepto la pág. 1", // página por página
-                fixCover: "Fijar pág. 1, mezclar el resto en unidades de 2 páginas",
-                fixFirstSpread: "Fijar págs. 1-2, mezclar el resto en unidades de 2 páginas",
-                allSpreads: "Mezclar todo en unidades de 2 páginas",
+                fixFirstPageSimple: "Fijar pág. 1 (mezclar página por página)",
+                fixCover: "Fijar pág. 1 (mezclar por pliegos)",
+                fixFirstSpread: "Fijar págs. 1-2 (mezclar por pliegos)",
+                allSpreads: "Mezclar todo por pliegos",
                 fixLastPage: "Fijar la última página",
                 fixLastSpread: "Fijar el último pliego",
                 dropHere: "Arrastra y suelta tu archivo PDF aquí",
@@ -987,26 +988,25 @@
                 faqA3: "La mayoría de los archivos PDF estándar son compatibles. Sin embargo, los archivos protegidos con contraseña o con formatos especiales pueden no procesarse correctamente.",
                 faqQ4: "¿Puedo deshacer la mezcla?",
                 faqA4: "El proceso de mezcla no altera su archivo original. Si no está satisfecho con el resultado, simplemente recargue la página, vuelva a subir el archivo original e intente mezclarlo de nuevo.",
-                faqQ5: "¿Puedo mezclar en unidades de 2 páginas (pliegos)?",
-                faqA5: "Sí, hay opciones para mezclar en unidades de 2 páginas. Solo se puede seleccionar una a la vez.<br>• <b>'Fijar pág. 1, mezclar el resto en unidades de 2 páginas'</b>: Fija la portada (pág. 1) y mezcla el cuerpo en pares como págs. 2-3, 4-5, etc.<br>• <b>'Fijar págs. 1-2, mezclar el resto en unidades de 2 páginas'</b>: Fija el primer pliego (págs. 1-2) y mezcla el cuerpo en pares como págs. 3-4, 5-6, etc.<br>• <b>'Mezclar todo en unidades de 2 páginas'</b>: Mezcla todo el PDF en pares como págs. 1-2, 3-4, etc.<br>Estas opciones son mutuamente excluyentes con 'Mezclar todas las páginas' y 'Mezclar todo excepto la pág. 1'.",
+                faqQ5: "¿Puedo mezclar manteniendo los pliegos (unidades de 2 páginas)?",
+                faqA5: "Sí, hay varias opciones para mezclar por pliegos, de las cuales solo se puede seleccionar una.<br>• <b>'Fijar pág. 1 (mezclar por pliegos)'</b>: Fija la portada (pág. 1) y mezcla el cuerpo en pares como págs. 2-3, 4-5, etc.<br>• <b>'Fijar págs. 1-2 (mezclar por pliegos)'</b>: Fija el primer pliego (págs. 1-2) y mezcla el cuerpo en pares como págs. 3-4, 5-6, etc.<br>• <b>'Mezclar todo por pliegos'</b>: Mezcla todo el PDF en pares como págs. 1-2, 3-4, etc.<br>Si no se elige ninguna opción de pliego, las páginas se mezclan individualmente.",
             }
         };
 
         function getUserLanguage() {
-            const lang = navigator.language.toLowerCase();
-            if (lang.startsWith("ja")) {
-                return "ja";
+            const params = new URLSearchParams(window.location.search);
+            const langFromUrl = params.get('lang');
+            if (translations[langFromUrl]) {
+                return langFromUrl;
             }
-            if (lang.startsWith("es")) {
-                return "es";
-            }
-            if (lang.startsWith("zh")) {
-                return "zh";
-            }
-            return "en";
+
+            const browserLang = navigator.language.toLowerCase();
+            if (browserLang.startsWith("ja")) return "ja";
+            if (browserLang.startsWith("es")) return "es";
+            if (browserLang.startsWith("zh")) return "zh";
+            
+            return "en"; // Default language
         }
-        const userLang = getUserLanguage();
-        document.documentElement.lang = userLang;
 
         // --- テーマ切り替え機能 ---
         const themeToggle = document.getElementById('theme-toggle');
@@ -1033,178 +1033,432 @@
             applyTheme(prefersDark ? 'dark' : 'light');
         }
 
-        function updateLastPageFixLabel() {
-            const fixCover = document.getElementById('fixCover').checked;
-            const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
-            const allSpreads = document.getElementById('allSpreads').checked;
-            const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
-            document.getElementById('lastPageFixLabel').textContent = isSpreadMode ? translations[userLang].fixLastSpread : translations[userLang].fixLastPage;
-        }
+        // --- アプリケーションの初期化とメインロジック ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            const exclusiveSwitches = document.querySelectorAll('.exclusive-switch');
-            exclusiveSwitches.forEach(switchEl => {
+            // --- 状態管理 ---
+            const state = {
+                originalPdfBytes: null,
+                shuffledPdfBytes: null,
+                originalFileName: '',
+                userLang: getUserLanguage(),
+            };
+
+            // --- DOM要素のキャッシュ ---
+            const dom = {
+                html: document.documentElement,
+                themeToggle: document.getElementById('theme-toggle'),
+                exclusiveSwitches: document.querySelectorAll('.exclusive-switch'),
+                shuffleAllPages: document.getElementById('shuffleAllPages'),
+                fixFirstPageSimple: document.getElementById('fixFirstPageSimple'),
+                fixCover: document.getElementById('fixCover'),
+                fixFirstSpread: document.getElementById('fixFirstSpread'),
+                allSpreads: document.getElementById('allSpreads'),
+                preserveLastPage: document.getElementById('preserveLastPage'),
+                lastPageFixLabel: document.getElementById('lastPageFixLabel'),
+                chooseFileBtn: document.getElementById('chooseFileBtn'),
+                shuffleBtn: document.getElementById('shuffleBtn'),
+                downloadBtn: document.getElementById('downloadBtn'),
+                shareTwitterBtn: document.getElementById('shareTwitterBtn'),
+                copyBtn: document.getElementById('copyBtn'),
+                uploadArea: document.getElementById('uploadArea'),
+                fileInput: document.getElementById('fileInput'),
+                status: document.getElementById('status'),
+                loading: document.getElementById('loading'),
+                pageInfo: document.getElementById('pageInfo'),
+                pageCount: document.getElementById('pageCount'),
+                githubLink: document.getElementById('githubLink'),
+            };
+
+            // --- 初期化処理 ---
+            function initialize() {
+                setupEventListeners();
+                applyTranslations();
+                updateLastPageFixLabel();
+            }
+
+            // --- イベントリスナー設定 ---
+            function setupEventListeners() {
+                dom.exclusiveSwitches.forEach(switchEl => {
                 switchEl.addEventListener('change', (e) => {
                     if (e.target.checked) {
-                        exclusiveSwitches.forEach(otherSwitch => {
+                        dom.exclusiveSwitches.forEach(otherSwitch => {
                             if (otherSwitch !== e.target) {
                                 otherSwitch.checked = false;
                             }
                         });
                     }
                     updateLastPageFixLabel();
+                    });
                 });
-            });
 
-            // --- イベントリスナーの設定 ---
-            document.getElementById('chooseFileBtn').addEventListener('click', () => document.getElementById('fileInput').click());
-            document.getElementById('shuffleBtn').addEventListener('click', shufflePDF);
-            document.getElementById('downloadBtn').addEventListener('click', downloadShuffledPDF);
-            document.getElementById('shareTwitterBtn').addEventListener('click', shareToTwitter);
-            document.getElementById('copyBtn').addEventListener('click', copyLink);
+                dom.chooseFileBtn.addEventListener('click', () => dom.fileInput.click());
+                dom.shuffleBtn.addEventListener('click', shufflePDF);
+                dom.downloadBtn.addEventListener('click', downloadShuffledPDF);
+                dom.shareTwitterBtn.addEventListener('click', shareToTwitter);
+                dom.copyBtn.addEventListener('click', copyLink);
 
-            const uploadArea = document.getElementById('uploadArea');
-            const fileInput = document.getElementById('fileInput');
-            uploadArea.addEventListener('dragover', handleDragOver);
-            uploadArea.addEventListener('dragleave', handleDragLeave);
-            uploadArea.addEventListener('drop', handleDrop);
-            fileInput.addEventListener('change', handleFileInput);
+                dom.uploadArea.addEventListener('dragover', handleDragOver);
+                dom.uploadArea.addEventListener('dragleave', handleDragLeave);
+                dom.uploadArea.addEventListener('drop', handleDrop);
+                dom.fileInput.addEventListener('change', handleFileInput);
+            }
 
-            // --- i18nの適用 ---
-            document.querySelectorAll("[data-i18n]").forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                const translation = translations[userLang]?.[key];
-                if (translation) {
-                    if (el.tagName.toLowerCase() === "meta") {
-                        el.setAttribute("content", translation);
-                    } else if (el.tagName.toLowerCase() === "title") {
-                        el.textContent = translation;
-                    } else if (key === 'themeToggle') {
-                        el.setAttribute('aria-label', translation);
-                    } else if (key === 'footerText2' || key.startsWith('faqA')) {
-                        el.innerHTML = translation;
-                    } else {
-                        el.textContent = translation;
+            // --- 国際化 (i18n) ---
+            function applyTranslations() {
+                dom.html.lang = state.userLang;
+                document.querySelectorAll("[data-i18n]").forEach(el => {
+                    const key = el.getAttribute("data-i18n");
+                    const translation = translations[state.userLang]?.[key];
+                    if (translation) {
+                        if (el.tagName.toLowerCase() === "meta") {
+                            el.setAttribute("content", translation);
+                        } else if (el.tagName.toLowerCase() === "title") {
+                            el.textContent = translation;
+                        } else if (key === 'themeToggle') {
+                            el.setAttribute('aria-label', translation);
+                        } else if (key === 'footerText2' || key.startsWith('faqA')) {
+                            el.innerHTML = translation;
+                        } else {
+                            el.textContent = translation;
+                        }
                     }
+                });
+                dom.githubLink.setAttribute('aria-label', translations[state.userLang].githubAriaLabel);
+            }
+
+            function updateLastPageFixLabel() {
+                const isSpreadMode = dom.fixCover.checked || dom.fixFirstSpread.checked || dom.allSpreads.checked;
+                dom.lastPageFixLabel.textContent = isSpreadMode ? translations[state.userLang].fixLastSpread : translations[state.userLang].fixLastPage;
+            }
+
+            // --- UI更新関数 ---
+            function showStatus(key, type, replacements = {}) {
+                let message = translations[state.userLang][key] || key;
+                for (const placeholder in replacements) {
+                    message = message.replace(`\${${placeholder}}`, replacements[placeholder]);
                 }
-            });
-            // Aria-labelの翻訳（アクセシビリティ向上）
-            // シェアボタンはテキストコンテンツで十分なため、aria-labelは不要です。
-            document.getElementById('githubLink').setAttribute('aria-label', translations[userLang].githubAriaLabel);
-            updateLastPageFixLabel(); // 初期表示
-        });
-
-        let originalPdfBytes = null;
-        let shuffledPdfBytes = null;
-        let originalFileName = '';
-
-        const status = document.getElementById('status');
-        const loading = document.getElementById('loading');
-        const pageInfo = document.getElementById('pageInfo');
-
-        function handleDragOver(e) {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        }
-
-        function handleDragLeave() {
-            uploadArea.classList.remove('dragover');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        }
-
-        function handleFileInput(e) {
-            if (e.target.files.length > 0) {
-                handleFile(e.target.files[0]);
-            }
-        }
-
-        function showStatus(key, type, replacements = {}) {
-            let message = translations[userLang][key] || key;
-            for (const placeholder in replacements) {
-                message = message.replace(`\${${placeholder}}`, replacements[placeholder]);
-            }
-            status.textContent = message;
-            status.className = `status ${type}`;
-            status.style.display = 'block';
-        }
-
-        function hideStatus() {
-            status.style.display = 'none';
-        }
-
-        function showLoading(show = true) {
-            loading.style.display = show ? 'block' : 'none';
-        }
-
-        async function handleFile(file) {
-            if (file.type !== 'application/pdf') {
-                showStatus('statusPdfOnly', 'error');
-                return;
+                dom.status.textContent = message;
+                dom.status.className = `status ${type}`;
+                dom.status.style.display = 'block';
             }
 
-            originalFileName = file.name;
-            showLoading(true);
-            hideStatus();
-
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                originalPdfBytes = new Uint8Array(arrayBuffer);
-                
-                // PDF情報を取得
-                const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
-                const pageCount = pdfDoc.getPageCount();
-                
-                document.getElementById('pageCount').textContent = translations[userLang].pageCountText.replace('${pageCount}', pageCount);
-                pageInfo.style.display = 'block';
-                shuffleBtn.disabled = false;
-                downloadBtn.style.display = 'none';
-                shuffledPdfBytes = null;
-                
-                showStatus('statusFileLoaded', 'success', { fileName: file.name });
-            } catch (error) {
-                console.error('PDF読み込みエラー:', error);
-                showStatus('statusLoadError', 'error');
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        async function shufflePDF() {
-            if (!originalPdfBytes) {
-                showStatus('statusSelectFirst', 'error');
-                return;
+            function hideStatus() {
+                dom.status.style.display = 'none';
             }
 
-            showLoading(true);
-            shuffleBtn.disabled = true;
-            hideStatus();
+            function showLoading(show = true) {
+                dom.loading.style.display = show ? 'block' : 'none';
+            }
 
-            try {
-                // 元のPDFを読み込み
-                const originalDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
-                const pageCount = originalDoc.getPageCount();
+            // --- ファイルハンドラ ---
+            function handleDragOver(e) {
+                e.preventDefault();
+                dom.uploadArea.classList.add('dragover');
+            }
 
-                if (pageCount === 0) {
-                    showStatus('statusNoPages', 'error');
-                    showLoading(false);
-                    shuffleBtn.disabled = false;
+            function handleDragLeave() {
+                dom.uploadArea.classList.remove('dragover');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                dom.uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFile(files[0]);
+                }
+            }
+
+            function handleFileInput(e) {
+                if (e.target.files.length > 0) {
+                    handleFile(e.target.files[0]);
+                }
+            }
+
+            async function handleFile(file) {
+                if (file.type !== 'application/pdf') {
+                    showStatus('statusPdfOnly', 'error');
                     return;
                 }
 
-                // 新しいPDFドキュメントを作成
-                const newDoc = await window.PDFLib.PDFDocument.create();
+                state.originalFileName = file.name;
+                showLoading(true);
+                hideStatus();
 
-                // オプション設定を取得
-                const shuffleAllPages = document.getElementById('shuffleAllPages').checked;
-                const fixFirstPageSimple = document.getElementById('fixFirstPageSimple').checked;
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    state.originalPdfBytes = new Uint8Array(arrayBuffer);
+                    
+                    const pdfDoc = await PDFLib.PDFDocument.load(state.originalPdfBytes);
+                    const pageCount = pdfDoc.getPageCount();
+                    
+                    dom.pageCount.textContent = translations[state.userLang].pageCountText.replace('${pageCount}', pageCount);
+                    dom.pageInfo.style.display = 'block';
+                    dom.shuffleBtn.disabled = false;
+                    dom.downloadBtn.style.display = 'none';
+                    state.shuffledPdfBytes = null;
+                    
+                    showStatus('statusFileLoaded', 'success', { fileName: file.name });
+                } catch (error) {
+                    console.error('PDF読み込みエラー:', error);
+                    showStatus('statusLoadError', 'error');
+                } finally {
+                    showLoading(false);
+                }
+            }
+
+            // --- PDFシャッフルコアロジック ---
+            function getShuffleOptions() {
+                return {
+                    shuffleAllPages: dom.shuffleAllPages.checked,
+                    fixFirstPageSimple: dom.fixFirstPageSimple.checked,
+                    fixCover: dom.fixCover.checked,
+                    fixFirstSpread: dom.fixFirstSpread.checked,
+                    allSpreads: dom.allSpreads.checked,
+                    preserveLast: dom.preserveLastPage.checked,
+                };
+            }
+
+            function determinePageUnits(pageCount, options) {
+                const pageIndices = Array.from({ length: pageCount }, (_, i) => i);
+                const fixedPrefixUnits = [];
+                const fixedSuffixUnits = [];
+
+                // 1. 先頭の固定ユニットを分離
+                if (options.fixFirstPageSimple && pageIndices.length > 0) {
+                    fixedPrefixUnits.push([pageIndices.shift()]);
+                } else if (options.fixCover && pageIndices.length > 0) {
+                    fixedPrefixUnits.push([pageIndices.shift()]);
+                } else if (options.fixFirstSpread && pageIndices.length > 1) {
+                    fixedPrefixUnits.push([pageIndices.shift(), pageIndices.shift()]);
+                }
+
+                // 2. シャッフル対象をユニット化
+                const isSpreadMode = options.fixCover || options.fixFirstSpread || options.allSpreads;
+                const shuffleUnits = [];
+                if (isSpreadMode) { // 見開きモード
+                    for (let i = 0; i < pageIndices.length; i += 2) {
+                        if (i + 1 < pageIndices.length) {
+                            shuffleUnits.push([pageIndices[i], pageIndices[i + 1]]);
+                        } else {
+                            shuffleUnits.push([pageIndices[i]]);
+                        }
+                    }
+                } else { // ページ単位シャッフル
+                    for (const index of pageIndices) {
+                        shuffleUnits.push([index]);
+                    }
+                }
+
+                // 3. 末尾の固定ユニットを分離
+                if (options.preserveLast && shuffleUnits.length > 0) {
+                    fixedSuffixUnits.unshift(shuffleUnits.pop());
+                }
+
+                return { fixedPrefixUnits, shuffleUnits, fixedSuffixUnits };
+            }
+
+            function createStatusMessage(results, options) {
+                const { shuffledUnitsCount, fixedPrefixUnits, fixedSuffixUnits } = results;
+                
+                if (shuffledUnitsCount === 0 && (fixedPrefixUnits.length > 0 || fixedSuffixUnits.length > 0)) {
+                    showStatus('statusAllFixed', 'info');
+                    return;
+                }
+                
+                if (shuffledUnitsCount > 0) {
+                    const fixedPageParts = [];
+                    if (options.fixFirstPageSimple || options.fixCover) {
+                        fixedPageParts.push(translations[state.userLang].fixedPart_fixCover);
+                    } else if (options.fixFirstSpread) {
+                        fixedPageParts.push(translations[state.userLang].fixedPart_fixFirstSpread);
+                    }
+                    
+                    if (options.preserveLast) {
+                        const lastUnit = fixedSuffixUnits[0] || [];
+                        const lastKey = lastUnit.length > 1 ? 'fixedPart_lastSpread' : 'fixedPart_lastPage';
+                        fixedPageParts.push(translations[state.userLang][lastKey]);
+                    }
+
+                    if (fixedPageParts.length > 0) {
+                        const conjunctions = { ja: 'と', en: ' and ', zh: '和', es: ' y ' };
+                        const fixedPages = fixedPageParts.join(conjunctions[state.userLang] || ' and ');
+                        showStatus('statusShuffledWithFixed', 'success', { shuffledCount: shuffledUnitsCount, fixedPages });
+                    } else {
+                        showStatus('statusShuffled', 'success', { shuffledCount: shuffledUnitsCount });
+                    }
+                }
+            }
+
+            async function shufflePDF() {
+                if (!state.originalPdfBytes) {
+                    showStatus('statusSelectFirst', 'error');
+                    return;
+                }
+
+                showLoading(true);
+                dom.shuffleBtn.disabled = true;
+                hideStatus();
+
+                try {
+                    const originalDoc = await PDFLib.PDFDocument.load(state.originalPdfBytes);
+                    const pageCount = originalDoc.getPageCount();
+
+                    if (pageCount === 0) {
+                        showStatus('statusNoPages', 'error');
+                        return;
+                    }
+
+                    const options = getShuffleOptions();
+                    const { fixedPrefixUnits, shuffleUnits, fixedSuffixUnits } = determinePageUnits(pageCount, options);
+
+                    // シャッフル実行
+                    if (shuffleUnits.length > 1) {
+                        shuffleArray(shuffleUnits);
+                    }
+
+                    const finalOrder = [
+                        ...fixedPrefixUnits.flat(),
+                        ...shuffleUnits.flat(),
+                        ...fixedSuffixUnits.flat()
+                    ];
+
+                    // 新しいPDFを生成
+                    const newDoc = await PDFLib.PDFDocument.create();
+                    if (finalOrder.length > 0) {
+                        const copiedPages = await newDoc.copyPages(originalDoc, finalOrder);
+                        copiedPages.forEach(page => newDoc.addPage(page));
+                    }
+
+                    state.shuffledPdfBytes = await newDoc.save();
+                    
+                    // UI更新
+                    createStatusMessage({
+                        shuffledUnitsCount: shuffleUnits.length,
+                        fixedPrefixUnits,
+                        fixedSuffixUnits
+                    }, options);
+                    
+                    dom.downloadBtn.disabled = false;
+                    dom.downloadBtn.style.display = 'inline-block';
+                    
+                } catch (error) {
+                    console.error('シャッフルエラー:', error);
+                    showStatus('statusShuffleError', 'error');
+                } finally {
+                    showLoading(false);
+                    dom.shuffleBtn.disabled = false;
+                }
+            }
+
+            function shuffleArray(array) {
+                // Fisher-Yates シャッフルアルゴリズム
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            function downloadShuffledPDF() {
+                if (!state.shuffledPdfBytes) {
+                    showStatus('statusShuffleFirst', 'error');
+                    return;
+                }
+
+                try {
+                    const blob = new Blob([state.shuffledPdfBytes], { type: 'application/pdf' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    const baseName = state.originalFileName.replace(/\.pdf$/i, '');
+                    a.download = `${baseName}_shuffled.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    showStatus('statusDownloaded', 'success');
+                } catch (error) {
+                    console.error('ダウンロードエラー:', error);
+                    showStatus('statusDownloadError', 'error');
+                }
+            }
+
+            // --- 共有機能 ---
+            function shareToTwitter() {
+                const url = encodeURIComponent(window.location.href);
+                const text = encodeURIComponent(translations[state.userLang].metaDesc);
+                const hashtags = encodeURIComponent(translations[state.userLang].hashtags);
+                
+                const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
+                window.open(twitterUrl, '_blank', 'width=550,height=420');
+            }
+
+            async function copyLink() {
+                const url = window.location.href;
+                
+                try {
+                    if (!navigator.clipboard || !window.isSecureContext) {
+                        throw new Error('Clipboard API not available');
+                    }
+                    await navigator.clipboard.writeText(url);
+                    showCopySuccess();
+                } catch (err) {
+                    console.error('Clipboard API failed, falling back.', err);
+                    fallbackCopyTextToClipboard(url);
+                }
+            }
+
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                document.body.appendChild(textArea);
+                
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showCopySuccess();
+                    } else {
+                        showStatus('statusCopyError', 'error');
+                    }
+                } catch (err) {
+                    showStatus('statusCopyError', 'error');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+
+            function showCopySuccess() {
+                const originalContent = dom.copyBtn.innerHTML;
+
+                dom.copyBtn.classList.add('copied');
+                dom.copyBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                    </svg>
+                    <span>${translations[state.userLang].copyBtnCopied}</span>
+                `;
+                showStatus('statusCopySuccess', 'success');
+
+                setTimeout(() => {
+                    dom.copyBtn.classList.remove('copied');
+                    dom.copyBtn.innerHTML = originalContent;
+                }, 2000);
+            }
+
+            // --- アプリケーション実行 ---
+            initialize();
+        });
+/*
                 const fixCover = document.getElementById('fixCover').checked;
                 const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
                 const allSpreads = document.getElementById('allSpreads').checked;
@@ -1293,121 +1547,7 @@
                 downloadBtn.style.display = 'inline-block';
                 
             } catch (error) {
-                console.error('シャッフルエラー:', error);
-                showStatus('statusShuffleError', 'error');
-            } finally {
-                showLoading(false);
-                shuffleBtn.disabled = false;
-            }
-        }
-
-        function shuffleArray(array) {
-            // Fisher-Yates シャッフルアルゴリズム
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function downloadShuffledPDF() {
-            if (!shuffledPdfBytes) {
-                showStatus('statusShuffleFirst', 'error');
-                return;
-            }
-
-            try {
-                const blob = new Blob([shuffledPdfBytes], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                const baseName = originalFileName.replace(/\.pdf$/i, '');
-                a.download = `${baseName}_shuffled.pdf`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                showStatus('statusDownloaded', 'success');
-            } catch (error) {
-                console.error('ダウンロードエラー:', error);
-                showStatus('statusDownloadError', 'error');
-            }
-        }
-
-        // ソーシャルメディア共有機能
-        function shareToTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(translations[userLang].metaDesc);
-            const hashtags = encodeURIComponent(translations[userLang].hashtags);
-            
-            const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
-            window.open(twitterUrl, '_blank', 'width=550,height=420');
-        }
-
-        async function copyLink() {
-            const copyBtn = document.getElementById('copyBtn');
-            const url = window.location.href;
-            
-            try {
-                if (!navigator.clipboard || !window.isSecureContext) {
-                    throw new Error('Clipboard API not available');
-                }
-                await navigator.clipboard.writeText(url);
-                showCopySuccess();
-            } catch (err) {
-                console.error('Clipboard API failed, falling back.', err);
-                fallbackCopyTextToClipboard(url);
-            }
-        }
-
-        function fallbackCopyTextToClipboard(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-
-            // 画面外に配置
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showCopySuccess();
-                } else {
-                    showStatus('statusCopyError', 'error');
-                }
-            } catch (err) {
-                showStatus('statusCopyError', 'error');
-            }
-            
-            document.body.removeChild(textArea);
-        }
-
-        function showCopySuccess() {
-            const copyBtn = document.getElementById('copyBtn');
-            const originalContent = copyBtn.innerHTML;
-
-            copyBtn.classList.add('copied');
-            copyBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
-                </svg>
-                <span>${translations[userLang].copyBtnCopied}</span>
-            `;
-            showStatus('statusCopySuccess', 'success');
-
-            setTimeout(() => {
-                copyBtn.classList.remove('copied');
-                copyBtn.innerHTML = originalContent;
-            }, 2000);
-        }
-
-
+*/
     </script>
 </body>
 </html>
