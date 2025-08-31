@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title">PDFページシャッフル | 無料オンラインツール</title>
     <meta name="description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
-    <meta name="keywords" data-i18n="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
+    <meta name="keywords" data-i18n="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き">
     <meta name="author" content="PDF Shuffle Tool">
     
     <!-- Open Graph / Facebook -->
@@ -656,13 +656,13 @@
             <section class="share-section">
                 <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
                 <div class="share-buttons">
-                    <button class="share-btn twitter" id="shareTwitterBtn" aria-label="Xでシェア">
+                    <button class="share-btn twitter" id="shareTwitterBtn">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
                         <span data-i18n="shareTwitter">X でシェア</span>
                     </button>
-                    <button class="share-btn copy" id="copyBtn" aria-label="リンクをコピー">
+                    <button class="share-btn copy" id="copyBtn">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                         </svg>
@@ -718,8 +718,9 @@
             ja: {
                 title: "PDFページシャッフル | 無料オンラインツール",
                 metaDesc: "PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。",
-                keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー",
+                keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き",
                 headline: "📄 PDFページシャッフル",
+                shuffleAllPages: "全てのページをシャッフル",
                 fixCover: "1ページ目のみ固定（本文は見開き）",
                 fixFirstSpread: "1-2ページ目を固定（本文は見開き）",
                 allSpreads: "全体を見開きでシャッフル",
@@ -744,6 +745,8 @@
                 shareTitle: "📢 このツールをシェア",
                 shareTwitter: "X でシェア",
                 copyLink: "リンクをコピー",
+                shareTwitterAriaLabel: "Xでシェア",
+                copyLinkAriaLabel: "リンクをコピー",
                 copyBtnCopied: "コピー完了！",
                 footerText1: "© 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。",
                 footerText2: '機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。',
@@ -782,8 +785,9 @@
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
                 metaDesc: "Free online tool to shuffle PDF pages randomly. Privacy protected, with options to lock cover and back pages. Works entirely in your browser.",
-                keywords: "PDF,shuffle,page,random,free,online,tool,privacy",
+                keywords: "PDF,shuffle,page,random,free,online,tool,privacy,spread",
                 headline: "📄 PDF Page Shuffle",
+                shuffleAllPages: "Shuffle all pages",
                 fixCover: "Fix page 1 only (shuffle body as spreads)",
                 fixFirstSpread: "Fix pages 1-2 (shuffle body as spreads)",
                 allSpreads: "Shuffle all as spreads",
@@ -808,6 +812,8 @@
                 shareTitle: "📢 Share This Tool",
                 shareTwitter: "Share on X",
                 copyLink: "Copy Link",
+                shareTwitterAriaLabel: "Share on X",
+                copyLinkAriaLabel: "Copy link",
                 copyBtnCopied: "Copied!",
                 footerText1: "© 2025 PDF Shuffle Tool. An open-source tool that runs in your browser.",
                 footerText2: 'If you have feature requests or find bugs, please report them on <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
@@ -846,8 +852,9 @@
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
                 metaDesc: "免费的在线工具，可随机打乱PDF页面顺序。保护您的隐私，可选择固定首页和末页。完全在您的浏览器中运行。",
-                keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私",
+                keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私,跨页",
                 headline: "📄 PDF页面随机排序",
+                shuffleAllPages: "随机排序所有页面",
                 fixCover: "仅固定第1页（正文按跨页）",
                 fixFirstSpread: "固定第1-2页（正文按跨页）",
                 allSpreads: "全部按跨页随机排序",
@@ -872,6 +879,8 @@
                 shareTitle: "📢 分享此工具",
                 shareTwitter: "在 X 上分享",
                 copyLink: "复制链接",
+                shareTwitterAriaLabel: "在 X 上分享",
+                copyLinkAriaLabel: "复制链接",
                 copyBtnCopied: "已复制！",
                 footerText1: "© 2025 PDF Shuffle Tool. 一个在浏览器中运行的开源工具。",
                 footerText2: '如果您有功能建议或发现错误，请在 <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> 上报告。',
@@ -910,8 +919,9 @@
             es: {
                 title: "Mezclar Páginas de PDF | Herramienta Gratuita en Línea",
                 metaDesc: "Herramienta gratuita en línea para mezclar aleatoriamente las páginas de un archivo PDF. Privacidad protegida, con opciones para fijar la portada y la contraportada. Funciona completamente en su navegador.",
-                keywords: "PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad",
+                keywords: "PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad, pliego",
                 headline: "📄 Mezclador de Páginas PDF",
+                shuffleAllPages: "Mezclar todas las páginas",
                 fixCover: "Fijar solo pág. 1 (cuerpo por pliegos)",
                 fixFirstSpread: "Fijar págs. 1-2 (cuerpo por pliegos)",
                 allSpreads: "Mezclar todo por pliegos",
@@ -936,6 +946,8 @@
                 shareTitle: "📢 Comparte esta Herramienta",
                 shareTwitter: "Compartir en X",
                 copyLink: "Copiar Enlace",
+                shareTwitterAriaLabel: "Compartir en X",
+                copyLinkAriaLabel: "Copiar enlace",
                 copyBtnCopied: "¡Copiado!",
                 footerText1: "© 2025 PDF Shuffle Tool. Una herramienta de código abierto que funciona en su navegador.",
                 footerText2: 'Si tiene solicitudes de funciones o encuentra errores, por favor repórtelos en <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
@@ -1018,7 +1030,7 @@
             const fixCover = document.getElementById('fixCover').checked;
             const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
             const allSpreads = document.getElementById('allSpreads').checked;
-            const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
+            const isSpreadMode = !document.getElementById('shuffleAllPages').checked && (fixCover || fixFirstSpread || allSpreads);
             document.getElementById('lastPageFixLabel').textContent = isSpreadMode ? translations[userLang].fixLastSpread : translations[userLang].fixLastPage;
         }
 
@@ -1060,12 +1072,6 @@
                         el.setAttribute("content", translation);
                     } else if (el.tagName.toLowerCase() === "title") {
                         el.textContent = translation;
-                    } else if (key === 'shareTwitter') {
-                        el.parentElement.setAttribute('aria-label', translation);
-                        el.textContent = translation;
-                    } else if (key === 'copyLink') {
-                        el.parentElement.setAttribute('aria-label', translation);
-                        el.textContent = translation;
                     } else if (key === 'themeToggle') {
                         el.setAttribute('aria-label', translation);
                     } else if (key === 'footerText2' || key.startsWith('faqA')) {
@@ -1075,6 +1081,9 @@
                     }
                 }
             });
+            // Aria-labelの翻訳
+            document.getElementById('shareTwitterBtn').setAttribute('aria-label', translations[userLang].shareTwitterAriaLabel);
+            document.getElementById('copyBtn').setAttribute('aria-label', translations[userLang].copyLinkAriaLabel);
             updateLastPageFixLabel(); // 初期表示
         });
 
@@ -1187,6 +1196,7 @@
                 const newDoc = await window.PDFLib.PDFDocument.create();
 
                 // オプション設定を取得
+                const shuffleAllPages = document.getElementById('shuffleAllPages').checked;
                 const fixCover = document.getElementById('fixCover').checked;
                 const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
                 const allSpreads = document.getElementById('allSpreads').checked;
@@ -1205,8 +1215,7 @@
                 }
 
                 // 2. シャッフル対象をユニット化
-                const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
-                if (isSpreadMode) {
+                if (!shuffleAllPages) { // 見開きモード
                     for (let i = 0; i < pageIndices.length; i += 2) {
                         if (i + 1 < pageIndices.length) {
                             shuffleUnits.push([pageIndices[i], pageIndices[i + 1]]);
@@ -1214,7 +1223,7 @@
                             shuffleUnits.push([pageIndices[i]]);
                         }
                     }
-                } else { // 通常シャッフル
+                } else { // ページ単位シャッフル
                     for (const index of pageIndices) {
                         shuffleUnits.push([index]);
                     }
