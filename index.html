@@ -761,7 +761,7 @@
                 faqQ4: "シャッフル後に元に戻すことはできますか？",
                 faqA4: "シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。",
                 faqQ5: "「見開きを維持」とは何ですか？",
-                faqA5: "このオプションを有効にすると、ページが2ページずつのペア（例: 1-2ページ、3-4ページ）として扱われ、そのペア単位でシャッフルされます。本や雑誌のように見開きでデザインされたPDFに便利です。「最初のページを固定」を併用すると、最初のペア（1-2ページ）が先頭に固定されます。総ページ数が奇数の場合、最後の1ページは単独のユニットとして扱われ、シャッフル対象に含まれます。",
+                faqA5: "このオプションを有効にすると、ページが2ページ単位のペアでシャッフルされます。<br>・<b>「最初のページを固定」と併用する場合：</b>表紙(1ページ目)を固定し、2-3ページ、4-5ページ…といったペアでシャッフルします。<br>・<b>単独で使用する場合：</b>1-2ページ、3-4ページ…といったペアでシャッフルします。<br>本や雑誌のように、表紙と本文見開きで構成されたPDFに便利です。総ページ数が奇数の場合、最後のページは単独で扱われます。",
             },
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
@@ -825,7 +825,7 @@
                 faqQ4: "Can I undo the shuffle?",
                 faqA4: "The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.",
                 faqQ5: "What does 'Preserve Spreads' mean?",
-                faqA5: "When this option is enabled, pages are treated as 2-page pairs (e.g., pages 1-2, 3-4) and shuffled as units. This is useful for PDFs designed with facing pages, like books or magazines. If used with 'Fix the first page', the first spread (pages 1-2) will be locked at the beginning. If the total number of pages is odd, the last single page is treated as a separate unit and included in the shuffle.",
+                faqA5: "This option shuffles pages in 2-page pairs.<br>• <b>With 'Fix the first page':</b> It fixes the cover (page 1) and shuffles pairs like pages 2-3, 4-5, etc.<br>• <b>Used alone:</b> It shuffles pairs like pages 1-2, 3-4, etc.<br>This is useful for PDFs like books or magazines with a cover and facing pages. If the total page count is odd, the last page is handled individually.",
             },
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
@@ -889,7 +889,7 @@
                 faqQ4: "随机排序后可以撤销吗？",
                 faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
                 faqQ5: "“保持跨页”是什么意思？",
-                faqA5: "启用此选项后，页面将被视为2页的配对（例如，第1-2页，第3-4页），并以这些配对为单位进行随机排序。这对于设计为对开页的PDF（如书籍或杂志）非常有用。如果与“固定第一页”一起使用，第一个跨页（第1-2页）将被锁定在开头。如果总页数为奇数，最后一页将被视为一个独立的单元并参与随机排序。",
+                faqA5: "启用此选项后，页面将以2页为单位进行随机排序。<br>• <b>与“固定第一页”并用时：</b>将固定封面（第1页），并对第2-3页、第4-5页等页面对进行排序。<br>• <b>单独使用时：</b>将对第1-2页、第3-4页等页面对进行排序。<br>这对于像书籍或杂志这样由封面和跨页构成的PDF非常方便。如果总页数为奇数，最后一页将被单独处理。",
             },
             es: {
                 title: "Mezclar Páginas de PDF | Herramienta Gratuita en Línea",
@@ -953,7 +953,7 @@
                 faqQ4: "¿Puedo deshacer la mezcla?",
                 faqA4: "El proceso de mezcla no altera su archivo original. Si no está satisfecho con el resultado, simplemente recargue la página, vuelva a subir el archivo original e intente mezclarlo de nuevo.",
                 faqQ5: "¿Qué significa 'Conservar pliegos'?",
-                faqA5: "Cuando esta opción está habilitada, las páginas se tratan como pares de 2 páginas (por ejemplo, páginas 1-2, 3-4) y se mezclan como unidades. Esto es útil para PDF diseñados con páginas enfrentadas, como libros o revistas. Si se usa con 'Fijar la primera página', el primer pliego (páginas 1-2) quedará bloqueado al principio. Si el número total de páginas es impar, la última página se trata como una unidad separada y se incluye en la mezcla.",
+                faqA5: "Esta opción mezcla las páginas en pares de 2.<br>• <b>Con 'Fijar la primera página':</b> Fija la portada (página 1) y mezcla pares como las páginas 2-3, 4-5, etc.<br>• <b>Usada sola:</b> Mezcla pares como las páginas 1-2, 3-4, etc.<br>Es útil para PDFs como libros o revistas con portada y páginas enfrentadas. Si el número total de páginas es impar, la última página se maneja individualmente.",
             }
         };
 
@@ -1149,7 +1149,18 @@
                 const preserveSpreads = document.getElementById('preserveSpreads').checked;
 
                 let units = [];
-                if (preserveSpreads) {
+                if (preserveSpreads && preserveFirst && pageCount > 0) {
+                    // (1), (2,3), (4,5)... のパターン
+                    units.push([0]); // 1ページ目は単独ユニット
+                    for (let i = 1; i < pageCount; i += 2) {
+                        if (i + 1 < pageCount) {
+                            units.push([i, i + 1]);
+                        } else {
+                            units.push([i]);
+                        }
+                    }
+                } else if (preserveSpreads) {
+                    // (1,2), (3,4)... のパターン
                     for (let i = 0; i < pageCount; i += 2) {
                         if (i + 1 < pageCount) {
                             units.push([i, i + 1]);
@@ -1158,6 +1169,7 @@
                         }
                     }
                 } else {
+                    // (1), (2), (3)... のパターン
                     for (let i = 0; i < pageCount; i++) {
                         units.push([i]);
                     }
