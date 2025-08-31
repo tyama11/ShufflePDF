@@ -575,6 +575,13 @@
                         <span class="switch-text" data-i18n="shuffleAllPages">全てのページをシャッフル</span>
                     </label>
                 </div>
+                <div class="option-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="fixFirstPageSimple" class="switch-input exclusive-switch">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text" data-i18n="fixFirstPageSimple">1ページ目のみ固定（本文は1ページ単位）</span>
+                    </label>
+                </div>
                 <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
                 <div class="option-group">
                     <label class="switch-label">
@@ -721,6 +728,7 @@
                 keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き",
                 headline: "📄 PDFページシャッフル",
                 shuffleAllPages: "全てのページをシャッフル",
+                fixFirstPageSimple: "1ページ目以外をシャッフル",
                 fixCover: "1ページ目のみ固定（本文は見開き）",
                 fixFirstSpread: "1-2ページ目を固定（本文は見開き）",
                 allSpreads: "全体を見開きでシャッフル",
@@ -787,6 +795,7 @@
                 keywords: "PDF,shuffle,page,random,free,online,tool,privacy,spread",
                 headline: "📄 PDF Page Shuffle",
                 shuffleAllPages: "Shuffle all pages",
+                fixFirstPageSimple: "Shuffle all except page 1",
                 fixCover: "Fix page 1 only (shuffle body as spreads)",
                 fixFirstSpread: "Fix pages 1-2 (shuffle body as spreads)",
                 allSpreads: "Shuffle all as spreads",
@@ -853,6 +862,7 @@
                 keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私,跨页",
                 headline: "📄 PDF页面随机排序",
                 shuffleAllPages: "随机排序所有页面",
+                fixFirstPageSimple: "除第1页外全部随机排序",
                 fixCover: "仅固定第1页（正文按跨页）",
                 fixFirstSpread: "固定第1-2页（正文按跨页）",
                 allSpreads: "全部按跨页随机排序",
@@ -919,6 +929,7 @@
                 keywords: "PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad, pliego",
                 headline: "📄 Mezclador de Páginas PDF",
                 shuffleAllPages: "Mezclar todas las páginas",
+                fixFirstPageSimple: "Mezclar todo excepto la pág. 1",
                 fixCover: "Fijar solo pág. 1 (cuerpo por pliegos)",
                 fixFirstSpread: "Fijar págs. 1-2 (cuerpo por pliegos)",
                 allSpreads: "Mezclar todo por pliegos",
@@ -1026,7 +1037,7 @@
             const fixCover = document.getElementById('fixCover').checked;
             const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
             const allSpreads = document.getElementById('allSpreads').checked;
-            const isSpreadMode = !document.getElementById('shuffleAllPages').checked && (fixCover || fixFirstSpread || allSpreads);
+            const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
             document.getElementById('lastPageFixLabel').textContent = isSpreadMode ? translations[userLang].fixLastSpread : translations[userLang].fixLastPage;
         }
 
@@ -1193,6 +1204,7 @@
 
                 // オプション設定を取得
                 const shuffleAllPages = document.getElementById('shuffleAllPages').checked;
+                const fixFirstPageSimple = document.getElementById('fixFirstPageSimple').checked;
                 const fixCover = document.getElementById('fixCover').checked;
                 const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
                 const allSpreads = document.getElementById('allSpreads').checked;
@@ -1204,14 +1216,17 @@
 
                 const pageIndices = Array.from({ length: pageCount }, (_, i) => i);
                 // 1. 先頭の固定ユニットを分離
-                if (fixCover && pageIndices.length > 0) {
+                if (fixFirstPageSimple && pageIndices.length > 0) {
+                    fixedPrefixUnits.push([pageIndices.shift()]);
+                } else if (fixCover && pageIndices.length > 0) {
                     fixedPrefixUnits.push([pageIndices.shift()]);
                 } else if (fixFirstSpread && pageIndices.length > 1) {
                     fixedPrefixUnits.push([pageIndices.shift(), pageIndices.shift()]);
                 }
 
                 // 2. シャッフル対象をユニット化
-                if (!shuffleAllPages) { // 見開きモード
+                const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
+                if (isSpreadMode) { // 見開きモード
                     for (let i = 0; i < pageIndices.length; i += 2) {
                         if (i + 1 < pageIndices.length) {
                             shuffleUnits.push([pageIndices[i], pageIndices[i + 1]]);
@@ -1254,8 +1269,8 @@
                     showStatus('statusAllFixed', 'info');
                 } else if (shuffledUnitsCount > 0) {
                     const fixedPageParts = [];
-                    if (fixCover) fixedPageParts.push(translations[userLang].fixedPart_fixCover);
-                    if (fixFirstSpread) fixedPageParts.push(translations[userLang].fixedPart_fixFirstSpread);
+                    if (fixFirstPageSimple || fixCover) fixedPageParts.push(translations[userLang].fixedPart_fixCover);
+                    else if (fixFirstSpread) fixedPageParts.push(translations[userLang].fixedPart_fixFirstSpread);
                     
                     if (preserveLast) {
                         const lastUnit = fixedSuffixUnits[0] || [];
