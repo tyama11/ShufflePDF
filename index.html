@@ -1068,7 +1068,7 @@
                         el.textContent = translation;
                     } else if (key === 'themeToggle') {
                         el.setAttribute('aria-label', translation);
-                    } else if (key === 'footerText2') {
+                    } else if (key === 'footerText2' || key.startsWith('faqA')) {
                         el.innerHTML = translation;
                     } else {
                         el.textContent = translation;
