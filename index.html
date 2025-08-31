@@ -581,6 +581,13 @@
                         <span class="switch-text" data-i18n="fixLast">最後のページを固定</span>
                     </label>
                 </div>
+                <div class="option-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="preserveSpreads" class="switch-input">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text" data-i18n="fixSpreads">見開きを維持 (2ページ単位)</span>
+                    </label>
+                </div>
             </section>
 
             <section class="upload-area" id="uploadArea">
@@ -617,11 +624,12 @@
             <section class="features">
                 <h2 data-i18n="featuresTitle">✨ 機能</h2>
                 <div class="description">
-                    <p data-i18n="descriptionText">このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
+                    <p data-i18n="descriptionText">このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。新たに見開き（2ページ単位）を維持したままシャッフルする機能も追加され、本のような形式のPDFにも対応しました。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
                 </div>
                 <div class="feature-list">
                     <div class="feature" data-i18n="featureShuffle">🔀 ランダムシャッフル</div>
                     <div class="feature" data-i18n="featureFix">📌 ページ固定オプション</div>
+                    <div class="feature" data-i18n="featureSpreads">📖 見開き維持シャッフル</div>
                     <div class="feature" data-i18n="featureAllPages">📄 全ページ対応</div>
                     <div class="feature" data-i18n="featureDownload">💾 即座にダウンロード</div>
                     <div class="feature" data-i18n="featurePrivacy">🔒 プライバシー保護</div>
@@ -672,6 +680,12 @@
                         <p data-i18n="faqA4">シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。</p>
                     </details>
                 </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ5">「見開きを維持」とは何ですか？</summary>
+                        <p data-i18n="faqA5">このオプションを有効にすると、ページが2ページずつのペア（例: 1-2ページ、3-4ページ）として扱われ、そのペア単位でシャッフルされます。本や雑誌のように見開きでデザインされたPDFに便利です。「最初のページを固定」を併用すると、最初のペア（1-2ページ）が先頭に固定されます。</p>
+                    </details>
+                </div>
             </section>
         </main>
 
@@ -691,6 +705,7 @@
                 headline: "📄 PDFページシャッフル",
                 fixFirst: "最初のページを固定",
                 fixLast: "最後のページを固定",
+                fixSpreads: "見開きを維持 (2ページ単位)",
                 dropHere: "PDFファイルをここにドラッグ＆ドロップ",
                 or: "または",
                 chooseFile: "ファイルを選択",
@@ -700,9 +715,10 @@
                 shuffleBtnText: "🔀 ページをシャッフル",
                 downloadBtnText: "💾 シャッフル済みPDFをダウンロード",
                 featuresTitle: "✨ 機能",
-                descriptionText: "このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。",
+                descriptionText: "このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。新たに見開き（2ページ単位）を維持したままシャッフルする機能も追加され、本のような形式のPDFにも対応しました。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。",
                 featureShuffle: "🔀 ランダムシャッフル",
                 featureFix: "📌 ページ固定オプション",
+                featureSpreads: "📖 見開き維持シャッフル",
                 featureAllPages: "📄 全ページ対応",
                 featureDownload: "💾 即座にダウンロード",
                 featurePrivacy: "🔒 プライバシー保護",
@@ -720,8 +736,12 @@
                 statusAllFixed: "全てのページが固定されているため、順序は変更されませんでした。",
                 statusShuffled: "${shuffledCount}ページをシャッフルしました！",
                 statusShuffledWithFixed: "${shuffledCount}ページをシャッフルしました！ (${fixedPages}は固定)",
+                statusShuffledSpreads: "${shuffledCount}ペアをシャッフルしました！",
+                statusShuffledSpreadsWithFixed: "${shuffledCount}ペアをシャッフルしました！ (${fixedPages}は固定)",
                 firstPage: "最初のページ",
                 lastPage: "最後のページ",
+                firstSpread: "最初の見開き",
+                lastSpread: "最後の見開き",
                 statusShuffleError: "PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。",
                 statusShuffleFirst: "まずPDFをシャッフルしてください。",
                 statusDownloaded: "シャッフル済みPDFをダウンロードしました！",
@@ -739,6 +759,8 @@
                 faqA3: "標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。",
                 faqQ4: "シャッフル後に元に戻すことはできますか？",
                 faqA4: "シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。",
+                faqQ5: "「見開きを維持」とは何ですか？",
+                faqA5: "このオプションを有効にすると、ページが2ページずつのペア（例: 1-2ページ、3-4ページ）として扱われ、そのペア単位でシャッフルされます。本や雑誌のように見開きでデザインされたPDFに便利です。「最初のページを固定」を併用すると、最初のペア（1-2ページ）が先頭に固定されます。",
             },
             en: {
                 title: "PDF Page Shuffle | Free Online Tool",
@@ -747,6 +769,7 @@
                 headline: "📄 PDF Page Shuffle",
                 fixFirst: "Fix the first page",
                 fixLast: "Fix the last page",
+                fixSpreads: "Preserve spreads (2-page units)",
                 dropHere: "Drag & drop your PDF file here",
                 or: "or",
                 chooseFile: "Choose file",
@@ -756,9 +779,10 @@
                 shuffleBtnText: "🔀 Shuffle Pages",
                 downloadBtnText: "💾 Download Shuffled PDF",
                 featuresTitle: "✨ Features",
-                descriptionText: "This PDF Page Shuffle tool is a web application that allows you to randomly reorder the pages of a PDF file. Since it runs entirely in your browser, your files are not sent to a server, ensuring complete privacy. You can protect pages you don't want to move, such as the cover or back page, with the fix option. After processing, the file is available for immediate download, with '_shuffled' appended to the original file name.",
+                descriptionText: "This PDF Page Shuffle tool is a web application that allows you to randomly reorder the pages of a PDF file. Since it runs entirely in your browser, your files are not sent to a server, ensuring complete privacy. You can protect pages you don't want to move, such as the cover or back page, with the fix option. A new feature to shuffle while preserving spreads (2-page units) has been added, making it suitable for book-like PDFs. After processing, the file is available for immediate download, with '_shuffled' appended to the original file name.",
                 featureShuffle: "🔀 Random Shuffle",
                 featureFix: "📌 Page Fix Option",
+                featureSpreads: "📖 Preserve Spreads Shuffle",
                 featureAllPages: "📄 All Pages Supported",
                 featureDownload: "💾 Instant Download",
                 featurePrivacy: "🔒 Privacy Protection",
@@ -776,8 +800,12 @@
                 statusAllFixed: "All pages are fixed, so the order was not changed.",
                 statusShuffled: "Shuffled ${shuffledCount} pages!",
                 statusShuffledWithFixed: "Shuffled ${shuffledCount} pages! (${fixedPages} are fixed)",
+                statusShuffledSpreads: "Shuffled ${shuffledCount} spreads!",
+                statusShuffledSpreadsWithFixed: "Shuffled ${shuffledCount} spreads! (${fixedPages} are fixed)",
                 firstPage: "the first page",
                 lastPage: "the last page",
+                firstSpread: "the first spread",
+                lastSpread: "the last spread",
                 statusShuffleError: "Failed to shuffle PDF. Please check if the file is corrupted.",
                 statusShuffleFirst: "Please shuffle the PDF first.",
                 statusDownloaded: "Downloaded the shuffled PDF!",
@@ -795,6 +823,8 @@
                 faqA3: "Most standard PDF files are supported. However, password-protected or specially formatted files may not be processed correctly.",
                 faqQ4: "Can I undo the shuffle?",
                 faqA4: "The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.",
+                faqQ5: "What does 'Preserve Spreads' mean?",
+                faqA5: "When this option is enabled, pages are treated as 2-page pairs (e.g., pages 1-2, 3-4) and shuffled as units. This is useful for PDFs designed with facing pages, like books or magazines. If used with 'Fix the first page', the first spread (pages 1-2) will be locked at the beginning.",
             },
             zh: {
                 title: "PDF页面随机排序 | 免费在线工具",
@@ -803,6 +833,7 @@
                 headline: "📄 PDF页面随机排序",
                 fixFirst: "固定第一页",
                 fixLast: "固定最后一页",
+                fixSpreads: "保持跨页 (2页单位)",
                 dropHere: "将PDF文件拖放到此处",
                 or: "或",
                 chooseFile: "选择文件",
@@ -812,9 +843,10 @@
                 shuffleBtnText: "🔀 随机排序页面",
                 downloadBtnText: "💾 下载排序后的PDF",
                 featuresTitle: "✨ 功能特性",
-                descriptionText: "此PDF页面随机排序工具是一个Web应用程序，可让您随机重排PDF文件的页面顺序。由于它完全在您的浏览器中运行，您的文件不会被发送到服务器，从而确保了完全的隐私。您可以使用固定选项保护不想移动的页面，例如封面或封底。处理后，文件可立即下载，文件名后会附加“_shuffled”。",
+                descriptionText: "此PDF页面随机排序工具是一个Web应用程序，可让您随机重排PDF文件的页面顺序。由于它完全在您的浏览器中运行，您的文件不会被发送到服务器，从而确保了完全的隐私。您可以使用固定选项保护不想移动的页面，例如封面或封底。新增了在保持跨页（2页单位）的同时进行排序的功能，使其也适用于书籍样式的PDF。处理后，文件可立即下载，文件名后会附加“_shuffled”。",
                 featureShuffle: "🔀 随机排序",
                 featureFix: "📌 页面固定选项",
+                featureSpreads: "📖 保持跨页排序",
                 featureAllPages: "📄 支持所有页面",
                 featureDownload: "💾 即时下载",
                 featurePrivacy: "🔒 隐私保护",
@@ -832,8 +864,12 @@
                 statusAllFixed: "所有页面均已固定，因此顺序未改变。",
                 statusShuffled: "已随机排序 ${shuffledCount} 个页面！",
                 statusShuffledWithFixed: "已随机排序 ${shuffledCount} 个页面！ (${fixedPages}已固定)",
+                statusShuffledSpreads: "已随机排序 ${shuffledCount} 个跨页！",
+                statusShuffledSpreadsWithFixed: "已随机排序 ${shuffledCount} 个跨页！ (${fixedPages}已固定)",
                 firstPage: "第一页",
                 lastPage: "最后一页",
+                firstSpread: "第一个跨页",
+                lastSpread: "最后一个跨页",
                 statusShuffleError: "PDF排序失败。请检查文件是否损坏。",
                 statusShuffleFirst: "请先对PDF进行排序。",
                 statusDownloaded: "已下载排序后的PDF！",
@@ -851,6 +887,8 @@
                 faqA3: "大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。",
                 faqQ4: "随机排序后可以撤销吗？",
                 faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
+                faqQ5: "“保持跨页”是什么意思？",
+                faqA5: "启用此选项后，页面将被视为2页的配对（例如，第1-2页，第3-4页），并以这些配对为单位进行随机排序。这对于设计为对开页的PDF（如书籍或杂志）非常有用。如果与“固定第一页”一起使用，第一个跨页（第1-2页）将被锁定在开头。",
             }
         };
 
@@ -1026,77 +1064,77 @@
                 // 元のPDFを読み込み
                 const originalDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
                 const pageCount = originalDoc.getPageCount();
-                
+
                 if (pageCount === 0) {
                     showStatus('statusNoPages', 'error');
+                    showLoading(false);
+                    shuffleBtn.disabled = false;
                     return;
                 }
-                
+
                 // 新しいPDFドキュメントを作成
                 const newDoc = await PDFLib.PDFDocument.create();
-                
+
                 // オプション設定を取得
                 const preserveFirst = document.getElementById('preserveFirstPage').checked;
                 const preserveLast = document.getElementById('preserveLastPage').checked;
-                
-                // シャッフル対象のページインデックスを決定
-                let startIndex = preserveFirst ? 1 : 0;
-                let endIndex = preserveLast ? pageCount - 1 : pageCount;
-                
-                // 全ページが固定されている場合の処理
-                if (startIndex >= endIndex) {
-                    // 全ページをそのままコピー
-                    for (let i = 0; i < pageCount; i++) {
-                        const [copiedPage] = await newDoc.copyPages(originalDoc, [i]);
-                        newDoc.addPage(copiedPage);
+                const preserveSpreads = document.getElementById('preserveSpreads').checked;
+
+                let units = [];
+                if (preserveSpreads) {
+                    for (let i = 0; i < pageCount; i += 2) {
+                        if (i + 1 < pageCount) {
+                            units.push([i, i + 1]);
+                        } else {
+                            units.push([i]);
+                        }
                     }
-                    showStatus('statusAllFixed', 'info');
                 } else {
-                    // シャッフル対象のページインデックス配列を作成
-                    const shuffleIndices = [];
-                    for (let i = startIndex; i < endIndex; i++) {
-                        shuffleIndices.push(i);
-                    }
-                    
-                    // シャッフル対象のページをシャッフル
-                    shuffleArray(shuffleIndices);
-                    
-                    // 最初のページを追加（固定の場合）
-                    if (preserveFirst && pageCount > 0) {
-                        const [firstPage] = await newDoc.copyPages(originalDoc, [0]);
-                        newDoc.addPage(firstPage);
-                    }
-                    
-                    // シャッフルされた中間ページを追加
-                    for (const pageIndex of shuffleIndices) {
-                        const [copiedPage] = await newDoc.copyPages(originalDoc, [pageIndex]);
-                        newDoc.addPage(copiedPage);
-                    }
-                    
-                    // 最後のページを追加（固定の場合）
-                    if (preserveLast && pageCount > 0) {
-                        const [lastPage] = await newDoc.copyPages(originalDoc, [pageCount - 1]);
-                        newDoc.addPage(lastPage);
-                    }
-                    
-                    const shuffledCount = shuffleIndices.length;
-                    
-                    if (preserveFirst || preserveLast) {
-                        const fixedPageParts = [];
-                        if (preserveFirst) fixedPageParts.push(translations[userLang].firstPage);
-                        if (preserveLast) fixedPageParts.push(translations[userLang].lastPage);
-                        const conjunctions = {
-                            ja: 'と',
-                            en: ' and ',
-                            zh: '和'
-                        };
-                        const fixedPages = fixedPageParts.join(conjunctions[userLang] || ' and ');
-                        showStatus('statusShuffledWithFixed', 'success', { shuffledCount, fixedPages });
-                    } else {
-                        showStatus('statusShuffled', 'success', { shuffledCount });
+                    for (let i = 0; i < pageCount; i++) {
+                        units.push([i]);
                     }
                 }
-                
+
+                const prefixUnits = [];
+                if (preserveFirst && units.length > 0) {
+                    prefixUnits.push(units.shift());
+                }
+
+                const suffixUnits = [];
+                if (preserveLast && units.length > 0) {
+                    suffixUnits.unshift(units.pop());
+                }
+
+                const shuffledUnitsCount = units.length;
+                if (units.length > 1) {
+                    shuffleArray(units);
+                }
+
+                const finalOrder = [...prefixUnits.flat(), ...units.flat(), ...suffixUnits.flat()];
+
+                if (finalOrder.length > 0) {
+                    const [copiedPages] = await newDoc.copyPages(originalDoc, finalOrder);
+                    copiedPages.forEach(page => newDoc.addPage(page));
+                }
+
+                if (shuffledUnitsCount === 0 && (prefixUnits.length > 0 || suffixUnits.length > 0)) {
+                    showStatus('statusAllFixed', 'info');
+                } else if (shuffledUnitsCount > 0) {
+                    const fixedPageParts = [];
+                    if (prefixUnits.length > 0) fixedPageParts.push(translations[userLang][preserveSpreads ? 'firstSpread' : 'firstPage']);
+                    if (suffixUnits.length > 0) fixedPageParts.push(translations[userLang][preserveSpreads ? 'lastSpread' : 'lastPage']);
+
+                    if (fixedPageParts.length > 0) {
+                        const conjunctions = { ja: 'と', en: ' and ', zh: '和' };
+                        const fixedPages = fixedPageParts.join(conjunctions[userLang] || ' and ');
+                        const statusKey = preserveSpreads ? 'statusShuffledSpreadsWithFixed' : 'statusShuffledWithFixed';
+                        showStatus(statusKey, 'success', { shuffledCount: shuffledUnitsCount, fixedPages });
+                    } else {
+                        const statusKey = preserveSpreads ? 'statusShuffledSpreads' : 'statusShuffled';
+                        showStatus(statusKey, 'success', { shuffledCount: shuffledUnitsCount });
+                    }
+                }
+
                 // PDFをバイト配列に変換
                 shuffledPdfBytes = await newDoc.save();
                 downloadBtn.disabled = false;
