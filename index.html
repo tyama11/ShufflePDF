@@ -715,7 +715,8 @@
                 fixCover: "1ページ目のみ固定（本文は見開き）",
                 fixFirstSpread: "1-2ページ目を固定（本文は見開き）",
                 allSpreads: "全体を見開きでシャッフル",
-                fixLast: "最後のページ/見開きを固定",
+                fixLastPage: "最後のページを固定",
+                fixLastSpread: "最後の見開きを固定",
                 dropHere: "PDFファイルをここにドラッグ＆ドロップ",
                 or: "または",
                 chooseFile: "ファイルを選択",
@@ -778,7 +779,8 @@
                 fixCover: "Fix page 1 only (shuffle body as spreads)",
                 fixFirstSpread: "Fix pages 1-2 (shuffle body as spreads)",
                 allSpreads: "Shuffle all as spreads",
-                fixLast: "Fix the last page/spread",
+                fixLastPage: "Fix the last page",
+                fixLastSpread: "Fix the last spread",
                 dropHere: "Drag & drop your PDF file here",
                 or: "or",
                 chooseFile: "Choose file",
@@ -841,7 +843,8 @@
                 fixCover: "仅固定第1页（正文按跨页）",
                 fixFirstSpread: "固定第1-2页（正文按跨页）",
                 allSpreads: "全部按跨页随机排序",
-                fixLast: "固定最后一页/跨页",
+                fixLastPage: "固定最后一页",
+                fixLastSpread: "固定最后一个跨页",
                 dropHere: "将PDF文件拖放到此处",
                 or: "或",
                 chooseFile: "选择文件",
@@ -893,8 +896,8 @@
                 faqA3: "大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。",
                 faqQ4: "随机排序后可以撤销吗？",
                 faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
-                faqQ5: "“保持跨页”是什么意思？",
-                faqA5: "启用此选项后，页面将以2页为单位进行随机排序。<br>• <b>与“固定第一页”并用时：</b>将固定封面（第1页），并对第2-3页、第4-5页等页面对进行排序。<br>• <b>单独使用时：</b>将对第1-2页、第3-4页等页面对进行排序。<br>这对于像书籍或杂志这样由封面和跨页构成的PDF非常方便。如果总页数为奇数，最后一页将被单独处理。",
+                faqQ5: "可以保持跨页进行随机排序吗？",
+                faqA5: "是的，有多种支持跨页的选项。这些选项一次只能选择一个。<br>・<b>“仅固定第1页”</b>：固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>“固定第1-2页”</b>：固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>“全部按跨页随机排序”</b>：将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>如果不选择任何这些选项，页面将按单页进行随机排序。",
             },
             es: {
                 title: "Mezclar Páginas de PDF | Herramienta Gratuita en Línea",
@@ -904,7 +907,8 @@
                 fixCover: "Fijar solo pág. 1 (cuerpo por pliegos)",
                 fixFirstSpread: "Fijar págs. 1-2 (cuerpo por pliegos)",
                 allSpreads: "Mezclar todo por pliegos",
-                fixLast: "Fijar la última página/pliego",
+                fixLastPage: "Fijar la última página",
+                fixLastSpread: "Fijar el último pliego",
                 dropHere: "Arrastra y suelta tu archivo PDF aquí",
                 or: "o",
                 chooseFile: "Seleccionar archivo",
@@ -1002,6 +1006,15 @@
             applyTheme(prefersDark ? 'dark' : 'light');
         }
 
+        function updateLastPageFixLabel() {
+            const fixCover = document.getElementById('fixCover').checked;
+            const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
+            const allSpreads = document.getElementById('allSpreads').checked;
+            const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
+            const label = document.getElementById('lastPageFixLabel');
+            label.textContent = isSpreadMode ? translations[userLang].fixLastSpread : translations[userLang].fixLastPage;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const exclusiveSwitches = document.querySelectorAll('.exclusive-switch');
             exclusiveSwitches.forEach(switchEl => {
@@ -1013,8 +1026,10 @@
                             }
                         });
                     }
+                    updateLastPageFixLabel();
                 });
             });
+            updateLastPageFixLabel(); // 初期表示
             document.querySelectorAll("[data-i18n]").forEach(el => {
                 const key = el.getAttribute("data-i18n");
                 const translation = translations[userLang]?.[key];
