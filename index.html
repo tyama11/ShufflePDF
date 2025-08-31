@@ -3,36 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDFページシャッフル | 無料オンラインツール</title>
-    <meta name="description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
-    <meta name="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
+    <title data-i18n="title">PDFページシャッフル | 無料オンラインツール</title>
+    <meta name="description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
+    <meta name="keywords" data-i18n="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー">
     <meta name="author" content="PDF Shuffle Tool">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourusername.github.io/pdf-shuffle/">
-    <meta property="og:title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="og:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    <meta property="og:url" content="https://tyama11.github.io/ShufflePDF/">
+    <meta property="og:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="og:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yourusername.github.io/pdf-shuffle/">
-    <meta property="twitter:title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="twitter:description" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。">
+    <meta property="twitter:url" content="https://tyama11.github.io/ShufflePDF/">
+    <meta property="twitter:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
+    <meta property="twitter:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
     
-    <link rel="canonical" href="https://yourusername.github.io/pdf-shuffle/">
+    <link rel="canonical" href="https://tyama11.github.io/ShufflePDF/">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <!-- SEO: Language Alternates -->
+    <link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="es" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="zh" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        /* --- テーマ変数定義 --- */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --text-color-light: #666;
+            --panel-bg: rgba(102, 126, 234, 0.05);
+            --panel-border: rgba(102, 126, 234, 0.2);
+            --primary-color: #667eea;
+            --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --switch-bg: #ccc;
+            --footer-border: rgba(102, 126, 234, 0.2);
+            --focus-outline: #005fcc;
+        }
 
+        html[data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            --container-bg: rgba(45, 55, 72, 0.95);
+            --text-color: #e2e8f0;
+            --text-color-light: #cbd5e0;
+            --panel-bg: rgba(255, 255, 255, 0.05);
+            --panel-border: rgba(255, 255, 255, 0.2);
+            --primary-color: #a3bffa;
+            --primary-gradient: linear-gradient(135deg, #82aaff, #a3bffa);
+            --switch-bg: #555;
+            --footer-border: rgba(255, 255, 255, 0.1);
+            --focus-outline: #5a9bff;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-gradient);
             min-height: 100vh;
             padding: 20px;
         }
@@ -40,7 +76,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--container-bg);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -48,22 +84,50 @@
         }
 
         h1 {
-            text-align: center;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 30px;
             font-size: 2.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+        .theme-toggle-btn:hover {
+            background: var(--panel-bg);
+        }
+        .theme-toggle-btn svg { width: 24px; height: 24px; }
+        .theme-toggle-btn .moon { display: none; }
+
         .options-panel {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid var(--panel-border);
         }
 
         .option-group {
@@ -79,7 +143,7 @@
             align-items: center;
             cursor: pointer;
             font-size: 1.1rem;
-            color: #333;
+            color: var(--text-color);
             font-weight: 500;
         }
 
@@ -91,7 +155,7 @@
             position: relative;
             width: 50px;
             height: 26px;
-            background: #ccc;
+            background: var(--switch-bg);
             border-radius: 26px;
             transition: all 0.3s ease;
             margin-right: 15px;
@@ -111,7 +175,7 @@
         }
 
         .switch-input:checked + .switch-slider {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
         }
 
         .switch-input:checked + .switch-slider::before {
@@ -123,11 +187,11 @@
         }
 
         .upload-area {
-            border: 3px dashed #667eea;
+            border: 3px dashed var(--primary-color);
             border-radius: 15px;
             padding: 60px 20px;
             text-align: center;
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             transition: all 0.3s ease;
             cursor: pointer;
             margin-bottom: 30px;
@@ -147,12 +211,12 @@
 
         .upload-icon {
             font-size: 4rem;
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .upload-text {
-            color: #666;
+            color: var(--text-color-light);
             font-size: 1.2rem;
             margin-bottom: 15px;
         }
@@ -162,7 +226,7 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -207,19 +271,19 @@
 
         .status.info {
             background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            color: #313c94; /* コントラスト比を改善 */
             border: 2px solid rgba(102, 126, 234, 0.3);
         }
 
         .status.success {
             background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
+            color: #155724; /* コントラスト比を改善 */
             border: 2px solid rgba(40, 167, 69, 0.3);
         }
 
         .status.error {
             background: rgba(220, 53, 69, 0.1);
-            color: #dc3545;
+            color: #721c24; /* コントラスト比を改善 */
             border: 2px solid rgba(220, 53, 69, 0.3);
         }
 
@@ -236,7 +300,7 @@
 
         .spinner {
             border: 4px solid rgba(102, 126, 234, 0.1);
-            border-left: 4px solid #667eea;
+            border-left-color: var(--primary-color);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -250,7 +314,7 @@
         }
 
         .page-info {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
@@ -263,12 +327,12 @@
         }
 
         .features h2 {
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 20px;
         }
 
         .description {
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
@@ -276,7 +340,7 @@
         }
 
         .description p {
-            color: #555;
+            color: var(--text-color-light);
             font-size: 1rem;
             text-align: left;
             margin: 0;
@@ -290,10 +354,10 @@
         }
 
         .feature {
-            background: rgba(102, 126, 234, 0.1);
+            background: var(--panel-bg);
             padding: 15px 20px;
             border-radius: 10px;
-            color: #667eea;
+            color: var(--primary-color);
             font-weight: bold;
         }
 
@@ -301,13 +365,13 @@
             margin: 40px 0;
             text-align: center;
             padding: 25px;
-            background: rgba(102, 126, 234, 0.05);
+            background: var(--panel-bg);
             border-radius: 15px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid var(--panel-border);
         }
 
         .share-section h3 {
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 20px;
             font-size: 1.3rem;
         }
@@ -372,21 +436,20 @@
         .footer {
             margin-top: 50px;
             text-align: center;
-            color: #666;
+            color: var(--text-color-light);
             font-size: 0.9rem;
             padding: 20px;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-top: 1px solid var(--footer-border);
         }
 
         .footer a {
-            color: #667eea;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
         .footer a:hover {
             text-decoration: underline;
         }
-
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
             .container {
@@ -436,126 +499,547 @@
             }
         }
 
-        /* ダークモード対応 */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            }
+        /* ダークモードのアイコン切り替え */
+        html[data-theme="dark"] .theme-toggle-btn .sun {
+            display: none;
+        }
+        html[data-theme="dark"] .theme-toggle-btn .moon {
+            display: block;
+        }
 
-            .container {
-                background: rgba(45, 55, 72, 0.95);
-                color: #e2e8f0;
-            }
+        /* アクセシビリティ: フォーカス状態の強調 */
+        :focus-visible {
+            outline: 3px solid var(--focus-outline);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
 
-            h1 {
-                color: #e2e8f0;
-            }
-
-            .upload-text, .description p {
-                color: #cbd5e0;
-            }
-
-            .switch-text {
-                color: #e2e8f0;
-            }
+        /* --- FAQセクションのスタイル --- */
+        .faq {
+            margin-top: 50px;
+            text-align: left;
+        }
+        .faq h2 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+        .faq-item {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .faq-item summary {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-color);
+            position: relative;
+            list-style: none; /* デフォルトのマーカーを非表示 */
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .faq-item details[open] > summary::after { transform: rotate(45deg); }
+        .faq-item p {
+            padding: 0 20px 20px 20px;
+            color: var(--text-color-light);
+            line-height: 1.6;
+            margin: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📄 PDFページシャッフル</h1>
+            <h1 data-i18n="headline">📄 PDFページシャッフル</h1>
+            <button id="theme-toggle" class="theme-toggle-btn" data-i18n="themeToggle" aria-label="Toggle theme">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zm-11.457 11.457a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.061zm11.457 0a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM5.106 18.894a.75.75 0 01-1.06 0l-1.59-1.59a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM4.5 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H5.25a.75.75 0 01-.75-.75zM12 19.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 19.5z"/></svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.945.75.75 0 01.981.981A10.503 10.503 0 0118 18a10.5 10.5 0 01-10.5-10.5c0-1.562.32-3.056.9-4.402a.75.75 0 01.819-.162z" clip-rule="evenodd" /></svg>
+            </button>
         </header>
 
         <main>
             <section class="options-panel">
                 <div class="option-group">
                     <label class="switch-label">
-                        <input type="checkbox" id="preserveFirstPage" class="switch-input">
+                        <input type="checkbox" id="fixCover" class="switch-input exclusive-switch">
                         <span class="switch-slider"></span>
-                        <span class="switch-text">最初のページを固定</span>
+                        <span class="switch-text" data-i18n="fixCover">1ページ目のみ固定（本文は見開き）</span>
                     </label>
                 </div>
                 <div class="option-group">
                     <label class="switch-label">
+                        <input type="checkbox" id="fixFirstSpread" class="switch-input exclusive-switch">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text" data-i18n="fixFirstSpread">1-2ページ目を固定（本文は見開き）</span>
+                    </label>
+                </div>
+                <div class="option-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="allSpreads" class="switch-input exclusive-switch">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text" data-i18n="allSpreads">全体を見開きでシャッフル</span>
+                    </label>
+                </div>
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
+                <div class="option-group">
+                    <label class="switch-label">
                         <input type="checkbox" id="preserveLastPage" class="switch-input">
                         <span class="switch-slider"></span>
-                        <span class="switch-text">最後のページを固定</span>
+                        <span class="switch-text" data-i18n="fixLast">最後のページ/見開きを固定</span>
                     </label>
                 </div>
             </section>
 
             <section class="upload-area" id="uploadArea">
                 <div class="upload-icon">📁</div>
-                <div class="upload-text">PDFファイルをここにドラッグ＆ドロップ</div>
-                <div class="upload-text">または</div>
-                <button class="btn" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-text" data-i18n="dropHere">PDFファイルをここにドラッグ＆ドロップ</div>
+                <div class="upload-text" data-i18n="or">または</div>
+                <button class="btn" onclick="document.getElementById('fileInput').click()" data-i18n="chooseFile">
                     ファイルを選択
                 </button>
                 <input type="file" id="fileInput" class="file-input" accept=".pdf">
             </section>
 
-            <div id="status" class="status" style="display: none;"></div>
-            
-            <div class="loading" id="loading">
+            <div id="status" class="status" style="display: none;" aria-live="polite"></div>
+
+            <div class="loading" id="loading" role="status" aria-live="polite">
                 <div class="spinner"></div>
-                <div>PDFを処理中...</div>
+                <div data-i18n="loadingText">PDFを処理中...</div>
             </div>
 
             <div id="pageInfo" class="page-info" style="display: none;">
-                <h3>📋 PDF情報</h3>
+                <h3 data-i18n="pageInfoTitle">📋 PDF情報</h3>
                 <div id="pageCount"></div>
             </div>
 
             <div class="controls">
-                <button class="btn" id="shuffleBtn" onclick="shufflePDF()" disabled>
+                <button class="btn" id="shuffleBtn" onclick="shufflePDF()" disabled data-i18n="shuffleBtnText">
                     🔀 ページをシャッフル
                 </button>
-                <button class="btn btn-secondary" id="downloadBtn" onclick="downloadShuffledPDF()" disabled style="display: none;">
+                <button class="btn btn-secondary" id="downloadBtn" onclick="downloadShuffledPDF()" disabled style="display: none;" data-i18n="downloadBtnText">
                     💾 シャッフル済みPDFをダウンロード
                 </button>
             </div>
 
             <section class="features">
-                <h2>✨ 機能</h2>
+                <h2 data-i18n="featuresTitle">✨ 機能</h2>
                 <div class="description">
-                    <p>このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
+                    <p data-i18n="descriptionText">このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。新たに見開き（2ページ単位）を維持したままシャッフルする機能も追加され、本のような形式のPDFにも対応しました。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
                 </div>
                 <div class="feature-list">
-                    <div class="feature">🔀 ランダムシャッフル</div>
-                    <div class="feature">📌 ページ固定オプション</div>
-                    <div class="feature">📄 全ページ対応</div>
-                    <div class="feature">💾 即座にダウンロード</div>
-                    <div class="feature">🔒 プライバシー保護</div>
+                    <div class="feature" data-i18n="featureShuffle">🔀 ランダムシャッフル</div>
+                    <div class="feature" data-i18n="featureFix">📌 ページ固定オプション</div>
+                    <div class="feature" data-i18n="featureSpreads">📖 見開き対応シャッフル</div>
+                    <div class="feature" data-i18n="featureAllPages">📄 全ページ対応</div>
+                    <div class="feature" data-i18n="featureDownload">💾 即座にダウンロード</div>
+                    <div class="feature" data-i18n="featurePrivacy">🔒 プライバシー保護</div>
                 </div>
             </section>
 
             <section class="share-section">
-                <h3>📢 このツールをシェア</h3>
+                <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
                 <div class="share-buttons">
-                    <button class="share-btn twitter" onclick="shareToTwitter()">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                    <button class="share-btn twitter" onclick="shareToTwitter()" aria-label="Xでシェア">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
-                        X でシェア
+                        <span data-i18n="shareTwitter">X でシェア</span>
                     </button>
-                    <button class="share-btn copy" onclick="copyLink()" id="copyBtn">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                    <button class="share-btn copy" onclick="copyLink()" id="copyBtn" aria-label="リンクをコピー">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                         </svg>
-                        リンクをコピー
+                        <span data-i18n="copyLink">リンクをコピー</span>
                     </button>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h2 data-i18n="faqTitle">よくある質問 (FAQ)</h2>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ1">このツールは本当に無料ですか？</summary>
+                        <p data-i18n="faqA1">はい、完全に無料です。すべての機能を登録不要、無制限でご利用いただけます。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ2">ファイルは安全ですか？プライバシーは保護されますか？</summary>
+                        <p data-i18n="faqA2">はい、安全です。このツールはあなたのブラウザ上でのみ動作し、PDFファイルがサーバーにアップロードされることは一切ありません。あなたのプライバシーは完全に保護されます。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ3">どんなPDFファイルでも使えますか？</summary>
+                        <p data-i18n="faqA3">標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ4">シャッフル後に元に戻すことはできますか？</summary>
+                        <p data-i18n="faqA4">シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。</p>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary data-i18n="faqQ5">見開きを維持したシャッフルはできますか？</summary>
+                        <p data-i18n="faqA5">はい、複数の見開き対応オプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目のみ固定」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を見開きでシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>どのオプションも選択しない場合は、1ページ単位でシャッフルされます。</p>
+                    </details>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
-            <p>機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
+            <p data-i18n="footerText1">&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
+            <p data-i18n="footerText2">機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
         </footer>
     </div>
 
     <script>
+        // 多言語翻訳データ
+        const translations = {
+            ja: {
+                title: "PDFページシャッフル | 無料オンラインツール",
+                metaDesc: "PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。",
+                keywords: "PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー",
+                headline: "📄 PDFページシャッフル",
+                fixCover: "1ページ目のみ固定（本文は見開き）",
+                fixFirstSpread: "1-2ページ目を固定（本文は見開き）",
+                allSpreads: "全体を見開きでシャッフル",
+                fixLast: "最後のページ/見開きを固定",
+                dropHere: "PDFファイルをここにドラッグ＆ドロップ",
+                or: "または",
+                chooseFile: "ファイルを選択",
+                loadingText: "PDFを処理中...",
+                pageInfoTitle: "📋 PDF情報",
+                pageCountText: "総ページ数: ${pageCount}ページ",
+                shuffleBtnText: "🔀 ページをシャッフル",
+                downloadBtnText: "💾 シャッフル済みPDFをダウンロード",
+                featuresTitle: "✨ 機能",
+                descriptionText: "このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。新たに見開き（2ページ単位）を維持したままシャッフルする機能も追加され、本のような形式のPDFにも対応しました。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。",
+                featureShuffle: "🔀 ランダムシャッフル",
+                featureFix: "📌 ページ固定オプション",
+                featureSpreads: "📖 見開き対応シャッフル",
+                featureAllPages: "📄 全ページ対応",
+                featureDownload: "💾 即座にダウンロード",
+                featurePrivacy: "🔒 プライバシー保護",
+                shareTitle: "📢 このツールをシェア",
+                shareTwitter: "X でシェア",
+                copyLink: "リンクをコピー",
+                copyBtnCopied: "コピー完了！",
+                footerText1: "© 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。",
+                footerText2: '機能追加や不具合があれば <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。',
+                statusPdfOnly: "PDFファイルを選択してください。",
+                statusFileLoaded: 'PDFファイル "${fileName}" を読み込みました！',
+                statusLoadError: "PDFファイルの読み込みに失敗しました。破損していないか確認してください。",
+                statusSelectFirst: "まずPDFファイルを選択してください。",
+                statusNoPages: "PDFにページが含まれていません。",
+                statusAllFixed: "全てのページが固定されているため、順序は変更されませんでした。",
+                statusShuffled: "${shuffledCount}個のユニットをシャッフルしました！",
+                statusShuffledWithFixed: "${shuffledCount}個のユニットをシャッフルしました！ (${fixedPages}は固定)",
+                fixedPart_fixCover: "1ページ目",
+                fixedPart_fixFirstSpread: "1-2ページ目",
+                fixedPart_lastPage: "最後のページ",
+                fixedPart_lastSpread: "最後の見開き",
+                statusShuffleError: "PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。",
+                statusShuffleFirst: "まずPDFをシャッフルしてください。",
+                statusDownloaded: "シャッフル済みPDFをダウンロードしました！",
+                statusDownloadError: "ファイルのダウンロードに失敗しました。",
+                statusCopySuccess: "リンクをクリップボードにコピーしました！",
+                statusCopyError: "リンクのコピーに失敗しました。",
+                hashtags: "PDF,シャッフル,無料ツール,オンライン",
+                themeToggle: "テーマを切り替え (ライト/ダーク)",
+                faqTitle: "よくある質問 (FAQ)",
+                faqQ1: "このツールは本当に無料ですか？",
+                faqA1: "はい、完全に無料です。すべての機能を登録不要、無制限でご利用いただけます。",
+                faqQ2: "ファイルは安全ですか？プライバシーは保護されますか？",
+                faqA2: "はい、安全です。このツールはあなたのブラウザ上でのみ動作し、PDFファイルがサーバーにアップロードされることは一切ありません。あなたのプライバシーは完全に保護されます。",
+                faqQ3: "どんなPDFファイルでも使えますか？",
+                faqA3: "標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。",
+                faqQ4: "シャッフル後に元に戻すことはできますか？",
+                faqA4: "シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。",
+                faqQ5: "見開きを維持したシャッフルはできますか？",
+                faqA5: "はい、複数の見開き対応オプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目のみ固定」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を見開きでシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>どのオプションも選択しない場合は、1ページ単位でシャッフルされます。",
+            },
+            en: {
+                title: "PDF Page Shuffle | Free Online Tool",
+                metaDesc: "Free online tool to shuffle PDF pages randomly. Privacy protected, with options to lock cover and back pages. Works entirely in your browser.",
+                keywords: "PDF,shuffle,page,random,free,online,tool,privacy",
+                headline: "📄 PDF Page Shuffle",
+                fixCover: "Fix page 1 only (shuffle body as spreads)",
+                fixFirstSpread: "Fix pages 1-2 (shuffle body as spreads)",
+                allSpreads: "Shuffle all as spreads",
+                fixLast: "Fix the last page/spread",
+                dropHere: "Drag & drop your PDF file here",
+                or: "or",
+                chooseFile: "Choose file",
+                loadingText: "Processing PDF...",
+                pageInfoTitle: "📋 PDF Information",
+                pageCountText: "Total pages: ${pageCount}",
+                shuffleBtnText: "🔀 Shuffle Pages",
+                downloadBtnText: "💾 Download Shuffled PDF",
+                featuresTitle: "✨ Features",
+                descriptionText: "This PDF Page Shuffle tool is a web application that allows you to randomly reorder the pages of a PDF file. Since it runs entirely in your browser, your files are not sent to a server, ensuring complete privacy. You can protect pages you don't want to move, such as the cover or back page, with the fix option. A new feature to shuffle while preserving spreads (2-page units) has been added, making it suitable for book-like PDFs. After processing, the file is available for immediate download, with '_shuffled' appended to the original file name.",
+                featureShuffle: "🔀 Random Shuffle",
+                featureFix: "📌 Page Fix Option",
+                featureSpreads: "📖 Spread-aware Shuffle",
+                featureAllPages: "📄 All Pages Supported",
+                featureDownload: "💾 Instant Download",
+                featurePrivacy: "🔒 Privacy Protection",
+                shareTitle: "📢 Share This Tool",
+                shareTwitter: "Share on X",
+                copyLink: "Copy Link",
+                copyBtnCopied: "Copied!",
+                footerText1: "© 2025 PDF Shuffle Tool. An open-source tool that runs in your browser.",
+                footerText2: 'If you have feature requests or find bugs, please report them on <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
+                statusPdfOnly: "Please select a PDF file.",
+                statusFileLoaded: 'Loaded PDF file "${fileName}"!',
+                statusLoadError: "Failed to load PDF file. Please check if it is corrupted.",
+                statusSelectFirst: "Please select a PDF file first.",
+                statusNoPages: "The PDF contains no pages.",
+                statusAllFixed: "All pages are fixed, so the order was not changed.",
+                statusShuffled: "Shuffled ${shuffledCount} units!",
+                statusShuffledWithFixed: "Shuffled ${shuffledCount} units! (${fixedPages} are fixed)",
+                fixedPart_fixCover: "page 1",
+                fixedPart_fixFirstSpread: "pages 1-2",
+                fixedPart_lastPage: "the last page",
+                fixedPart_lastSpread: "the last spread",
+                statusShuffleError: "Failed to shuffle PDF. Please check if the file is corrupted.",
+                statusShuffleFirst: "Please shuffle the PDF first.",
+                statusDownloaded: "Downloaded the shuffled PDF!",
+                statusDownloadError: "Failed to download the file.",
+                statusCopySuccess: "Copied the link to your clipboard!",
+                statusCopyError: "Failed to copy the link.",
+                hashtags: "PDF,Shuffle,FreeTool,OnlineTool",
+                themeToggle: "Toggle theme (Light/Dark)",
+                faqTitle: "Frequently Asked Questions (FAQ)",
+                faqQ1: "Is this tool really free?",
+                faqA1: "Yes, it is completely free. All features are available without registration or limits.",
+                faqQ2: "Are my files secure? Is my privacy protected?",
+                faqA2: "Yes, it's secure. This tool operates entirely within your browser. Your PDF files are never uploaded to a server, ensuring your privacy is fully protected.",
+                faqQ3: "Can I use any PDF file?",
+                faqA3: "Most standard PDF files are supported. However, password-protected or specially formatted files may not be processed correctly.",
+                faqQ4: "Can I undo the shuffle?",
+                faqA4: "The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.",
+                faqQ5: "Can I shuffle while preserving spreads?",
+                faqA5: "Yes, there are several spread-aware options. Only one can be selected at a time.<br>• <b>'Fix page 1 only'</b>: Fixes the cover (p. 1) and shuffles the body in pairs like pages 2-3, 4-5, etc.<br>• <b>'Fix pages 1-2'</b>: Fixes the first spread (pp. 1-2) and shuffles the body in pairs like pages 3-4, 5-6, etc.<br>• <b>'Shuffle all as spreads'</b>: Shuffles the entire PDF in pairs like pages 1-2, 3-4, etc.<br>If no option is selected, pages are shuffled individually.",
+            },
+            zh: {
+                title: "PDF页面随机排序 | 免费在线工具",
+                metaDesc: "免费的在线工具，可随机打乱PDF页面顺序。保护您的隐私，可选择固定首页和末页。完全在您的浏览器中运行。",
+                keywords: "PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私",
+                headline: "📄 PDF页面随机排序",
+                fixCover: "仅固定第1页（正文按跨页）",
+                fixFirstSpread: "固定第1-2页（正文按跨页）",
+                allSpreads: "全部按跨页随机排序",
+                fixLast: "固定最后一页/跨页",
+                dropHere: "将PDF文件拖放到此处",
+                or: "或",
+                chooseFile: "选择文件",
+                loadingText: "正在处理PDF...",
+                pageInfoTitle: "📋 PDF信息",
+                pageCountText: "总页数: ${pageCount}页",
+                shuffleBtnText: "🔀 随机排序页面",
+                downloadBtnText: "💾 下载排序后的PDF",
+                featuresTitle: "✨ 功能特性",
+                descriptionText: "此PDF页面随机排序工具是一个Web应用程序，可让您随机重排PDF文件的页面顺序。由于它完全在您的浏览器中运行，您的文件不会被发送到服务器，从而确保了完全的隐私。您可以使用固定选项保护不想移动的页面，例如封面或封底。新增了在保持跨页（2页单位）的同时进行排序的功能，使其也适用于书籍样式的PDF。处理后，文件可立即下载，文件名后会附加“_shuffled”。",
+                featureShuffle: "🔀 随机排序",
+                featureFix: "📌 页面固定选项",
+                featureSpreads: "📖 支持跨页排序",
+                featureAllPages: "📄 支持所有页面",
+                featureDownload: "💾 即时下载",
+                featurePrivacy: "🔒 隐私保护",
+                shareTitle: "📢 分享此工具",
+                shareTwitter: "在 X 上分享",
+                copyLink: "复制链接",
+                copyBtnCopied: "已复制！",
+                footerText1: "© 2025 PDF Shuffle Tool. 一个在浏览器中运行的开源工具。",
+                footerText2: '如果您有功能建议或发现错误，请在 <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> 上报告。',
+                statusPdfOnly: "请选择一个PDF文件。",
+                statusFileLoaded: '已加载PDF文件 "${fileName}"！',
+                statusLoadError: "加载PDF文件失败。请检查文件是否损坏。",
+                statusSelectFirst: "请先选择一个PDF文件。",
+                statusNoPages: "该PDF不包含任何页面。",
+                statusAllFixed: "所有页面均已固定，因此顺序未改变。",
+                statusShuffled: "已随机排序 ${shuffledCount} 个单元！",
+                statusShuffledWithFixed: "已随机排序 ${shuffledCount} 个单元！ (${fixedPages}已固定)",
+                fixedPart_fixCover: "第1页",
+                fixedPart_fixFirstSpread: "第1-2页",
+                fixedPart_lastPage: "最后一页",
+                fixedPart_lastSpread: "最后一个跨页",
+                statusShuffleError: "PDF排序失败。请检查文件是否损坏。",
+                statusShuffleFirst: "请先对PDF进行排序。",
+                statusDownloaded: "已下载排序后的PDF！",
+                statusDownloadError: "文件下载失败。",
+                statusCopySuccess: "已将链接复制到剪贴板！",
+                statusCopyError: "复制链接失败。",
+                hashtags: "PDF,随机排序,免费工具,在线工具",
+                themeToggle: "切换主题 (亮/暗)",
+                faqTitle: "常见问题 (FAQ)",
+                faqQ1: "这个工具真的免费吗？",
+                faqA1: "是的，完全免费。所有功能无需注册，无限制使用。",
+                faqQ2: "我的文件安全吗？隐私会受到保护吗？",
+                faqA2: "是的，非常安全。此工具完全在您的浏览器中运行，PDF文件绝不会上传到服务器。您的隐私将得到完全保护。",
+                faqQ3: "任何PDF文件都可以使用吗？",
+                faqA3: "大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。",
+                faqQ4: "随机排序后可以撤销吗？",
+                faqA4: "排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。",
+                faqQ5: "“保持跨页”是什么意思？",
+                faqA5: "启用此选项后，页面将以2页为单位进行随机排序。<br>• <b>与“固定第一页”并用时：</b>将固定封面（第1页），并对第2-3页、第4-5页等页面对进行排序。<br>• <b>单独使用时：</b>将对第1-2页、第3-4页等页面对进行排序。<br>这对于像书籍或杂志这样由封面和跨页构成的PDF非常方便。如果总页数为奇数，最后一页将被单独处理。",
+            },
+            es: {
+                title: "Mezclar Páginas de PDF | Herramienta Gratuita en Línea",
+                metaDesc: "Herramienta gratuita en línea para mezclar aleatoriamente las páginas de un archivo PDF. Privacidad protegida, con opciones para fijar la portada y la contraportada. Funciona completamente en su navegador.",
+                keywords: "PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad",
+                headline: "📄 Mezclador de Páginas PDF",
+                fixCover: "Fijar solo pág. 1 (cuerpo por pliegos)",
+                fixFirstSpread: "Fijar págs. 1-2 (cuerpo por pliegos)",
+                allSpreads: "Mezclar todo por pliegos",
+                fixLast: "Fijar la última página/pliego",
+                dropHere: "Arrastra y suelta tu archivo PDF aquí",
+                or: "o",
+                chooseFile: "Seleccionar archivo",
+                loadingText: "Procesando PDF...",
+                pageInfoTitle: "📋 Información del PDF",
+                pageCountText: "Páginas totales: ${pageCount}",
+                shuffleBtnText: "🔀 Mezclar Páginas",
+                downloadBtnText: "💾 Descargar PDF Mezclado",
+                featuresTitle: "✨ Características",
+                descriptionText: "Esta herramienta para mezclar páginas de PDF es una aplicación web que le permite reordenar aleatoriamente las páginas de un archivo PDF. Como funciona completamente en su navegador, sus archivos no se envían a un servidor, garantizando una privacidad completa. Puede proteger las páginas que no desea mover, como la portada o la contraportada, con la opción de fijar. Se ha añadido una nueva función para mezclar conservando los pliegos (unidades de 2 páginas), lo que la hace adecuada para PDF con formato de libro. Después del procesamiento, el archivo está disponible para su descarga inmediata, con '_shuffled' añadido al nombre del archivo original.",
+                featureShuffle: "🔀 Mezcla Aleatoria",
+                featureFix: "📌 Opción para Fijar Páginas",
+                featureSpreads: "📖 Mezcla por Pliegos",
+                featureAllPages: "📄 Compatible con Todas las Páginas",
+                featureDownload: "💾 Descarga Instantánea",
+                featurePrivacy: "🔒 Protección de la Privacidad",
+                shareTitle: "📢 Comparte esta Herramienta",
+                shareTwitter: "Compartir en X",
+                copyLink: "Copiar Enlace",
+                copyBtnCopied: "¡Copiado!",
+                footerText1: "© 2025 PDF Shuffle Tool. Una herramienta de código abierto que funciona en su navegador.",
+                footerText2: 'Si tiene solicitudes de funciones o encuentra errores, por favor repórtelos en <a href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
+                statusPdfOnly: "Por favor, seleccione un archivo PDF.",
+                statusFileLoaded: '¡Archivo PDF "${fileName}" cargado!',
+                statusLoadError: "Error al cargar el archivo PDF. Por favor, compruebe si está dañado.",
+                statusSelectFirst: "Por favor, seleccione primero un archivo PDF.",
+                statusNoPages: "El PDF no contiene páginas.",
+                statusAllFixed: "Todas las páginas están fijas, por lo que el orden no se ha modificado.",
+                statusShuffled: "¡Se han mezclado ${shuffledCount} unidades!",
+                statusShuffledWithFixed: "¡Se han mezclado ${shuffledCount} unidades! (${fixedPages} están fijos)",
+                fixedPart_fixCover: "la página 1",
+                fixedPart_fixFirstSpread: "las páginas 1-2",
+                fixedPart_lastPage: "la última página",
+                fixedPart_lastSpread: "el último pliego",
+                statusShuffleError: "Error al mezclar el PDF. Por favor, compruebe si el archivo está dañado.",
+                statusShuffleFirst: "Por favor, mezcle primero el PDF.",
+                statusDownloaded: "¡PDF mezclado descargado!",
+                statusDownloadError: "Error al descargar el archivo.",
+                statusCopySuccess: "¡Enlace copiado al portapapeles!",
+                statusCopyError: "Error al copiar el enlace.",
+                hashtags: "PDF,Mezclar,HerramientaGratuita,Online",
+                themeToggle: "Cambiar tema (Claro/Oscuro)",
+                faqTitle: "Preguntas Frecuentes (FAQ)",
+                faqQ1: "¿Es esta herramienta realmente gratuita?",
+                faqA1: "Sí, es completamente gratuita. Todas las funciones están disponibles sin necesidad de registro y sin límites.",
+                faqQ2: "¿Están seguros mis archivos? ¿Está protegida mi privacidad?",
+                faqA2: "Sí, es seguro. Esta herramienta funciona completamente dentro de su navegador. Sus archivos PDF nunca se suben a un servidor, lo que garantiza que su privacidad esté totalmente protegida.",
+                faqQ3: "¿Puedo usar cualquier archivo PDF?",
+                faqA3: "La mayoría de los archivos PDF estándar son compatibles. Sin embargo, los archivos protegidos con contraseña o con formatos especiales pueden no procesarse correctamente.",
+                faqQ4: "¿Puedo deshacer la mezcla?",
+                faqA4: "El proceso de mezcla no altera su archivo original. Si no está satisfecho con el resultado, simplemente recargue la página, vuelva a subir el archivo original e intente mezclarlo de nuevo.",
+                faqQ5: "¿Puedo mezclar conservando los pliegos?",
+                faqA5: "Sí, hay varias opciones para mezclar por pliegos. Solo se puede seleccionar una a la vez.<br>• <b>'Fijar solo pág. 1'</b>: Fija la portada (pág. 1) y mezcla el cuerpo en pares como págs. 2-3, 4-5, etc.<br>• <b>'Fijar págs. 1-2'</b>: Fija el primer pliego (págs. 1-2) y mezcla el cuerpo en pares como págs. 3-4, 5-6, etc.<br>• <b>'Mezclar todo por pliegos'</b>: Mezcla todo el PDF en pares como págs. 1-2, 3-4, etc.<br>Si no se selecciona ninguna opción, las páginas se mezclan individualmente.",
+            }
+        };
+
+        function getUserLanguage() {
+            const lang = navigator.language.toLowerCase();
+            if (lang.startsWith("ja")) {
+                return "ja";
+            }
+            if (lang.startsWith("es")) {
+                return "es";
+            }
+            if (lang.startsWith("zh")) {
+                return "zh";
+            }
+            return "en";
+        }
+        const userLang = getUserLanguage();
+        document.documentElement.lang = userLang;
+
+        // --- テーマ切り替え機能 ---
+        const themeToggle = document.getElementById('theme-toggle');
+
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        const toggleTheme = () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // 初期テーマ設定
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersDark ? 'dark' : 'light');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const exclusiveSwitches = document.querySelectorAll('.exclusive-switch');
+            exclusiveSwitches.forEach(switchEl => {
+                switchEl.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        exclusiveSwitches.forEach(otherSwitch => {
+                            if (otherSwitch !== e.target) {
+                                otherSwitch.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                const translation = translations[userLang]?.[key];
+                if (translation) {
+                    if (el.tagName.toLowerCase() === "meta") {
+                        el.setAttribute("content", translation);
+                    } else if (el.tagName.toLowerCase() === "title") {
+                        el.textContent = translation;
+                    } else if (key === 'shareTwitter') {
+                        el.parentElement.setAttribute('aria-label', translation);
+                        el.textContent = translation;
+                    } else if (key === 'copyLink') {
+                        el.parentElement.setAttribute('aria-label', translation);
+                        el.textContent = translation;
+                    } else if (key === 'themeToggle') {
+                        el.setAttribute('aria-label', translation);
+                    } else if (key === 'footerText2') {
+                        el.innerHTML = translation;
+                    } else {
+                        el.textContent = translation;
+                    }
+                }
+            });
+        });
+
         let originalPdfBytes = null;
         let shuffledPdfBytes = null;
         let originalFileName = '';
@@ -574,22 +1058,6 @@
         uploadArea.addEventListener('dragleave', handleDragLeave);
         uploadArea.addEventListener('drop', handleDrop);
         fileInput.addEventListener('change', handleFileInput);
-
-        // 排他制御スイッチのロジック
-        document.addEventListener('DOMContentLoaded', () => {
-            const exclusiveSwitches = document.querySelectorAll('.exclusive-switch');
-            exclusiveSwitches.forEach(switchEl => {
-                switchEl.addEventListener('change', (e) => {
-                    if (e.target.checked) {
-                        exclusiveSwitches.forEach(otherSwitch => {
-                            if (otherSwitch !== e.target) {
-                                otherSwitch.checked = false;
-                            }
-                        });
-                    }
-                });
-            });
-        });
 
         function handleDragOver(e) {
             e.preventDefault();
@@ -615,7 +1083,11 @@
             }
         }
 
-        function showStatus(message, type) {
+        function showStatus(key, type, replacements = {}) {
+            let message = translations[userLang][key] || key;
+            for (const placeholder in replacements) {
+                message = message.replace(`\${${placeholder}}`, replacements[placeholder]);
+            }
             status.textContent = message;
             status.className = `status ${type}`;
             status.style.display = 'block';
@@ -631,7 +1103,7 @@
 
         async function handleFile(file) {
             if (file.type !== 'application/pdf') {
-                showStatus('PDFファイルを選択してください。', 'error');
+                showStatus('statusPdfOnly', 'error');
                 return;
             }
 
@@ -647,16 +1119,16 @@
                 const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
                 const pageCount = pdfDoc.getPageCount();
                 
-                document.getElementById('pageCount').textContent = `総ページ数: ${pageCount}ページ`;
+                document.getElementById('pageCount').textContent = translations[userLang].pageCountText.replace('${pageCount}', pageCount);
                 pageInfo.style.display = 'block';
                 shuffleBtn.disabled = false;
                 downloadBtn.style.display = 'none';
                 shuffledPdfBytes = null;
                 
-                showStatus(`PDFファイル "${file.name}" を読み込みました！`, 'success');
+                showStatus('statusFileLoaded', 'success', { fileName: file.name });
             } catch (error) {
                 console.error('PDF読み込みエラー:', error);
-                showStatus('PDFファイルの読み込みに失敗しました。破損していないか確認してください。', 'error');
+                showStatus('statusLoadError', 'error');
             } finally {
                 showLoading(false);
             }
@@ -664,7 +1136,7 @@
 
         async function shufflePDF() {
             if (!originalPdfBytes) {
-                showStatus('まずPDFファイルを選択してください。', 'error');
+                showStatus('statusSelectFirst', 'error');
                 return;
             }
 
@@ -676,17 +1148,17 @@
                 // 元のPDFを読み込み
                 const originalDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
                 const pageCount = originalDoc.getPageCount();
-                
+
                 if (pageCount === 0) {
-                    showStatus('PDFにページが含まれていません。', 'error');
+                    showStatus('statusNoPages', 'error');
                     showLoading(false);
                     shuffleBtn.disabled = false;
                     return;
                 }
-                
+
                 // 新しいPDFドキュメントを作成
                 const newDoc = await PDFLib.PDFDocument.create();
-                
+
                 // オプション設定を取得
                 const fixCover = document.getElementById('fixCover').checked;
                 const fixFirstSpread = document.getElementById('fixFirstSpread').checked;
@@ -709,15 +1181,14 @@
                 // 2. シャッフル対象をユニット化
                 const isSpreadMode = fixCover || fixFirstSpread || allSpreads;
                 if (isSpreadMode) {
-                    // 見開きモード
                     for (let i = 0; i < pageIndices.length; i += 2) {
                         if (i + 1 < pageIndices.length) {
                             shuffleUnits.push([pageIndices[i], pageIndices[i + 1]]);
                         } else {
-                            shuffleUnits.push([pageIndices[i]]); // 最後の奇数ページ
+                            shuffleUnits.push([pageIndices[i]]);
                         }
                     }
-                } else { // 通常のページ単位シャッフル
+                } else { // 通常シャッフル
                     for (const index of pageIndices) {
                         shuffleUnits.push([index]);
                     }
@@ -749,13 +1220,27 @@
 
                 // 7. ステータスメッセージ表示
                 if (shuffledUnitsCount === 0 && (fixedPrefixUnits.length > 0 || fixedSuffixUnits.length > 0)) {
-                    showStatus('全てのページ/ユニットが固定されているため、順序は変更されませんでした。', 'info');
+                    showStatus('statusAllFixed', 'info');
                 } else if (shuffledUnitsCount > 0) {
-                    let message = `${shuffledUnitsCount}個のユニット（ページまたは見開き）をシャッフルしました！`;
-                    // ここで固定したユニットに関する詳細なメッセージを追加することも可能です
-                    showStatus(message, 'success');
+                    const fixedPageParts = [];
+                    if (fixCover) fixedPageParts.push(translations[userLang].fixedPart_fixCover);
+                    if (fixFirstSpread) fixedPageParts.push(translations[userLang].fixedPart_fixFirstSpread);
+                    
+                    if (preserveLast) {
+                        const lastUnit = fixedSuffixUnits[0] || [];
+                        const lastKey = lastUnit.length > 1 ? 'fixedPart_lastSpread' : 'fixedPart_lastPage';
+                        fixedPageParts.push(translations[userLang][lastKey]);
+                    }
+
+                    if (fixedPageParts.length > 0) {
+                        const conjunctions = { ja: 'と', en: ' and ', zh: '和', es: ' y ' };
+                        const fixedPages = fixedPageParts.join(conjunctions[userLang] || ' and ');
+                        showStatus('statusShuffledWithFixed', 'success', { shuffledCount: shuffledUnitsCount, fixedPages });
+                    } else {
+                        showStatus('statusShuffled', 'success', { shuffledCount: shuffledUnitsCount });
+                    }
                 }
-                
+
                 // PDFをバイト配列に変換
                 shuffledPdfBytes = await newDoc.save();
                 downloadBtn.disabled = false;
@@ -763,7 +1248,7 @@
                 
             } catch (error) {
                 console.error('シャッフルエラー:', error);
-                showStatus('PDFのシャッフルに失敗しました。ファイルが破損していないか確認してください。', 'error');
+                showStatus('statusShuffleError', 'error');
             } finally {
                 showLoading(false);
                 shuffleBtn.disabled = false;
@@ -780,7 +1265,7 @@
 
         function downloadShuffledPDF() {
             if (!shuffledPdfBytes) {
-                showStatus('まずPDFをシャッフルしてください。', 'error');
+                showStatus('statusShuffleFirst', 'error');
                 return;
             }
 
@@ -797,18 +1282,18 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 
-                showStatus('シャッフル済みPDFをダウンロードしました！', 'success');
+                showStatus('statusDownloaded', 'success');
             } catch (error) {
                 console.error('ダウンロードエラー:', error);
-                showStatus('ファイルのダウンロードに失敗しました。', 'error');
+                showStatus('statusDownloadError', 'error');
             }
         }
 
         // ソーシャルメディア共有機能
         function shareToTwitter() {
             const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('PDFページシャッフル - PDFファイルのページをランダムに並び替えできる無料オンラインツール！プライバシー保護で安心です。');
-            const hashtags = encodeURIComponent('PDF,シャッフル,無料ツール,オンライン');
+            const text = encodeURIComponent(translations[userLang].metaDesc);
+            const hashtags = encodeURIComponent(translations[userLang].hashtags);
             
             const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`;
             window.open(twitterUrl, '_blank', 'width=550,height=420');
@@ -849,10 +1334,10 @@
                 if (successful) {
                     showCopySuccess();
                 } else {
-                    showStatus('リンクのコピーに失敗しました。', 'error');
+                    showStatus('statusCopyError', 'error');
                 }
             } catch (err) {
-                showStatus('リンクのコピーに失敗しました。', 'error');
+                showStatus('statusCopyError', 'error');
             }
             
             document.body.removeChild(textArea);
@@ -860,21 +1345,19 @@
 
         function showCopySuccess() {
             const copyBtn = document.getElementById('copyBtn');
-            const originalText = copyBtn.innerHTML;
+            const originalContent = copyBtn.innerHTML;
             
             copyBtn.classList.add('copied');
             copyBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
                 </svg>
-                コピー完了！
+                <span>${translations[userLang].copyBtnCopied}</span>
             `;
-            
-            showStatus('リンクをクリップボードにコピーしました！', 'success');
             
             setTimeout(() => {
                 copyBtn.classList.remove('copied');
-                copyBtn.innerHTML = originalText;
+                copyBtn.innerHTML = originalContent;
             }, 2000);
         }
 
