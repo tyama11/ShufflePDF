@@ -283,7 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const blob = new Blob([state.shuffledPdfBytes], { type: 'application/pdf' });
+      const blob = new Blob([state.shuffledPdfBytes.buffer as ArrayBuffer], {
+        type: 'application/pdf',
+      });
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement('a');
