@@ -216,14 +216,13 @@ export const translations: Record<Language, TranslationRecord> = {
     faqA2:
       '是的，非常安全。此工具完全在您的浏览器中运行，PDF文件绝不会上传到服务器。您的隐私将得到完全保护。',
     faqQ3: '任何PDF文件都可以使用吗？',
-    faqA3:
-      '大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。',
+    faqA3: '大多数标准的PDF文件都受支持。但是，受密码保护或特殊格式的文件可能无法正确处理。',
     faqQ4: '随机排序后可以撤销吗？',
     faqA4:
       '排序过程不会修改您的原始文件。如果您对结果不满意，只需重新加载页面，再次上传原始文件，然后重试排序即可。',
     faqQ5: '可以保持跨页进行排序吗？',
     faqA5:
-      '是的，有多个支持跨页的选项，一次只能选择一个。<br>・<b>\'固定第1页（按跨页排序）\'</b>: 固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>\'固定第1-2页（按跨页排序）\'</b>: 固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>\'全部按跨页随机排序\'</b>: 将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>如果未选择跨页选项，则会逐页进行排序。',
+      "是的，有多个支持跨页的选项，一次只能选择一个。<br>・<b>'固定第1页（按跨页排序）'</b>: 固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>'固定第1-2页（按跨页排序）'</b>: 固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>'全部按跨页随机排序'</b>: 将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>如果未选择跨页选项，则会逐页进行排序。",
   },
   es: {
     title: 'Mezclar Páginas de PDF | Herramienta Gratuita en Línea',
@@ -259,7 +258,8 @@ export const translations: Record<Language, TranslationRecord> = {
     shareTwitter: 'Compartir en X',
     copyLink: 'Copiar Enlace',
     copyBtnCopied: '¡Copiado!',
-    footerText1: '© 2025 PDF Shuffle Tool. Una herramienta de código abierto que funciona en su navegador.',
+    footerText1:
+      '© 2025 PDF Shuffle Tool. Una herramienta de código abierto que funciona en su navegador.',
     footerText2:
       'Si tiene solicitudes de funciones o encuentra errores, por favor repórtelos en <a id="githubLink" href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.',
     statusPdfOnly: 'Por favor, seleccione un archivo PDF.',
@@ -286,7 +286,8 @@ export const translations: Record<Language, TranslationRecord> = {
     githubAriaLabel: 'Repositorio de GitHub para esta herramienta',
     faqTitle: 'Preguntas Frecuentes (FAQ)',
     faqQ1: '¿Es esta herramienta realmente gratuita?',
-    faqA1: 'Sí, es completamente gratuita. Todas las funciones están disponibles sin necesidad de registro y sin límites.',
+    faqA1:
+      'Sí, es completamente gratuita. Todas las funciones están disponibles sin necesidad de registro y sin límites.',
     faqQ2: '¿Están seguros mis archivos? ¿Está protegida mi privacidad?',
     faqA2:
       'Sí, es seguro. Esta herramienta funciona completamente dentro de su navegador. Sus archivos PDF nunca se suben a un servidor, lo que garantiza que su privacidad esté totalmente protegida.',
@@ -298,7 +299,7 @@ export const translations: Record<Language, TranslationRecord> = {
       'El proceso de mezcla no altera su archivo original. Si no está satisfecho con el resultado, simplemente recargue la página, vuelva a subir el archivo original e intente mezclarlo de nuevo.',
     faqQ5: '¿Puedo mezclar manteniendo los pliegos (unidades de 2 páginas)?',
     faqA5:
-      'Sí, hay varias opciones para mezclar por pliegos, de las cuales solo se puede seleccionar una.<br>• <b>\'Fijar pág. 1 (mezclar por pliegos)\'</b>: Fija la portada (pág. 1) y mezcla el cuerpo en pares como págs. 2-3, 4-5, etc.<br>• <b>\'Fijar págs. 1-2 (mezclar por pliegos)\'</b>: Fija el primer pliego (págs. 1-2) y mezcla el cuerpo en pares como págs. 3-4, 5-6, etc.<br>• <b>\'Mezclar todo por pliegos\'</b>: Mezcla todo el PDF en pares como págs. 1-2, 3-4, etc.<br>Si no se elige ninguna opción de pliego, las páginas se mezclan individualmente.',
+      "Sí, hay varias opciones para mezclar por pliegos, de las cuales solo se puede seleccionar una.<br>• <b>'Fijar pág. 1 (mezclar por pliegos)'</b>: Fija la portada (pág. 1) y mezcla el cuerpo en pares como págs. 2-3, 4-5, etc.<br>• <b>'Fijar págs. 1-2 (mezclar por pliegos)'</b>: Fija el primer pliego (págs. 1-2) y mezcla el cuerpo en pares como págs. 3-4, 5-6, etc.<br>• <b>'Mezclar todo por pliegos'</b>: Mezcla todo el PDF en pares como págs. 1-2, 3-4, etc.<br>Si no se elige ninguna opción de pliego, las páginas se mezclan individualmente.",
   },
 };
 
