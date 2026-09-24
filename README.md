@@ -72,12 +72,37 @@ PDFファイルのページをランダムに並び替えできる無料オン�
 ## 🛠️ 技術仕様
 
 ### 使用技術
-- **PDF-lib**: PDFファイルの操作
-- **HTML5**: ドラッグ&ドロップAPI
-- **CSS3**: レスポンシブデザイン
-- **Vanilla JavaScript**: 軽量で高速
+- **TypeScript**: 静的型付けによる高信頼性・保守性
+- **Vite**: 高速な開発サーバー & バンドラー
+- **PDF-lib**: PDFファイルのブラウザ内操作
+- **ESLint & Prettier**: コード品質の維持と一貫したフォーマット
+- **Dependabot**: 依存関係（npmパッケージ・GitHub Actions）の自動アップデート
+- **GitHub Actions**: 自動型チェック、リント、テストビルド、GitHub Pages自動デプロイ
+- **HTML5 & CSS3**: レスポンシブ & アクセシビリティ対応デザイン
 
-### 対応環境
+## 💻 開発・コマンド
+
+GitHub Actions による CI/CD が整備されているため、GitHub 上でのコミットやプルリクエスト作成時に自動でリント・型チェック・ビルド検証が行われます。
+
+```bash
+# 開発サーバー起動
+npm run dev
+
+# 型チェック
+npm run typecheck
+
+# リント実行
+npm run lint
+
+# リント自動修正
+npm run lint:fix
+
+# フォーマットチェック
+npm run format:check
+
+# プロダクションビルド
+npm run build
+```
 - **ブラウザ**: Chrome, Firefox, Safari, Edge (モダンブラウザ)
 - **デバイス**: PC, タブレット, スマートフォン
 - **ファイル**: PDF形式
