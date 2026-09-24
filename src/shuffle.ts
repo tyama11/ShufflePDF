@@ -15,10 +15,7 @@ export function shuffleArray<T>(array: T[]): void {
 /**
  * シャッフルオプションに基づいて、固定ユニットとシャッフル対象ユニットを決定します。
  */
-export function determinePageUnits(
-  pageCount: number,
-  options: ShuffleOptions
-): ShuffleUnitsResult {
+export function determinePageUnits(pageCount: number, options: ShuffleOptions): ShuffleUnitsResult {
   const pageIndices = Array.from({ length: pageCount }, (_, i) => i);
   const fixedPrefixUnits: number[][] = [];
   const fixedSuffixUnits: number[][] = [];
