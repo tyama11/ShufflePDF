@@ -76,8 +76,8 @@ PDFファイルのページをランダムに並び替えできる無料オン�
 - **Vite**: 高速な開発サーバー & バンドラー
 - **PDF-lib**: PDFファイルのブラウザ内操作
 - **ESLint & Prettier**: コード品質の維持と一貫したフォーマット
-- **Dependabot**: 依存関係（npmパッケージ・GitHub Actions）の自動アップデート
-- **GitHub Actions**: 自動型チェック、リント、テストビルド、GitHub Pages自動デプロイ
+- **Dependabot**: 依存関係（npmパッケージ・GitHub Actions）の自動アップデート & 自動マージ（Auto-merge）
+- **GitHub Actions**: 自動型チェック、リント、テストビルド、GitHub Pages自動デプロイ、Dependabot自動承認・マージ
 - **HTML5 & CSS3**: レスポンシブ & アクセシビリティ対応デザイン
 
 ## 💻 開発・コマンド
