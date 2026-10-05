@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Format code with Prettier
-        run: npm run format
-
-      - name: Check git status for unformatted files
-        run: git diff --exit-code
+      - name: Check formatting with Prettier
+        run: npm run format:check
 
       - name: Run Linter
         run: npm run lint
