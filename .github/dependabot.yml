@@ -8,6 +8,10 @@ updates:
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
+    ignore:
+      # typescript-eslint が TypeScript 7 をまだサポートしていない（peer: <6.1.0）ため保留
+      - dependency-name: "typescript"
+        versions: [">=6.1.0"]
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
