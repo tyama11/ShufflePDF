@@ -24,7 +24,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable auto-merge for Dependabot PRs
-        run: gh pr merge --auto --squash "$PR_URL"
+        # 既にチェック完了済み(clean status)などで --auto が失敗した場合は、
+        # CIの成功を待ってから通常マージにフォールバックする
+        run: |
+          if ! gh pr merge --auto --squash "$PR_URL"; then
+            sleep 15
+            gh pr checks "$PR_URL" --watch --fail-fast
+            gh pr merge --squash "$PR_URL"
+          fi
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
