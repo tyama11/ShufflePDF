@@ -450,14 +450,31 @@ export const translations: Record<Language, TranslationRecord> = {
   },
 };
 
+const LANGUAGE_PREFERENCE_KEY = 'shufflepdf_lang';
+
+export function saveLanguagePreference(language: string): void {
+  try {
+    localStorage.setItem(LANGUAGE_PREFERENCE_KEY, language);
+  } catch {
+    // 保存できない環境では、言語の選択を記憶しない
+  }
+}
+
 export function getPageLanguage(): Language {
   const lang = document.documentElement.lang;
-  return Object.hasOwn(translations, lang) ? (lang as Language) : 'ja';
+  return Object.hasOwn(translations, lang) ? (lang as Language) : 'en';
 }
 
 export function getLegacyLangRedirectUrl(): string | null {
   const lang = new URLSearchParams(window.location.search).get('lang');
-  const legacyPaths: Record<string, string> = { ja: '', en: 'en/', zh: 'zh-cn/', es: 'es/' };
-  if (!lang || !Object.hasOwn(legacyPaths, lang)) return null;
-  return `${import.meta.env.BASE_URL}${legacyPaths[lang]}`;
+  const legacyPages: Record<string, { path: string; language: Language }> = {
+    ja: { path: 'ja/', language: 'ja' },
+    en: { path: '', language: 'en' },
+    zh: { path: 'zh-cn/', language: 'zh-CN' },
+    es: { path: 'es/', language: 'es' },
+  };
+  if (!lang || !Object.hasOwn(legacyPages, lang)) return null;
+  // ?lang= は明示的な指定なので、ルートURLでの自動転送より優先させる
+  saveLanguagePreference(legacyPages[lang].language);
+  return `${import.meta.env.BASE_URL}${legacyPages[lang].path}`;
 }

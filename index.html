@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="title">PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル</title>
-    <meta name="description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <title data-i18n="title">Shuffle PDF Pages Online | Free Random Page Order Tool</title>
+    <meta name="description" data-i18n="metaDesc" content="Shuffle PDF pages into random order for free, with no sign-up. Great for flashcards and practice tests. Keep covers in place or shuffle by spreads. Files stay in your browser and are never uploaded.">
     <meta name="author" content="tyama11">
     <meta name="google-site-verification" content="mJs5kWIX2rAiS4qcpJBSLBJINuIo4MYwV_XkfVgNrO4" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" data-i18n="title" content="PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル">
-    <meta property="og:description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <meta property="og:title" data-i18n="title" content="Shuffle PDF Pages Online | Free Random Page Order Tool">
+    <meta property="og:description" data-i18n="metaDesc" content="Shuffle PDF pages into random order for free, with no sign-up. Great for flashcards and practice tests. Keep covers in place or shuffle by spreads. Files stay in your browser and are never uploaded.">
     <meta property="og:image" content="https://tyama11.github.io/ShufflePDF/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" data-i18n="title" content="PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル">
-    <meta name="twitter:description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <meta name="twitter:title" data-i18n="title" content="Shuffle PDF Pages Online | Free Random Page Order Tool">
+    <meta name="twitter:description" data-i18n="metaDesc" content="Shuffle PDF pages into random order for free, with no sign-up. Great for flashcards and practice tests. Keep covers in place or shuffle by spreads. Files stay in your browser and are never uploaded.">
     <meta name="twitter:image" content="https://tyama11.github.io/ShufflePDF/og-image.png">
     
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -30,56 +30,56 @@
 <body>
     <div class="container">
         <header>
-            <h1 data-i18n="headline">📄 PDFページシャッフル</h1>
-            <button id="theme-toggle" class="theme-toggle-btn" data-i18n="themeToggle" aria-label="Toggle theme">
+            <h1 data-i18n="headline">📄 PDF Page Shuffle</h1>
+            <button id="theme-toggle" class="theme-toggle-btn" data-i18n="themeToggle" aria-label="Toggle theme (Light/Dark)">
                 <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zm-11.457 11.457a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.061zm11.457 0a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM5.106 18.894a.75.75 0 01-1.06 0l-1.59-1.59a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM4.5 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H5.25a.75.75 0 01-.75-.75zM12 19.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 19.5z"/></svg>
                 <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.945.75.75 0 01.981.981A10.503 10.503 0 0118 18a10.5 10.5 0 01-10.5-10.5c0-1.562.32-3.056.9-4.402a.75.75 0 01.819-.162z" clip-rule="evenodd" /></svg>
             </button>
         </header>
 
         <main>
-            <p class="intro" data-i18n="introText">PDFのページをランダムな順番に並び替える無料ツールです。登録不要で、ファイルはブラウザ内だけで処理されます。</p>
+            <p class="intro" data-i18n="introText">A free tool that puts your PDF pages in random order. No sign-up needed, and your file is processed only in your browser.</p>
             <fieldset class="options-panel">
-                <legend class="sr-only" data-i18n="legendOptions">シャッフルオプション</legend>
+                <legend class="sr-only" data-i18n="legendOptions">Shuffle options</legend>
                 <fieldset class="option-group">
-                    <legend class="sr-only" data-i18n="legendBasic">基本シャッフル</legend>
+                    <legend class="sr-only" data-i18n="legendBasic">Basic shuffle</legend>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="shuffleAllPages" class="switch-input exclusive-switch" checked>
                             <span class="switch-slider"></span>
-                            <span class="switch-text" data-i18n="shuffleAllPages">全てのページをシャッフル</span>
+                            <span class="switch-text" data-i18n="shuffleAllPages">Shuffle all pages</span>
                         </label>
                     </div>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="fixFirstPageSimple" class="switch-input exclusive-switch">
                             <span class="switch-slider"></span>
-                            <span class="switch-text" data-i18n="fixFirstPageSimple">1ページ目のみ固定（本文は1ページ単位）</span>
+                            <span class="switch-text" data-i18n="fixFirstPageSimple">Fix page 1 (shuffle page by page)</span>
                         </label>
                     </div>
                 </fieldset>
                 <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
                 <fieldset class="option-group">
-                    <legend class="sr-only" data-i18n="legendSpread">見開きシャッフル</legend>
+                    <legend class="sr-only" data-i18n="legendSpread">Spread shuffle</legend>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="fixCover" class="switch-input exclusive-switch">
                             <span class="switch-slider"></span>
-                            <span class="switch-text" data-i18n="fixCover">1ページ目のみ固定（本文は見開き）</span>
+                            <span class="switch-text" data-i18n="fixCover">Fix page 1 (shuffle by spreads)</span>
                         </label>
                     </div>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="fixFirstSpread" class="switch-input exclusive-switch">
                             <span class="switch-slider"></span>
-                            <span class="switch-text" data-i18n="fixFirstSpread">1-2ページ目を固定（本文は見開き）</span>
+                            <span class="switch-text" data-i18n="fixFirstSpread">Fix pages 1-2 (shuffle by spreads)</span>
                         </label>
                     </div>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="allSpreads" class="switch-input exclusive-switch">
                             <span class="switch-slider"></span>
-                            <span class="switch-text" data-i18n="allSpreads">全体を見開きでシャッフル</span>
+                            <span class="switch-text" data-i18n="allSpreads">Shuffle all by spreads</span>
                         </label>
                     </div>
                 </fieldset>
@@ -87,17 +87,15 @@
                 <label class="switch-label">
                     <input type="checkbox" id="preserveLastPage" class="switch-input">
                     <span class="switch-slider"></span>
-                    <span class="switch-text" id="lastPageFixLabel" data-i18n-target="lastPageFixLabel">最後のページを固定</span>
+                    <span class="switch-text" id="lastPageFixLabel" data-i18n-target="lastPageFixLabel">Fix the last page</span>
                 </label>
             </fieldset>
 
             <section class="upload-area" id="uploadArea">
                 <div class="upload-icon">📁</div>
-                <div class="upload-text" data-i18n="dropHere">PDFファイルをここにドラッグ＆ドロップ</div>
-                <div class="upload-text" data-i18n="or">または</div>
-                <button class="btn" id="chooseFileBtn" data-i18n="chooseFile">
-                    ファイルを選択
-                </button>
+                <div class="upload-text" data-i18n="dropHere">Drag &amp; drop your PDF file here</div>
+                <div class="upload-text" data-i18n="or">or</div>
+                <button class="btn" id="chooseFileBtn" data-i18n="chooseFile">Choose file</button>
                 <input type="file" id="fileInput" class="file-input" accept=".pdf">
             </section>
 
@@ -105,114 +103,110 @@
 
             <div class="loading" id="loading" role="status" aria-live="polite">
                 <div class="spinner"></div>
-                <div data-i18n="loadingText">PDFを処理中...</div>
+                <div data-i18n="loadingText">Processing PDF...</div>
             </div>
 
             <div id="pageInfo" class="page-info" style="display: none;">
-                <h3 data-i18n="pageInfoTitle">📋 PDF情報</h3>
+                <h3 data-i18n="pageInfoTitle">📋 PDF Information</h3>
                 <div id="pageCount"></div>
             </div>
 
             <div class="controls">
-                <button class="btn" id="shuffleBtn" disabled data-i18n="shuffleBtnText">
-                    🔀 ページをシャッフル
-                </button>
-                <button class="btn btn-secondary" id="downloadBtn" disabled style="display: none;" data-i18n="downloadBtnText">
-                    💾 シャッフル済みPDFをダウンロード
-                </button>
+                <button class="btn" id="shuffleBtn" disabled data-i18n="shuffleBtnText">🔀 Shuffle Pages</button>
+                <button class="btn btn-secondary" id="downloadBtn" disabled style="display: none;" data-i18n="downloadBtnText">💾 Download Shuffled PDF</button>
             </div>
 
             <section class="features">
-                <h2 data-i18n="featuresTitle">✨ 機能</h2>
+                <h2 data-i18n="featuresTitle">✨ Features</h2>
                 <div class="description">
-                    <p data-i18n="descriptionText">このPDFページシャッフルツールは、PDFファイルのページをランダムに並び替えることができるWebアプリケーションです。ブラウザ上で完結するため、ファイルがサーバーに送信されることなく、プライバシーが完全に保護されます。表紙や裏表紙など、位置を変えたくないページは固定オプションで保護できます。新たに見開き（2ページ単位）を維持したままシャッフルする機能も追加され、本のような形式のPDFにも対応しました。処理後は即座にダウンロードが可能で、元のファイル名に「_shuffled」が付加されます。</p>
+                    <p data-i18n="descriptionText">This PDF Page Shuffle tool is a web application that allows you to randomly reorder the pages of a PDF file. Since it runs entirely in your browser, your files are not sent to a server, ensuring complete privacy. You can protect pages you don&#39;t want to move, such as the cover or back page, with the fix option. A new feature to shuffle while preserving spreads (2-page units) has been added, making it suitable for book-like PDFs. After processing, the file is available for immediate download, with &#39;_shuffled&#39; appended to the original file name.</p>
                 </div>
                 <div class="feature-list">
-                    <div class="feature" data-i18n="featureShuffle">🔀 ランダムシャッフル</div>
-                    <div class="feature" data-i18n="featureFix">📌 ページ固定オプション</div>
-                    <div class="feature" data-i18n="featureSpreads">📖 見開き対応シャッフル</div>
-                    <div class="feature" data-i18n="featureAllPages">📄 全ページ対応</div>
-                    <div class="feature" data-i18n="featureDownload">💾 即座にダウンロード</div>
-                    <div class="feature" data-i18n="featurePrivacy">🔒 プライバシー保護</div>
+                    <div class="feature" data-i18n="featureShuffle">🔀 Random Shuffle</div>
+                    <div class="feature" data-i18n="featureFix">📌 Page Fix Option</div>
+                    <div class="feature" data-i18n="featureSpreads">📖 Spread-aware Shuffle</div>
+                    <div class="feature" data-i18n="featureAllPages">📄 All Pages Supported</div>
+                    <div class="feature" data-i18n="featureDownload">💾 Instant Download</div>
+                    <div class="feature" data-i18n="featurePrivacy">🔒 Privacy Protection</div>
                 </div>
             </section>
 
             <section class="how-to">
-                <h2 data-i18n="howToTitle">PDFのページをシャッフルする方法</h2>
+                <h2 data-i18n="howToTitle">How to shuffle PDF pages</h2>
                 <ol>
-                    <li data-i18n="howToStep1">PDFファイルをドラッグ＆ドロップするか、「ファイルを選択」で選びます。</li>
-                    <li data-i18n="howToStep2">必要に応じて、表紙の固定や見開き単位などのオプションを選びます。</li>
-                    <li data-i18n="howToStep3">「ページをシャッフル」を押します。</li>
-                    <li data-i18n="howToStep4">「シャッフル済みPDFをダウンロード」を押して保存します。</li>
+                    <li data-i18n="howToStep1">Drag and drop your PDF, or click &quot;Choose file&quot;.</li>
+                    <li data-i18n="howToStep2">If needed, choose options such as keeping the cover in place or shuffling by spreads.</li>
+                    <li data-i18n="howToStep3">Click &quot;Shuffle Pages&quot;.</li>
+                    <li data-i18n="howToStep4">Click &quot;Download Shuffled PDF&quot; to save the shuffled PDF.</li>
                 </ol>
             </section>
 
             <section class="use-cases">
-                <h2 data-i18n="useCasesTitle">こんな学習・用途におすすめ</h2>
+                <h2 data-i18n="useCasesTitle">Great for studying and more</h2>
                 <ul>
-                    <li data-i18n="useCaseStudy">受験・資格勉強：単語帳や一問一答、問題集、過去問のPDFをランダムに出題して、順番で答えを覚えてしまうのを防げます。</li>
-                    <li data-i18n="useCaseLanguage">語学学習：フレーズ集や例文カードの順番を入れ替えて、飽きずに繰り返し学習できます。</li>
-                    <li data-i18n="useCaseWork">研修・プレゼン：クイズ教材や事例の提示順をランダムにできます。</li>
+                    <li data-i18n="useCaseStudy">Exam preparation: randomize flashcards, question banks, and past exams in PDF so you stop memorizing answers by page order.</li>
+                    <li data-i18n="useCaseLanguage">Language learning: reorder phrase lists and example sentence cards to keep repeated practice fresh.</li>
+                    <li data-i18n="useCaseWork">Training and presentations: randomize the order of quiz materials and case studies.</li>
                 </ul>
             </section>
 
             <section class="share-section">
-                <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
+                <h3 data-i18n="shareTitle">📢 Share This Tool</h3>
                 <div class="share-buttons">
                     <button class="share-btn twitter" id="shareTwitterBtn">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
-                        <span data-i18n="shareTwitter">X でシェア</span>
+                        <span data-i18n="shareTwitter">Share on X</span>
                     </button>
                     <button class="share-btn copy" id="copyBtn">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                         </svg>
-                        <span data-i18n="copyLink">リンクをコピー</span>
+                        <span data-i18n="copyLink">Copy Link</span>
                     </button>
                 </div>
             </section>
 
             <section class="faq">
-                <h2 data-i18n="faqTitle">よくある質問 (FAQ)</h2>
+                <h2 data-i18n="faqTitle">Frequently Asked Questions (FAQ)</h2>
                 <div class="faq-item">
                     <details>
-                        <summary data-i18n="faqQ1">このツールは本当に無料ですか？</summary>
-                        <p data-i18n="faqA1">はい、完全に無料です。すべての機能を登録不要、無制限でご利用いただけます。</p>
+                        <summary data-i18n="faqQ1">Is this tool really free?</summary>
+                        <p data-i18n="faqA1">Yes, it is completely free. All features are available without registration or limits.</p>
                     </details>
                 </div>
                 <div class="faq-item">
                     <details>
-                        <summary data-i18n="faqQ2">ファイルは安全ですか？プライバシーは保護されますか？</summary>
-                        <p data-i18n="faqA2">はい、安全です。このツールはあなたのブラウザ上でのみ動作し、PDFファイルがサーバーにアップロードされることは一切ありません。あなたのプライバシーは完全に保護されます。</p>
+                        <summary data-i18n="faqQ2">Are my files secure? Is my privacy protected?</summary>
+                        <p data-i18n="faqA2">Yes, it's secure. This tool operates entirely within your browser. Your PDF files are never uploaded to a server, ensuring your privacy is fully protected.</p>
                     </details>
                 </div>
                 <div class="faq-item">
                     <details>
-                        <summary data-i18n="faqQ3">どんなPDFファイルでも使えますか？</summary>
-                        <p data-i18n="faqA3">標準的なPDFファイルであれば、ほとんどのものが利用可能です。ただし、パスワードで保護されているファイルや、特殊な形式のファイルは正しく処理できない場合があります。</p>
+                        <summary data-i18n="faqQ3">Can I use any PDF file?</summary>
+                        <p data-i18n="faqA3">Most standard PDF files are supported. However, password-protected or specially formatted files may not be processed correctly.</p>
                     </details>
                 </div>
                 <div class="faq-item">
                     <details>
-                        <summary data-i18n="faqQ4">シャッフル後に元に戻すことはできますか？</summary>
-                        <p data-i18n="faqA4">シャッフル処理は元のファイルを変更しません。シャッフル結果が気に入らない場合は、ページを再読み込みして元のファイルを再度アップロードし、もう一度シャッフルをお試しください。</p>
+                        <summary data-i18n="faqQ4">Can I undo the shuffle?</summary>
+                        <p data-i18n="faqA4">The shuffling process does not alter your original file. If you are not satisfied with the result, simply reload the page, upload the original file again, and try shuffling once more.</p>
                     </details>
                 </div>
                 <div class="faq-item">
                     <details>
-                        <summary data-i18n="faqQ5">見開きを維持したシャッフルはできますか？</summary>
-                        <p data-i18n="faqA5">はい、複数の見開き対応オプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目のみ固定（本文は見開き）」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定（本文は見開き）」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を見開きでシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>どのオプションも選択しない場合は、1ページ単位でシャッフルされます。</p>
+                        <summary data-i18n="faqQ5">Can I shuffle by 2-page units (spreads)?</summary>
+                        <p data-i18n="faqA5">Yes, there are several spread-aware options, only one of which can be selected at a time.<br>• <b>'Fix page 1 (shuffle by spreads)'</b>: Fixes the cover (p. 1) and shuffles the body in pairs like pages 2-3, 4-5, etc.<br>• <b>'Fix pages 1-2 (shuffle by spreads)'</b>: Fixes the first spread (pp. 1-2) and shuffles the body in pairs like pages 3-4, 5-6, etc.<br>• <b>'Shuffle all by spreads'</b>: Shuffles the entire PDF in pairs like pages 1-2, 3-4, etc.<br>If no spread option is chosen, pages are shuffled individually.</p>
                     </details>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <nav class="language-nav" aria-label="Language"><a href="/ShufflePDF/" lang="ja" hreflang="ja" data-lang-link="ja">日本語</a> <a href="/ShufflePDF/en/" lang="en" hreflang="en" data-lang-link="en">English</a> <a href="/ShufflePDF/zh-cn/" lang="zh-CN" hreflang="zh-CN" data-lang-link="zh-CN">简体中文</a> <a href="/ShufflePDF/zh-tw/" lang="zh-TW" hreflang="zh-TW" data-lang-link="zh-TW">繁體中文</a> <a href="/ShufflePDF/es/" lang="es" hreflang="es" data-lang-link="es">Español</a></nav>
-            <p data-i18n="footerText1">&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
-            <p data-i18n="footerText2">機能追加や不具合があれば <a id="githubLink" href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
+            <nav class="language-nav" aria-label="Language"><a href="/ShufflePDF/" lang="en" hreflang="en" data-lang-link="en">English</a> <a href="/ShufflePDF/ja/" lang="ja" hreflang="ja" data-lang-link="ja">日本語</a> <a href="/ShufflePDF/zh-cn/" lang="zh-CN" hreflang="zh-CN" data-lang-link="zh-CN">简体中文</a> <a href="/ShufflePDF/zh-tw/" lang="zh-TW" hreflang="zh-TW" data-lang-link="zh-TW">繁體中文</a> <a href="/ShufflePDF/es/" lang="es" hreflang="es" data-lang-link="es">Español</a></nav>
+            <p data-i18n="footerText1">© 2025 PDF Shuffle Tool. An open-source tool that runs in your browser.</p>
+            <p data-i18n="footerText2">If you have feature requests or find bugs, please report them on <a id="githubLink" href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a>.</p>
         </footer>
     </div>
 
