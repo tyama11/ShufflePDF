@@ -1,4 +1,4 @@
-export type Language = 'ja' | 'en' | 'zh' | 'es';
+export type Language = 'ja' | 'en' | 'zh-CN' | 'zh-TW' | 'es';
 
 export interface TranslationRecord {
   title: string;
