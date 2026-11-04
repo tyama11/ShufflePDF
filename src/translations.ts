@@ -1,11 +1,26 @@
-import { Language, TranslationRecord } from './types';
+import type { Language, TranslationRecord } from './types';
 
 export const translations: Record<Language, TranslationRecord> = {
   ja: {
-    title: 'PDFページシャッフル | 無料オンラインツール',
+    title: 'PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル',
     metaDesc:
-      'PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。',
-    keywords: 'PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き',
+      'PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。',
+    introText:
+      'PDFのページをランダムな順番に並び替える無料ツールです。登録不要で、ファイルはブラウザ内だけで処理されます。',
+    legendOptions: 'シャッフルオプション',
+    legendBasic: '基本シャッフル',
+    legendSpread: '見開きシャッフル',
+    howToTitle: 'PDFのページをシャッフルする方法',
+    howToStep1: 'PDFファイルをドラッグ＆ドロップするか、「ファイルを選択」で選びます。',
+    howToStep2: '必要に応じて、表紙の固定や見開き単位などのオプションを選びます。',
+    howToStep3: '「ページをシャッフル」を押します。',
+    howToStep4: '「シャッフル済みPDFをダウンロード」を押して保存します。',
+    useCasesTitle: 'こんな学習・用途におすすめ',
+    useCaseStudy:
+      '受験・資格勉強：単語帳や一問一答、問題集、過去問のPDFをランダムに出題して、順番で答えを覚えてしまうのを防げます。',
+    useCaseLanguage:
+      '語学学習：フレーズ集や例文カードの順番を入れ替えて、飽きずに繰り返し学習できます。',
+    useCaseWork: '研修・プレゼン：クイズ教材や事例の提示順をランダムにできます。',
     headline: '📄 PDFページシャッフル',
     shuffleAllPages: '全てのページをシャッフル',
     fixFirstPageSimple: '1ページ目のみ固定（本文は1ページ単位）',
@@ -78,10 +93,27 @@ export const translations: Record<Language, TranslationRecord> = {
       'はい、複数の見開き対応オプションがあります。これらは同時に一つしか選択できません。<br>・<b>「1ページ目のみ固定（本文は見開き）」</b>: 表紙(1p)を固定し、2-3ページ、4-5ページ…といったペアで本文をシャッフルします。<br>・<b>「1-2ページ目を固定（本文は見開き）」</b>: 最初の見開き(1-2p)を固定し、3-4ページ、5-6ページ…といったペアで本文をシャッフルします。<br>・<b>「全体を見開きでシャッフル」</b>: PDF全体を1-2ページ、3-4ページ…のペアでシャッフルします。<br>どのオプションも選択しない場合は、1ページ単位でシャッフルされます。',
   },
   en: {
-    title: 'PDF Page Shuffle | Free Online Tool',
+    title: 'Shuffle PDF Pages Online | Free Random Page Order Tool',
     metaDesc:
-      'Free online tool to shuffle PDF pages randomly. Privacy protected, with options to lock cover and back pages. Works entirely in your browser.',
-    keywords: 'PDF,shuffle,page,random,free,online,tool,privacy,spread',
+      'Shuffle PDF pages into random order for free, with no sign-up. Great for flashcards and practice tests. Keep covers in place or shuffle by spreads. Files stay in your browser and are never uploaded.',
+    introText:
+      'A free tool that puts your PDF pages in random order. No sign-up needed, and your file is processed only in your browser.',
+    legendOptions: 'Shuffle options',
+    legendBasic: 'Basic shuffle',
+    legendSpread: 'Spread shuffle',
+    howToTitle: 'How to shuffle PDF pages',
+    howToStep1: 'Drag and drop your PDF, or click "Choose file".',
+    howToStep2:
+      'If needed, choose options such as keeping the cover in place or shuffling by spreads.',
+    howToStep3: 'Click "Shuffle Pages".',
+    howToStep4: 'Click "Download Shuffled PDF" to save the shuffled PDF.',
+    useCasesTitle: 'Great for studying and more',
+    useCaseStudy:
+      'Exam preparation: randomize flashcards, question banks, and past exams in PDF so you stop memorizing answers by page order.',
+    useCaseLanguage:
+      'Language learning: reorder phrase lists and example sentence cards to keep repeated practice fresh.',
+    useCaseWork:
+      'Training and presentations: randomize the order of quiz materials and case studies.',
     headline: '📄 PDF Page Shuffle',
     shuffleAllPages: 'Shuffle all pages',
     fixFirstPageSimple: 'Fix page 1 (shuffle page by page)',
@@ -151,11 +183,24 @@ export const translations: Record<Language, TranslationRecord> = {
     faqA5:
       "Yes, there are several spread-aware options, only one of which can be selected at a time.<br>• <b>'Fix page 1 (shuffle by spreads)'</b>: Fixes the cover (p. 1) and shuffles the body in pairs like pages 2-3, 4-5, etc.<br>• <b>'Fix pages 1-2 (shuffle by spreads)'</b>: Fixes the first spread (pp. 1-2) and shuffles the body in pairs like pages 3-4, 5-6, etc.<br>• <b>'Shuffle all by spreads'</b>: Shuffles the entire PDF in pairs like pages 1-2, 3-4, etc.<br>If no spread option is chosen, pages are shuffled individually.",
   },
-  zh: {
-    title: 'PDF页面随机排序 | 免费在线工具',
+  'zh-CN': {
+    title: '在线打乱PDF页面顺序 | 免费PDF页面随机排序工具',
     metaDesc:
-      '免费的在线工具，可随机打乱PDF页面顺序。保护您的隐私，可选择固定首页和末页。完全在您的浏览器中运行。',
-    keywords: 'PDF,随机排序,页面,打乱顺序,免费,在线,工具,隐私,跨页',
+      '免费在线随机打乱PDF页面顺序，无需注册。非常适合单词卡和模拟测试。支持固定封面或按跨页打乱。文件仅在浏览器中处理，绝不上传。',
+    introText: '免费打乱PDF页面顺序的在线工具。无需注册，文件仅在您的浏览器中处理。',
+    legendOptions: '排序选项',
+    legendBasic: '基础排序',
+    legendSpread: '跨页排序',
+    howToTitle: '如何随机排序PDF页面',
+    howToStep1: '拖放您的PDF文件，或点击“选择文件”。',
+    howToStep2: '如有需要，选择保留封面或按跨页排序等选项。',
+    howToStep3: '点击“随机排序页面”。',
+    howToStep4: '点击“下载排序后的PDF”进行保存。',
+    useCasesTitle: '适用于学习及多种场景',
+    useCaseStudy:
+      '备考复习：随机打乱单词卡、题库和历年真题PDF的页面顺序，避免因记住页码顺序而影响记忆效果。',
+    useCaseLanguage: '语言学习：打乱短语集和例句卡片的顺序，让重复练习保持新鲜感。',
+    useCaseWork: '培训与演讲：随机调整测验材料或案例研究的展示顺序。',
     headline: '📄 PDF页面随机排序',
     shuffleAllPages: '随机排序所有页面',
     fixFirstPageSimple: '固定第1页（逐页排序）',
@@ -224,11 +269,113 @@ export const translations: Record<Language, TranslationRecord> = {
     faqA5:
       "是的，有多个支持跨页的选项，一次只能选择一个。<br>・<b>'固定第1页（按跨页排序）'</b>: 固定封面（第1页），然后将正文部分按2-3页、4-5页…这样的配对进行随机排序。<br>・<b>'固定第1-2页（按跨页排序）'</b>: 固定第一个跨页（第1-2页），然后将正文部分按3-4页、5-6页…这样的配对进行随机排序。<br>・<b>'全部按跨页随机排序'</b>: 将整个PDF按1-2页、3-4页…的配对进行随机排序。<br>如果未选择跨页选项，则会逐页进行排序。",
   },
-  es: {
-    title: 'Mezclar Páginas de PDF | Herramienta Gratuita en Línea',
+  'zh-TW': {
+    title: '線上打亂PDF頁面順序 | 免費PDF頁面隨機排序工具',
     metaDesc:
-      'Herramienta gratuita en línea para mezclar aleatoriamente las páginas de un archivo PDF. Privacidad protegida, con opciones para fijar la portada y la contraportada. Funciona completamente en su navegador.',
-    keywords: 'PDF, mezclar, página, aleatorio, gratis, en línea, herramienta, privacidad, pliego',
+      '免費線上隨機打亂PDF頁面順序，無需註冊。非常適合單字卡和模擬試題。支援固定封面或按跨頁打亂。檔案僅在瀏覽器中處理，絕不上傳。',
+    introText: '免費打亂PDF頁面順序的線上工具。無需註冊，檔案僅在您的瀏覽器中處理。',
+    legendOptions: '排序選項',
+    legendBasic: '基礎排序',
+    legendSpread: '跨頁排序',
+    howToTitle: '如何隨機排序PDF頁面',
+    howToStep1: '拖放您的PDF檔案，或點選「選擇檔案」。',
+    howToStep2: '如有需要，選擇保留封面或按跨頁排序等選項。',
+    howToStep3: '點選「隨機排序頁面」。',
+    howToStep4: '點選「下載排序後的PDF」進行儲存。',
+    useCasesTitle: '適用於學習及多種情境',
+    useCaseStudy:
+      '備考複習：隨機打亂單字卡、題庫和歷屆試題PDF的頁面順序，避免因記住頁碼順序而影響記憶效果。',
+    useCaseLanguage: '語言學習：打亂短語集與例句卡片的順序，讓重複練習保持新鮮感。',
+    useCaseWork: '培訓與簡報：隨機調整測驗教材或案例研究的展示順序。',
+    headline: '📄 PDF頁面隨機排序',
+    shuffleAllPages: '隨機排序所有頁面',
+    fixFirstPageSimple: '固定第1頁（逐頁排序）',
+    fixCover: '固定第1頁（按跨頁排序）',
+    fixFirstSpread: '固定第1-2頁（按跨頁排序）',
+    allSpreads: '全部按跨頁隨機排序',
+    fixLastPage: '固定最後一頁',
+    fixLastSpread: '固定最後一個跨頁',
+    dropHere: '將PDF檔案拖放到此處',
+    or: '或',
+    chooseFile: '選擇檔案',
+    loadingText: '正在處理PDF...',
+    pageInfoTitle: '📋 PDF資訊',
+    pageCountText: '總頁數: ${pageCount}頁',
+    shuffleBtnText: '🔀 隨機排序頁面',
+    downloadBtnText: '💾 下載排序後的PDF',
+    featuresTitle: '✨ 功能特色',
+    descriptionText:
+      '此PDF頁面隨機排序工具是一個Web應用程式，可讓您隨機重排PDF檔案的頁面順序。由於它完全在您的瀏覽器中運作，您的檔案不會被傳送到伺服器，從而確保了完全的隱私。您可以使用固定選項保護不想移動的頁面，例如封面或封底。新增了在維持跨頁（2頁單位）的同時進行排序的功能，使其也適用於書籍樣式的PDF。處理後，檔案可立即下載，檔案名稱後會附加「_shuffled」。',
+    featureShuffle: '🔀 隨機排序',
+    featureFix: '📌 頁面固定選項',
+    featureSpreads: '📖 支援跨頁排序',
+    featureAllPages: '📄 支援所有頁面',
+    featureDownload: '💾 即時下載',
+    featurePrivacy: '🔒 隱私保護',
+    shareTitle: '📢 分享此工具',
+    shareTwitter: '在 X 上分享',
+    copyLink: '複製連結',
+    copyBtnCopied: '已複製！',
+    footerText1: '© 2025 PDF Shuffle Tool. 一個在瀏覽器中運作的開源工具。',
+    footerText2:
+      '如果您有功能建議或發現錯誤，請在 <a id="githubLink" href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> 上回報。',
+    statusPdfOnly: '請選擇一個PDF檔案。',
+    statusFileLoaded: '已載入PDF檔案 「${fileName}」！',
+    statusLoadError: '載入PDF檔案失敗。請檢查檔案是否損毀。',
+    statusSelectFirst: '請先選擇一個PDF檔案。',
+    statusNoPages: '該PDF不包含任何頁面。',
+    statusAllFixed: '所有頁面均已固定，因此順序未改變。',
+    statusShuffled: '已隨機排序 ${shuffledCount} 個單元！',
+    statusShuffledWithFixed: '已隨機排序 ${shuffledCount} 個單元！（${fixedPages}已固定）',
+    fixedPart_fixCover: '第1頁',
+    fixedPart_fixFirstSpread: '第1-2頁',
+    fixedPart_lastPage: '最後一頁',
+    fixedPart_lastSpread: '最後一個跨頁',
+    statusShuffleError: 'PDF排序失敗。請檢查檔案是否損毀。',
+    statusShuffleFirst: '請先對PDF進行排序。',
+    statusDownloaded: '已下載排序後的PDF！',
+    statusDownloadError: '檔案下載失敗。',
+    statusCopySuccess: '已將連結複製到剪貼簿！',
+    statusCopyError: '複製連結失敗。',
+    hashtags: 'PDF,隨機排序,免費工具,線上工具',
+    themeToggle: '切換主題 (亮/暗)',
+    githubAriaLabel: '此工具的GitHub儲存庫',
+    faqTitle: '常見問題 (FAQ)',
+    faqQ1: '這個工具真的免費嗎？',
+    faqA1: '是的，完全免費。所有功能無需註冊，無限制使用。',
+    faqQ2: '我的檔案安全嗎？隱私會受到保護嗎？',
+    faqA2:
+      '是的，非常安全。此工具完全在您的瀏覽器中運作，PDF檔案絕不會上傳到伺服器。您的隱私將得到完全保護。',
+    faqQ3: '任何PDF檔案都可以使用嗎？',
+    faqA3: '大多數標準的PDF檔案都受支援。但是，受密碼保護或特殊格式的檔案可能無法正確處理。',
+    faqQ4: '隨機排序後可以復原嗎？',
+    faqA4:
+      '排序過程不會修改您的原始檔案。如果您對結果不滿意，只需重新載入頁面，再次上傳原始檔案，然後重試排序即可。',
+    faqQ5: '可以維持跨頁進行排序嗎？',
+    faqA5:
+      '是的，有多個支援跨頁的選項，一次只能選擇一個。<br>・<b>「固定第1頁（按跨頁排序）」</b>: 固定封面（第1頁），然後將正文部分按2-3頁、4-5頁…這樣的配對進行隨機排序。<br>・<b>「固定第1-2頁（按跨頁排序）」</b>: 固定第一個跨頁（第1-2頁），然後將正文部分按3-4頁、5-6頁…這樣的配對進行隨機排序。<br>・<b>「全部按跨頁隨機排序」</b>: 將整個PDF按1-2頁、3-4頁…的配對進行隨機排序。<br>如果未選擇跨頁選項，則會逐頁進行排序。',
+  },
+  es: {
+    title: 'Mezclar páginas de PDF en línea | Herramienta gratuita',
+    metaDesc:
+      'Mezcle páginas de PDF en orden aleatorio gratis y sin registro. Ideal para fichas y exámenes de práctica. Mantenga portadas o mezcle por pliegos. Los archivos no salen de su navegador.',
+    introText:
+      'Una herramienta gratuita para ordenar las páginas de su PDF de forma aleatoria. Sin registro y procesado solo en su navegador.',
+    legendOptions: 'Opciones de mezcla',
+    legendBasic: 'Mezcla básica',
+    legendSpread: 'Mezcla por pliegos',
+    howToTitle: 'Cómo mezclar páginas de PDF',
+    howToStep1: 'Arrastre y suelte su PDF o haga clic en "Seleccionar archivo".',
+    howToStep2: 'Si lo necesita, elija opciones como fijar la portada o mezclar por pliegos.',
+    howToStep3: 'Haga clic en "Mezclar Páginas".',
+    howToStep4: 'Haga clic en "Descargar PDF Mezclado" para guardar el PDF.',
+    useCasesTitle: 'Ideal para estudiar y más',
+    useCaseStudy:
+      'Preparación de exámenes: mezcle fichas de estudio, bancos de preguntas y exámenes anteriores en PDF para no memorizar las respuestas por el orden de las páginas.',
+    useCaseLanguage:
+      'Aprendizaje de idiomas: reordene listas de frases y tarjetas de vocabulario para mantener la práctica fresca y variada.',
+    useCaseWork:
+      'Capacitación y presentaciones: organice cuestionarios y casos prácticos en orden aleatorio.',
     headline: '📄 Mezclador de Páginas PDF',
     shuffleAllPages: 'Mezclar todas las páginas',
     fixFirstPageSimple: 'Fijar pág. 1 (mezclar página por página)',
@@ -303,17 +450,14 @@ export const translations: Record<Language, TranslationRecord> = {
   },
 };
 
-export function getUserLanguage(): Language {
-  const params = new URLSearchParams(window.location.search);
-  const langFromUrl = params.get('lang') as Language;
-  if (langFromUrl && translations[langFromUrl]) {
-    return langFromUrl;
-  }
+export function getPageLanguage(): Language {
+  const lang = document.documentElement.lang;
+  return Object.hasOwn(translations, lang) ? (lang as Language) : 'ja';
+}
 
-  const browserLang = navigator.language.toLowerCase();
-  if (browserLang.startsWith('ja')) return 'ja';
-  if (browserLang.startsWith('es')) return 'es';
-  if (browserLang.startsWith('zh')) return 'zh';
-
-  return 'en';
+export function getLegacyLangRedirectUrl(): string | null {
+  const lang = new URLSearchParams(window.location.search).get('lang');
+  const legacyPaths: Record<string, string> = { ja: '', en: 'en/', zh: 'zh-cn/', es: 'es/' };
+  if (!lang || !Object.hasOwn(legacyPaths, lang)) return null;
+  return `${import.meta.env.BASE_URL}${legacyPaths[lang]}`;
 }

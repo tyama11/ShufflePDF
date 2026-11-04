@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="title">PDFページシャッフル | 無料オンラインツール</title>
-    <meta name="description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
-    <meta name="keywords" data-i18n="keywords" content="PDF,シャッフル,ページ,ランダム,無料,オンライン,ツール,プライバシー,見開き">
-    <meta name="author" content="PDF Shuffle Tool">
+    <title data-i18n="title">PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル</title>
+    <meta name="description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <meta name="author" content="tyama11">
     <meta name="google-site-verification" content="mJs5kWIX2rAiS4qcpJBSLBJINuIo4MYwV_XkfVgNrO4" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tyama11.github.io/ShufflePDF/">
-    <meta property="og:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="og:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
+    <meta property="og:title" data-i18n="title" content="PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル">
+    <meta property="og:description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <meta property="og:image" content="https://tyama11.github.io/ShufflePDF/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tyama11.github.io/ShufflePDF/">
-    <meta property="twitter:title" data-i18n="title" content="PDFページシャッフル | 無料オンラインツール">
-    <meta property="twitter:description" data-i18n="metaDesc" content="PDFファイルのページをランダムにシャッフルできる無料オンラインツール。プライバシー保護、表紙・裏表紙の固定オプション付き。ブラウザ上で完結。">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" data-i18n="title" content="PDFのページをランダムに並び替え｜無料・登録不要のPDFページシャッフル">
+    <meta name="twitter:description" data-i18n="metaDesc" content="PDFのページをランダムな順番に並び替える無料オンラインツール。単語帳や問題集のシャッフルに最適です。表紙の固定や見開き単位にも対応。登録不要で、ファイルはサーバーに送信されません。">
+    <meta name="twitter:image" content="https://tyama11.github.io/ShufflePDF/og-image.png">
     
-    <link rel="canonical" href="https://tyama11.github.io/ShufflePDF/">
-    <link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
@@ -36,10 +38,11 @@
         </header>
 
         <main>
+            <p class="intro" data-i18n="introText">PDFのページをランダムな順番に並び替える無料ツールです。登録不要で、ファイルはブラウザ内だけで処理されます。</p>
             <fieldset class="options-panel">
-                <legend class="sr-only">シャッフルオプション</legend>
+                <legend class="sr-only" data-i18n="legendOptions">シャッフルオプション</legend>
                 <fieldset class="option-group">
-                    <legend class="sr-only">基本シャッフル</legend>
+                    <legend class="sr-only" data-i18n="legendBasic">基本シャッフル</legend>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="shuffleAllPages" class="switch-input exclusive-switch" checked>
@@ -57,7 +60,7 @@
                 </fieldset>
                 <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--panel-border);">
                 <fieldset class="option-group">
-                    <legend class="sr-only">見開きシャッフル</legend>
+                    <legend class="sr-only" data-i18n="legendSpread">見開きシャッフル</legend>
                     <div class="option-group">
                         <label class="switch-label">
                             <input type="checkbox" id="fixCover" class="switch-input exclusive-switch">
@@ -134,6 +137,25 @@
                 </div>
             </section>
 
+            <section class="how-to">
+                <h2 data-i18n="howToTitle">PDFのページをシャッフルする方法</h2>
+                <ol>
+                    <li data-i18n="howToStep1">PDFファイルをドラッグ＆ドロップするか、「ファイルを選択」で選びます。</li>
+                    <li data-i18n="howToStep2">必要に応じて、表紙の固定や見開き単位などのオプションを選びます。</li>
+                    <li data-i18n="howToStep3">「ページをシャッフル」を押します。</li>
+                    <li data-i18n="howToStep4">「シャッフル済みPDFをダウンロード」を押して保存します。</li>
+                </ol>
+            </section>
+
+            <section class="use-cases">
+                <h2 data-i18n="useCasesTitle">こんな学習・用途におすすめ</h2>
+                <ul>
+                    <li data-i18n="useCaseStudy">受験・資格勉強：単語帳や一問一答、問題集、過去問のPDFをランダムに出題して、順番で答えを覚えてしまうのを防げます。</li>
+                    <li data-i18n="useCaseLanguage">語学学習：フレーズ集や例文カードの順番を入れ替えて、飽きずに繰り返し学習できます。</li>
+                    <li data-i18n="useCaseWork">研修・プレゼン：クイズ教材や事例の提示順をランダムにできます。</li>
+                </ul>
+            </section>
+
             <section class="share-section">
                 <h3 data-i18n="shareTitle">📢 このツールをシェア</h3>
                 <div class="share-buttons">
@@ -188,6 +210,7 @@
         </main>
 
         <footer class="footer">
+            <nav class="language-nav" aria-label="Language"><a href="/ShufflePDF/" lang="ja" hreflang="ja" data-lang-link="ja">日本語</a> <a href="/ShufflePDF/en/" lang="en" hreflang="en" data-lang-link="en">English</a> <a href="/ShufflePDF/zh-cn/" lang="zh-CN" hreflang="zh-CN" data-lang-link="zh-CN">简体中文</a> <a href="/ShufflePDF/zh-tw/" lang="zh-TW" hreflang="zh-TW" data-lang-link="zh-TW">繁體中文</a> <a href="/ShufflePDF/es/" lang="es" hreflang="es" data-lang-link="es">Español</a></nav>
             <p data-i18n="footerText1">&copy; 2025 PDF Shuffle Tool. ブラウザ上で動作するオープンソースツールです。</p>
             <p data-i18n="footerText2">機能追加や不具合があれば <a id="githubLink" href="https://github.com/tyama11/ShufflePDF" target="_blank" rel="noopener">GitHub</a> にお知らせください。</p>
         </footer>

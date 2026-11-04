@@ -31,5 +31,11 @@ jobs:
       - name: Run Type Check
         run: npm run typecheck
 
+      - name: Run Unit Tests
+        run: npm test
+
       - name: Build project
         run: npm run build
+
+      - name: Check Built Pages
+        run: npm run test:dist

@@ -1,9 +1,21 @@
-export type Language = 'ja' | 'en' | 'zh' | 'es';
+export type Language = 'ja' | 'en' | 'zh-CN' | 'zh-TW' | 'es';
 
 export interface TranslationRecord {
   title: string;
   metaDesc: string;
-  keywords: string;
+  introText: string;
+  legendOptions: string;
+  legendBasic: string;
+  legendSpread: string;
+  howToTitle: string;
+  howToStep1: string;
+  howToStep2: string;
+  howToStep3: string;
+  howToStep4: string;
+  useCasesTitle: string;
+  useCaseStudy: string;
+  useCaseLanguage: string;
+  useCaseWork: string;
   headline: string;
   shuffleAllPages: string;
   fixFirstPageSimple: string;
