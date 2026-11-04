@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { LANGUAGES, pageUrl } from '../build/seo-html.ts';
+import { LANGUAGES, langDir, pageUrl } from '../build/seo-html.ts';
 import { translations } from '../src/translations.ts';
 
 function escapeHtml(str: string): string {
@@ -16,8 +16,9 @@ function escapeHtml(str: string): string {
 
 for (const lang of LANGUAGES) {
   test(`dist contains valid localized HTML for ${lang}`, () => {
+    const dir = langDir(lang);
     const filePath =
-      lang === 'ja' ? path.resolve('dist/index.html') : path.resolve(`dist/${lang}/index.html`);
+      dir === '' ? path.resolve('dist/index.html') : path.resolve(`dist/${dir}/index.html`);
 
     assert.ok(fs.existsSync(filePath), `Localized html file exists: ${filePath}`);
     const html = fs.readFileSync(filePath, 'utf-8');
@@ -41,14 +42,20 @@ for (const lang of LANGUAGES) {
     const canonicalHrefMatch = canonicalLink[1].match(/(?<![a-zA-Z0-9-])href=["']([^"']+)["']/i);
     assert.ok(canonicalHrefMatch, `canonical href found for ${lang}`);
     assert.equal(canonicalHrefMatch[1], pageUrl(lang), `Canonical should equal pageUrl(${lang})`);
+    assert.ok(!canonicalHrefMatch[1].includes('/zh/'), `Canonical URL should not contain /zh/`);
 
-    // 5 hreflang alternates
+    // 8 hreflang alternates
     const alternateLinks = Array.from(html.matchAll(/<link\b([^>]*)>/gi)).filter(
       (m) =>
         /(?<![a-zA-Z0-9-])rel=["']alternate["']/i.test(m[1]) &&
         /(?<![a-zA-Z0-9-])hreflang=["'][^"']+["']/i.test(m[1])
     );
-    assert.equal(alternateLinks.length, 5, `Expected exactly 5 hreflang alternates for ${lang}`);
+    assert.equal(alternateLinks.length, 8, `Expected exactly 8 hreflang alternates for ${lang}`);
+    for (const alt of alternateLinks) {
+      const href = alt[1].match(/(?<![a-zA-Z0-9-])href=["']([^"']+)["']/i);
+      assert.ok(href, `hreflang href found`);
+      assert.ok(!href[1].includes('/zh/'), `hreflang alternate URL should not contain /zh/`);
+    }
 
     // JSON-LD parses
     const scriptMatch = html.match(
@@ -57,6 +64,7 @@ for (const lang of LANGUAGES) {
     assert.ok(scriptMatch, `application/ld+json script found for ${lang}`);
     const jsonLd = JSON.parse(scriptMatch[1]);
     assert.equal(jsonLd.url, pageUrl(lang), `JSON-LD url should match pageUrl(${lang})`);
+    assert.ok(!jsonLd.url.includes('/zh/'), `JSON-LD url should not contain /zh/`);
     assert.equal(jsonLd.inLanguage, lang, `JSON-LD inLanguage should match ${lang}`);
 
     // the h1 contains the translated headline
@@ -92,8 +100,36 @@ for (const lang of LANGUAGES) {
       assert.ok(mainMatch, '<main> found in en page');
       assert.doesNotMatch(mainMatch[1], jpRegex, 'en main should not contain Japanese kana');
     }
+
+    // the zh-TW page's <title> and <main>: no match of /[们这个对为应该网络软关于发现从时间]/ (Simplified-only characters)
+    if (lang === 'zh-TW') {
+      const simplifiedOnlyRegex = /[们这个对为应该网络软关于发现从时间]/;
+      assert.doesNotMatch(
+        titleMatch[1],
+        simplifiedOnlyRegex,
+        'zh-TW title should not contain Simplified-only characters'
+      );
+
+      const mainMatch = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+      assert.ok(mainMatch, '<main> found in zh-TW page');
+      assert.doesNotMatch(
+        mainMatch[1],
+        simplifiedOnlyRegex,
+        'zh-TW main should not contain Simplified-only characters'
+      );
+    }
   });
 }
+
+test('dist/zh/index.html does not exist', () => {
+  assert.ok(!fs.existsSync(path.resolve('dist/zh/index.html')), 'dist/zh/index.html should not exist');
+});
+
+test('no page URL contains /zh/', () => {
+  for (const lang of LANGUAGES) {
+    assert.ok(!pageUrl(lang).includes('/zh/'), `pageUrl(${lang}) should not contain /zh/`);
+  }
+});
 
 test('dist/sitemap.xml contains all 4 page URLs', () => {
   const sitemapPath = path.resolve('dist/sitemap.xml');

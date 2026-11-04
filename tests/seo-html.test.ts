@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   SITE_URL,
   LANGUAGES,
+  langDir,
   pageUrl,
   renderLocalizedHtml,
 } from '../build/seo-html.ts';
@@ -30,7 +31,8 @@ const fixtureHtml = `<!DOCTYPE html>
     <nav class="lang-nav">
         <a href="/ShufflePDF/" data-lang-link="ja" aria-current="page">日本語</a>
         <a href="/ShufflePDF/en/" data-lang-link="en">English</a>
-        <a href="/ShufflePDF/zh/" data-lang-link="zh">中文</a>
+        <a href="/ShufflePDF/zh-cn/" data-lang-link="zh-CN">简体中文</a>
+        <a href="/ShufflePDF/zh-tw/" data-lang-link="zh-TW">繁體中文</a>
         <a href="/ShufflePDF/es/" data-lang-link="es">Español</a>
     </nav>
     <main>
@@ -117,12 +119,21 @@ const fixtureT: TranslationRecord = {
   faqA5: 'Yes, spreads are supported.<br>Option 1: <b>Cover fixed</b>.<br>Option 2: <b>Spread fixed</b>.',
 };
 
+test('langDir returns empty string for ja and lowercase otherwise', () => {
+  assert.equal(langDir('ja'), '');
+  assert.equal(langDir('en'), 'en');
+  assert.equal(langDir('zh-CN'), 'zh-cn');
+  assert.equal(langDir('zh-TW'), 'zh-tw');
+  assert.equal(langDir('es'), 'es');
+});
+
 test('pageUrl generates correct URLs for all languages', () => {
   assert.equal(SITE_URL, 'https://tyama11.github.io/ShufflePDF/');
-  assert.deepEqual(LANGUAGES, ['ja', 'en', 'zh', 'es']);
+  assert.deepEqual(LANGUAGES, ['ja', 'en', 'zh-CN', 'zh-TW', 'es']);
   assert.equal(pageUrl('ja'), 'https://tyama11.github.io/ShufflePDF/');
   assert.equal(pageUrl('en'), 'https://tyama11.github.io/ShufflePDF/en/');
-  assert.equal(pageUrl('zh'), 'https://tyama11.github.io/ShufflePDF/zh/');
+  assert.equal(pageUrl('zh-CN'), 'https://tyama11.github.io/ShufflePDF/zh-cn/');
+  assert.equal(pageUrl('zh-TW'), 'https://tyama11.github.io/ShufflePDF/zh-tw/');
   assert.equal(pageUrl('es'), 'https://tyama11.github.io/ShufflePDF/es/');
 });
 
@@ -132,6 +143,12 @@ test('rule a: sets <html lang="..."> attribute to current lang', () => {
 
   const esRender = renderLocalizedHtml(fixtureHtml, 'es', fixtureT);
   assert.match(esRender, /<html\s+[^>]*\blang="es"/);
+
+  const zhTwRender = renderLocalizedHtml(fixtureHtml, 'zh-TW', fixtureT);
+  assert.match(zhTwRender, /<html\s+[^>]*\blang="zh-TW"/);
+
+  const zhCnRender = renderLocalizedHtml(fixtureHtml, 'zh-CN', fixtureT);
+  assert.match(zhCnRender, /<html\s+[^>]*\blang="zh-CN"/);
 
   const jaRender = renderLocalizedHtml(fixtureHtml, 'ja', fixtureT);
   assert.match(jaRender, /<html\s+[^>]*\blang="ja"/);
@@ -231,30 +248,69 @@ test('rule d: links with data-lang-link set aria-current="page" on matching lang
   // Japanese link no longer has aria-current
   assert.match(enRender, /<a\s+href="\/ShufflePDF\/"\s+data-lang-link="ja">日本語<\/a>/);
   assert.doesNotMatch(enRender, /data-lang-link="ja"[^>]*aria-current/);
-  assert.doesNotMatch(enRender, /data-lang-link="zh"[^>]*aria-current/);
+  assert.doesNotMatch(enRender, /data-lang-link="zh-CN"[^>]*aria-current/);
+  assert.doesNotMatch(enRender, /data-lang-link="zh-TW"[^>]*aria-current/);
   assert.doesNotMatch(enRender, /data-lang-link="es"[^>]*aria-current/);
+
+  const zhTwRender = renderLocalizedHtml(fixtureHtml, 'zh-TW', fixtureT);
+  assert.match(zhTwRender, /<a\s+href="\/ShufflePDF\/zh-tw\/"\s+data-lang-link="zh-TW"\s+aria-current="page">繁體中文<\/a>/);
+  assert.doesNotMatch(zhTwRender, /data-lang-link="ja"[^>]*aria-current/);
+  assert.doesNotMatch(zhTwRender, /data-lang-link="en"[^>]*aria-current/);
+  assert.doesNotMatch(zhTwRender, /data-lang-link="zh-CN"[^>]*aria-current/);
+  assert.doesNotMatch(zhTwRender, /data-lang-link="es"[^>]*aria-current/);
 
   const jaRender = renderLocalizedHtml(fixtureHtml, 'ja', fixtureT);
   assert.match(jaRender, /<a\s+href="\/ShufflePDF\/"\s+data-lang-link="ja"\s+aria-current="page">日本語<\/a>/);
   assert.doesNotMatch(jaRender, /data-lang-link="en"[^>]*aria-current/);
 });
 
-test('rule e: exactly 5 hreflang alternates and ja canonical has no language segment', () => {
+test('rule e: exactly 8 hreflang alternates and ja canonical has no language segment', () => {
   const jaRender = renderLocalizedHtml(fixtureHtml, 'ja', fixtureT);
 
   // Ja canonical has no language segment
   assert.match(jaRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/">/);
   assert.doesNotMatch(jaRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/ja\/?">/);
 
-  // Exactly 5 hreflang alternates
+  // Exactly 8 hreflang alternates in order
   const alternateMatches = jaRender.match(/<link\s+rel="alternate"\s+hreflang="[^"]+"\s+href="[^"]+">/g) || [];
-  assert.equal(alternateMatches.length, 5);
+  assert.equal(alternateMatches.length, 8);
 
-  assert.ok(alternateMatches.some((m) => m.includes('hreflang="ja"') && m.includes('href="https://tyama11.github.io/ShufflePDF/"')));
-  assert.ok(alternateMatches.some((m) => m.includes('hreflang="en"') && m.includes('href="https://tyama11.github.io/ShufflePDF/en/"')));
-  assert.ok(alternateMatches.some((m) => m.includes('hreflang="zh"') && m.includes('href="https://tyama11.github.io/ShufflePDF/zh/"')));
-  assert.ok(alternateMatches.some((m) => m.includes('hreflang="es"') && m.includes('href="https://tyama11.github.io/ShufflePDF/es/"')));
-  assert.ok(alternateMatches.some((m) => m.includes('hreflang="x-default"') && m.includes('href="https://tyama11.github.io/ShufflePDF/en/"')));
+  assert.equal(
+    alternateMatches[0],
+    '<link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/">'
+  );
+  assert.equal(
+    alternateMatches[1],
+    '<link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/en/">'
+  );
+  assert.equal(
+    alternateMatches[2],
+    '<link rel="alternate" hreflang="zh-CN" href="https://tyama11.github.io/ShufflePDF/zh-cn/">'
+  );
+  assert.equal(
+    alternateMatches[3],
+    '<link rel="alternate" hreflang="zh-TW" href="https://tyama11.github.io/ShufflePDF/zh-tw/">'
+  );
+  assert.equal(
+    alternateMatches[4],
+    '<link rel="alternate" hreflang="zh-HK" href="https://tyama11.github.io/ShufflePDF/zh-tw/">'
+  );
+  assert.equal(
+    alternateMatches[5],
+    '<link rel="alternate" hreflang="zh-SG" href="https://tyama11.github.io/ShufflePDF/zh-cn/">'
+  );
+  assert.equal(
+    alternateMatches[6],
+    '<link rel="alternate" hreflang="es" href="https://tyama11.github.io/ShufflePDF/es/">'
+  );
+  assert.equal(
+    alternateMatches[7],
+    '<link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/en/">'
+  );
+
+  // zh-HK points to .../zh-tw/ and zh-SG to .../zh-cn/
+  assert.ok(alternateMatches.some((m) => m.includes('hreflang="zh-HK"') && m.includes('href="https://tyama11.github.io/ShufflePDF/zh-tw/"')));
+  assert.ok(alternateMatches.some((m) => m.includes('hreflang="zh-SG"') && m.includes('href="https://tyama11.github.io/ShufflePDF/zh-cn/"')));
 
   // En render canonical and alternates
   const enRender = renderLocalizedHtml(fixtureHtml, 'en', fixtureT);
@@ -262,6 +318,12 @@ test('rule e: exactly 5 hreflang alternates and ja canonical has no language seg
   assert.match(enRender, /<meta\s+property="og:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/en\/">/);
   assert.match(enRender, /<meta\s+name="twitter:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/en\/">/);
   assert.match(enRender, /<meta\s+property="og:locale"\s+content="en_US">/);
+
+  // zh-TW render canonical, og:url, og:locale
+  const zhTwRender = renderLocalizedHtml(fixtureHtml, 'zh-TW', fixtureT);
+  assert.match(zhTwRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/zh-tw\/">/);
+  assert.match(zhTwRender, /<meta\s+property="og:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/zh-tw\/">/);
+  assert.match(zhTwRender, /<meta\s+property="og:locale"\s+content="zh_TW">/);
 });
 
 test('rule e: JSON-LD parsing with JSON.parse and matching fields', () => {
