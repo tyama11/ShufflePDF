@@ -1,7 +1,12 @@
 import './style.css';
 import { PDFDocument } from 'pdf-lib';
 import { AppState, Language, ShuffleOptions } from './types';
-import { translations, getPageLanguage, getLegacyLangRedirectUrl } from './translations';
+import {
+  translations,
+  getPageLanguage,
+  getLegacyLangRedirectUrl,
+  saveLanguagePreference,
+} from './translations';
 import { initTheme } from './theme';
 import { determinePageUnits, shuffleArray } from './shuffle';
 
@@ -11,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.replace(legacyRedirectUrl);
     return;
   }
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      saveLanguagePreference(link.dataset.langLink ?? '');
+    });
+  });
 
   // --- 状態管理 ---
   const state: AppState = {

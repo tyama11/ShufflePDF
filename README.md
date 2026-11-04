@@ -1,103 +1,105 @@
-# 📄 PDFページシャッフル
+# 📄 PDF Page Shuffle
 
-PDFファイルのページをランダムに並び替えできる無料オンラインツールです。  
-インストール不要・登録不要で、ブラウザからすぐにご利用いただけます。
+English | [日本語](README.ja.md)
 
-👉 **[今すぐ使ってみる（Webサイトを開く）](https://tyama11.github.io/ShufflePDF/)**
+A free online tool to randomize and shuffle pages in PDF files.  
+No installation or registration required—works right in your browser.
 
-多言語対応：[日本語](https://tyama11.github.io/ShufflePDF/) / [English](https://tyama11.github.io/ShufflePDF/en/) / [简体中文](https://tyama11.github.io/ShufflePDF/zh-cn/) / [繁體中文](https://tyama11.github.io/ShufflePDF/zh-tw/) / [Español](https://tyama11.github.io/ShufflePDF/es/)
+👉 **[Try it now (Open Web App)](https://tyama11.github.io/ShufflePDF/)**
 
----
-
-## 🎯 こんなお悩みありませんか？
-
-英単語帳や問題集、資格試験の教材を繰り返し解いていると…
-
-- 「ページの順番で答えを覚えてしまい、本当に身についているかわからない」
-- 「最初の方ばかり進んで、後半の復習が手薄になってしまう」
-- 「いつも同じ順序なので飽きてしまい、勉強が続かない」
-
-**「PDFページシャッフル」なら、PDFをアップロードするだけで全ページをランダム順に並び替え！**  
-実力確認や飽きない反復学習に最適な教材が数秒で作れます。
+Languages: [English](https://tyama11.github.io/ShufflePDF/) / [日本語](https://tyama11.github.io/ShufflePDF/ja/) / [简体中文](https://tyama11.github.io/ShufflePDF/zh-cn/) / [繁體中文](https://tyama11.github.io/ShufflePDF/zh-tw/) / [Español](https://tyama11.github.io/ShufflePDF/es/)
 
 ---
 
-## ✨ 特長・便利なポイント
+## 🎯 Common Study Challenges
 
-### 🔀 ワンクリックで公平にランダムシャッフル
-全ページを偏りなくランダムな順序に並び替えます。
+When repeatedly practicing with vocabulary books, workbooks, or exam prep materials:
 
-### 📌 表紙や答えのページはそのまま（固定オプション）
-教材の構成に合わせて、柔軟に固定・シャッフル方法を選べます。
+- "You end up memorizing answers by page order instead of actual knowledge."
+- "You only get through the first few sections, leaving later sections under-reviewed."
+- "Studying in the exact same order gets tedious and hurts consistency."
 
-- **全てのページをシャッフル**
-- **1ページ目のみ固定（本文は1ページ単位）**
-- **1ページ目のみ固定（本文は見開き）**
-- **1-2ページ目を固定（本文は見開き）**
-- **全体を見開きでシャッフル**
-- 追加オプション：**最後のページ（見開きモードでは最後の見開き）を固定**
-
-表紙や目次、巻末の解答ページの位置をキープしたまま、本文だけを効率よくシャッフルできます。
-
-### 📖 見開き対応（2ページ単位を維持）
-見開きレイアウト（左ページと右ページで1セットの問題集や教材など）のPDFも、2ページ単位の組み合わせを崩さずにシャッフルできます。
-
-### 🔒 安心のプライバシー保護（ファイルはサーバーに送信されません）
-アップロードしたPDFは、お使いの端末（ブラウザ）内でのみ処理されます。外部サーバーに送信・保存されることは一切ないため、個人情報や業務資料でも安心してご利用いただけます。
-
-### 📱 誰でもかんたん操作
-- ファイルをドラッグ＆ドロップするだけ
-- パソコン・スマホ・タブレットのどれでも快適に使える画面デザイン
+**With "PDF Page Shuffle", simply upload your PDF to randomize all pages!**  
+Create study materials optimized for testing your true retention and keeping review engaging in seconds.
 
 ---
 
-## 🚀 かんたん 4ステップ
+## ✨ Key Features & Highlights
 
-1. **アクセスする**  
-   [PDFページシャッフル](https://tyama11.github.io/ShufflePDF/) を開きます。
-2. **PDFを選ぶ**  
-   シャッフルしたいPDFファイルを枠内にドラッグ＆ドロップ（またはファイルを選択）します。
-3. **オプションを選ぶ（お好みで）**  
-   固定オプションや見開きシャッフルをお好みに合わせて選択します。
-4. **シャッフル＆保存**  
-   「ページをシャッフル」を押し、処理完了後に「シャッフル済みPDFをダウンロード」を押して保存します（ファイル名に `_shuffled` が付きます）。
+### 🔀 Fair Random Shuffle in One Click
+Shuffles all pages into an unbiased, randomized order.
+
+### 📌 Keep Covers and Answer Keys Intact (Fix Options)
+Choose flexible shuffle and fix options to match your document structure:
+
+- **Shuffle all pages**
+- **Fix page 1 (shuffle page by page)**
+- **Fix page 1 (shuffle by spreads)**
+- **Fix pages 1-2 (shuffle by spreads)**
+- **Shuffle all by spreads**
+- Additional option: **Fix the last page** (or last spread in spread mode)
+
+Keep covers, tables of contents, or answer keys in place while shuffling only the main body pages.
+
+### 📖 Spread Support (Preserves 2-Page Pairs)
+For 2-page spread layouts (such as workbooks where left and right pages form a single problem set), shuffle without breaking 2-page pairings.
+
+### 🔒 Client-Side Privacy (Files Never Leave Your Device)
+Uploaded PDFs are processed entirely within your browser on your device. Nothing is sent to or stored on an external server, making it safe for confidential and personal documents.
+
+### 📱 Easy for Anyone to Use
+- Just drag & drop your file
+- Responsive design tailored for desktops, smartphones, and tablets
 
 ---
 
-## 💡 おすすめの活用シーン
+## 🚀 Easy 4 Steps
 
-- 📚 **受験・資格勉強**: 英単語帳、古文単語、一問一答、過去問のランダム出題
-- 🗣️ **語学学習**: フレーズ集や例文カードの順序シャッフル
-- 💼 **研修・プレゼン**: クイズ教材の作成、発表順・事例のランダム提示
+1. **Access the tool**  
+   Open [PDF Page Shuffle](https://tyama11.github.io/ShufflePDF/).
+2. **Select your PDF**  
+   Drag and drop your PDF file into the drop zone (or click to browse).
+3. **Choose options (Optional)**  
+   Select your preferred fix option or spread shuffle settings.
+4. **Shuffle & Save**  
+   Click "Shuffle Pages", and once processing is complete, click "Download Shuffled PDF" to save (filename will have `_shuffled` appended).
 
 ---
 
-## 🛠️ 開発
+## 💡 Recommended Use Cases
 
-本プロジェクトは Vite + TypeScript + pdf-lib で開発されています。
+- 📚 **Exam & Test Prep**: Randomize vocabulary lists, Q&A flashcards, and practice tests
+- 🗣️ **Language Learning**: Shuffle conversation phrasebooks and sentence cards
+- 💼 **Training & Presentations**: Build quiz materials or randomize presentation orders and case studies
+
+---
+
+## 🛠️ Development
+
+This project is built with Vite + TypeScript + pdf-lib.
 
 ```bash
-# 依存パッケージのインストール
+# Install dependencies
 npm install
 
-# 開発サーバー起動（/ShufflePDF/ 配下でアクセス可能）
+# Start development server (accessible at /ShufflePDF/)
 npm run dev
 
-# プロダクションビルド
+# Production build
 npm run build
 
-# テスト実行
+# Run tests
 npm test
 ```
 
 ---
 
-## 📱 対応環境
+## 📱 Supported Environments
 
-Google Chrome, Safari, Microsoft Edge, Firefox などの最新ブラウザ（PC・スマートフォン・タブレット対応）
+Modern browsers such as Google Chrome, Safari, Microsoft Edge, and Firefox (Desktop, Smartphone, and Tablet).
 
 ---
 
-## 📄 ライセンス
+## 📄 License
 
 MIT License
