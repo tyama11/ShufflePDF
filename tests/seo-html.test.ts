@@ -416,7 +416,7 @@ test('ROOT_FORWARD_SCRIPT behavior test table', () => {
     };
 
     const localStorageStub = {
-      getItem(_key: string): string | null {
+      getItem(): string | null {
         if (options.throwOnSaved) {
           throw new Error('localStorage disabled');
         }
