@@ -1,17 +1,23 @@
 import './style.css';
 import { PDFDocument } from 'pdf-lib';
 import { AppState, ShuffleOptions } from './types';
-import { translations, getUserLanguage } from './translations';
+import { translations, getPageLanguage, getLegacyLangRedirectUrl } from './translations';
 import { initTheme } from './theme';
 import { determinePageUnits, shuffleArray } from './shuffle';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const legacyRedirectUrl = getLegacyLangRedirectUrl();
+  if (legacyRedirectUrl) {
+    window.location.replace(legacyRedirectUrl);
+    return;
+  }
+
   // --- 状態管理 ---
   const state: AppState = {
     originalPdfBytes: null,
     shuffledPdfBytes: null,
     originalFileName: '',
-    userLang: getUserLanguage(),
+    userLang: getPageLanguage(),
   };
 
   // --- DOM要素のキャッシュ ---
