@@ -618,3 +618,23 @@ html[data-theme='dark'] .theme-toggle-btn .moon {
   font-weight: bold;
   color: var(--primary-color);
 }
+
+/* --- スクリーンリーダー専用（画面には表示しない） --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+fieldset.option-group {
+  min-width: 0;
+  margin-inline: 0;
+  padding: 0;
+  border: 0;
+}
