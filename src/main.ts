@@ -1,6 +1,6 @@
 import './style.css';
 import { PDFDocument } from 'pdf-lib';
-import { AppState, ShuffleOptions } from './types';
+import { AppState, Language, ShuffleOptions } from './types';
 import { translations, getPageLanguage, getLegacyLangRedirectUrl } from './translations';
 import { initTheme } from './theme';
 import { determinePageUnits, shuffleArray } from './shuffle';
@@ -157,13 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (fixedPageParts.length > 0) {
-        const conjunctions: Record<string, string> = {
+        const conjunctions: Record<Language, string> = {
           ja: 'と',
           en: ' and ',
-          zh: '和',
+          'zh-CN': '和',
+          'zh-TW': '和',
           es: ' y ',
         };
-        const fixedPages = fixedPageParts.join(conjunctions[state.userLang] || ' and ');
+        const fixedPages = fixedPageParts.join(conjunctions[state.userLang]);
         showStatus('statusShuffledWithFixed', 'success', {
           shuffledCount: shuffledUnitsCount,
           fixedPages,

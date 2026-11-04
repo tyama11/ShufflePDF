@@ -5,7 +5,7 @@ PDFファイルのページをランダムに並び替えできる無料オン�
 
 👉 **[今すぐ使ってみる（Webサイトを開く）](https://tyama11.github.io/ShufflePDF/)**
 
-多言語対応：[日本語](https://tyama11.github.io/ShufflePDF/) / [English](https://tyama11.github.io/ShufflePDF/en/) / [中文](https://tyama11.github.io/ShufflePDF/zh/) / [Español](https://tyama11.github.io/ShufflePDF/es/)
+多言語対応：[日本語](https://tyama11.github.io/ShufflePDF/) / [English](https://tyama11.github.io/ShufflePDF/en/) / [简体中文](https://tyama11.github.io/ShufflePDF/zh-cn/) / [繁體中文](https://tyama11.github.io/ShufflePDF/zh-tw/) / [Español](https://tyama11.github.io/ShufflePDF/es/)
 
 ---
 
