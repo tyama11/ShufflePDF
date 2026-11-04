@@ -6,6 +6,8 @@ import {
   langDir,
   pageUrl,
   renderLocalizedHtml,
+  renderRedirectHtml,
+  ROOT_FORWARD_SCRIPT,
 } from '../build/seo-html.ts';
 import type { TranslationRecord } from '../src/types';
 
@@ -119,9 +121,9 @@ const fixtureT: TranslationRecord = {
   faqA5: 'Yes, spreads are supported.<br>Option 1: <b>Cover fixed</b>.<br>Option 2: <b>Spread fixed</b>.',
 };
 
-test('langDir returns empty string for ja and lowercase otherwise', () => {
-  assert.equal(langDir('ja'), '');
-  assert.equal(langDir('en'), 'en');
+test('langDir returns empty string for en and lowercase otherwise', () => {
+  assert.equal(langDir('en'), '');
+  assert.equal(langDir('ja'), 'ja');
   assert.equal(langDir('zh-CN'), 'zh-cn');
   assert.equal(langDir('zh-TW'), 'zh-tw');
   assert.equal(langDir('es'), 'es');
@@ -130,8 +132,8 @@ test('langDir returns empty string for ja and lowercase otherwise', () => {
 test('pageUrl generates correct URLs for all languages', () => {
   assert.equal(SITE_URL, 'https://tyama11.github.io/ShufflePDF/');
   assert.deepEqual(LANGUAGES, ['ja', 'en', 'zh-CN', 'zh-TW', 'es']);
-  assert.equal(pageUrl('ja'), 'https://tyama11.github.io/ShufflePDF/');
-  assert.equal(pageUrl('en'), 'https://tyama11.github.io/ShufflePDF/en/');
+  assert.equal(pageUrl('en'), 'https://tyama11.github.io/ShufflePDF/');
+  assert.equal(pageUrl('ja'), 'https://tyama11.github.io/ShufflePDF/ja/');
   assert.equal(pageUrl('zh-CN'), 'https://tyama11.github.io/ShufflePDF/zh-cn/');
   assert.equal(pageUrl('zh-TW'), 'https://tyama11.github.io/ShufflePDF/zh-tw/');
   assert.equal(pageUrl('es'), 'https://tyama11.github.io/ShufflePDF/es/');
@@ -264,12 +266,11 @@ test('rule d: links with data-lang-link set aria-current="page" on matching lang
   assert.doesNotMatch(jaRender, /data-lang-link="en"[^>]*aria-current/);
 });
 
-test('rule e: exactly 8 hreflang alternates and ja canonical has no language segment', () => {
+test('rule e: exactly 8 hreflang alternates and en canonical has no language segment', () => {
   const jaRender = renderLocalizedHtml(fixtureHtml, 'ja', fixtureT);
 
-  // Ja canonical has no language segment
-  assert.match(jaRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/">/);
-  assert.doesNotMatch(jaRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/ja\/?">/);
+  // Ja canonical has /ja/ segment
+  assert.match(jaRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/ja\/">/);
 
   // Exactly 8 hreflang alternates in order
   const alternateMatches = jaRender.match(/<link\s+rel="alternate"\s+hreflang="[^"]+"\s+href="[^"]+">/g) || [];
@@ -277,11 +278,11 @@ test('rule e: exactly 8 hreflang alternates and ja canonical has no language seg
 
   assert.equal(
     alternateMatches[0],
-    '<link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/">'
+    '<link rel="alternate" hreflang="ja" href="https://tyama11.github.io/ShufflePDF/ja/">'
   );
   assert.equal(
     alternateMatches[1],
-    '<link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/en/">'
+    '<link rel="alternate" hreflang="en" href="https://tyama11.github.io/ShufflePDF/">'
   );
   assert.equal(
     alternateMatches[2],
@@ -305,7 +306,7 @@ test('rule e: exactly 8 hreflang alternates and ja canonical has no language seg
   );
   assert.equal(
     alternateMatches[7],
-    '<link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/en/">'
+    '<link rel="alternate" hreflang="x-default" href="https://tyama11.github.io/ShufflePDF/">'
   );
 
   // zh-HK points to .../zh-tw/ and zh-SG to .../zh-cn/
@@ -314,9 +315,9 @@ test('rule e: exactly 8 hreflang alternates and ja canonical has no language seg
 
   // En render canonical and alternates
   const enRender = renderLocalizedHtml(fixtureHtml, 'en', fixtureT);
-  assert.match(enRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/en\/">/);
-  assert.match(enRender, /<meta\s+property="og:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/en\/">/);
-  assert.match(enRender, /<meta\s+name="twitter:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/en\/">/);
+  assert.match(enRender, /<link\s+rel="canonical"\s+href="https:\/\/tyama11\.github\.io\/ShufflePDF\/">/);
+  assert.match(enRender, /<meta\s+property="og:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/">/);
+  assert.match(enRender, /<meta\s+name="twitter:url"\s+content="https:\/\/tyama11\.github\.io\/ShufflePDF\/">/);
   assert.match(enRender, /<meta\s+property="og:locale"\s+content="en_US">/);
 
   // zh-TW render canonical, og:url, og:locale
@@ -354,4 +355,166 @@ test('rule e: JSON-LD parsing with JSON.parse and matching fields', () => {
     priceCurrency: 'USD',
   });
   assert.equal(data.aggregateRating, undefined);
+});
+
+test('og-image-ja.png on ja and not on en', () => {
+  const htmlWithOg = fixtureHtml.replace(
+    '</head>',
+    '    <meta property="og:image" content="https://tyama11.github.io/ShufflePDF/og-image.png">\n</head>'
+  );
+
+  const jaRender = renderLocalizedHtml(htmlWithOg, 'ja', fixtureT);
+  assert.ok(
+    jaRender.includes('https://tyama11.github.io/ShufflePDF/og-image-ja.png'),
+    'ja should use og-image-ja.png'
+  );
+  assert.ok(
+    !jaRender.includes('https://tyama11.github.io/ShufflePDF/og-image.png'),
+    'ja should not contain og-image.png'
+  );
+
+  const enRender = renderLocalizedHtml(htmlWithOg, 'en', fixtureT);
+  assert.ok(
+    enRender.includes('https://tyama11.github.io/ShufflePDF/og-image.png'),
+    'en should keep og-image.png'
+  );
+  assert.ok(
+    !enRender.includes('https://tyama11.github.io/ShufflePDF/og-image-ja.png'),
+    'en should not contain og-image-ja.png'
+  );
+});
+
+test('forward script present only on en and placed right after <head>', () => {
+  const enRender = renderLocalizedHtml(fixtureHtml, 'en', fixtureT);
+  const expectedTag = `<head><script>${ROOT_FORWARD_SCRIPT}</script>`;
+  assert.ok(enRender.includes(expectedTag), 'en page should have forward script right after <head>');
+
+  for (const lang of LANGUAGES) {
+    if (lang === 'en') continue;
+    const localized = renderLocalizedHtml(fixtureHtml, lang, fixtureT);
+    assert.ok(
+      !localized.includes(ROOT_FORWARD_SCRIPT),
+      `Non-en page (${lang}) should not include ROOT_FORWARD_SCRIPT`
+    );
+  }
+});
+
+test('ROOT_FORWARD_SCRIPT behavior test table', () => {
+  function runScript(options: {
+    browserLanguages?: string[];
+    browserLanguage?: string;
+    saved?: string | null;
+    throwOnSaved?: boolean;
+    search?: string;
+  }): string[] {
+    const replaceCalls: string[] = [];
+    const locationStub = {
+      search: options.search ?? '',
+      replace(url: string) {
+        replaceCalls.push(url);
+      },
+    };
+
+    const localStorageStub = {
+      getItem(_key: string): string | null {
+        if (options.throwOnSaved) {
+          throw new Error('localStorage disabled');
+        }
+        return options.saved ?? null;
+      },
+    };
+
+    const navigatorStub = {
+      languages: options.browserLanguages,
+      language: options.browserLanguage,
+    };
+
+    const fn = new Function('location', 'localStorage', 'navigator', 'URLSearchParams', ROOT_FORWARD_SCRIPT);
+    fn(locationStub, localStorageStub, navigatorStub, URLSearchParams);
+    return replaceCalls;
+  }
+
+  // 1. browser ja-JP, no saved, no query -> forwards to /ShufflePDF/ja/
+  assert.deepEqual(
+    runScript({ browserLanguage: 'ja-JP' }),
+    ['/ShufflePDF/ja/'],
+    'browser ja-JP, no saved, no query -> forwards'
+  );
+
+  // 2. browser en-US, no saved -> no forward
+  assert.deepEqual(
+    runScript({ browserLanguage: 'en-US' }),
+    [],
+    'browser en-US, no saved -> no forward'
+  );
+
+  // 3. browser ja-JP, saved 'en' -> no forward
+  assert.deepEqual(
+    runScript({ browserLanguage: 'ja-JP', saved: 'en' }),
+    [],
+    'browser ja-JP, saved en -> no forward'
+  );
+
+  // 4. browser ja-JP, saved 'zh-CN' -> no forward
+  assert.deepEqual(
+    runScript({ browserLanguage: 'ja-JP', saved: 'zh-CN' }),
+    [],
+    'browser ja-JP, saved zh-CN -> no forward'
+  );
+
+  // 5. browser en-US, saved 'ja' -> forwards
+  assert.deepEqual(
+    runScript({ browserLanguage: 'en-US', saved: 'ja' }),
+    ['/ShufflePDF/ja/'],
+    'browser en-US, saved ja -> forwards'
+  );
+
+  // 6. browser ja-JP, search '?lang=en' -> no forward
+  assert.deepEqual(
+    runScript({ browserLanguage: 'ja-JP', search: '?lang=en' }),
+    [],
+    'browser ja-JP, search ?lang=en -> no forward'
+  );
+
+  // 7. localStorage.getItem throws, browser ja-JP -> forwards
+  assert.deepEqual(
+    runScript({ browserLanguage: 'ja-JP', throwOnSaved: true }),
+    ['/ShufflePDF/ja/'],
+    'localStorage.getItem throws, browser ja-JP -> forwards'
+  );
+
+  // 8. navigator.languages ['en-US','ja'] with navigator.language 'ja' -> no forward (first language wins)
+  assert.deepEqual(
+    runScript({
+      browserLanguages: ['en-US', 'ja'],
+      browserLanguage: 'ja',
+    }),
+    [],
+    "navigator.languages ['en-US','ja'] with navigator.language 'ja' -> no forward (first language wins)"
+  );
+});
+
+test('renderRedirectHtml contains canonical, the meta refresh, and location.replace with the target', () => {
+  const target = 'https://tyama11.github.io/ShufflePDF/';
+  const html = renderRedirectHtml(target);
+
+  assert.ok(html.includes('<html lang="en">'), 'has <html lang="en">');
+  assert.ok(html.includes('<meta charset="UTF-8">'), 'has charset meta');
+  assert.ok(html.includes('<title>PDF Page Shuffle</title>'), 'has title');
+  assert.ok(
+    html.includes(`<link rel="canonical" href="${target}">`),
+    'has link canonical with target'
+  );
+  assert.ok(
+    html.includes(`<meta http-equiv="refresh" content="0; url=${target}">`),
+    'has meta refresh with target'
+  );
+  assert.ok(
+    html.includes(`location.replace(${JSON.stringify(target)})`),
+    'has location.replace with JSON-encoded target'
+  );
+  assert.ok(
+    html.includes(`<a href="${target}">`),
+    'has body link with target'
+  );
 });
