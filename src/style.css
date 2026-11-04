@@ -546,3 +546,75 @@ html[data-theme='dark'] .theme-toggle-btn .moon {
   line-height: 1.6;
   margin: 0;
 }
+
+/* --- 導入文・ハウツー・用途・言語ナビのスタイル --- */
+.intro {
+  color: var(--text-color-light);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.how-to,
+.use-cases {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.how-to h2,
+.use-cases h2 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.how-to ol,
+.use-cases ul {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 20px 25px 20px 45px;
+  color: var(--text-color-light);
+  line-height: 1.7;
+}
+
+.how-to li,
+.use-cases li {
+  margin-bottom: 10px;
+}
+
+.how-to li:last-child,
+.use-cases li:last-child {
+  margin-bottom: 0;
+}
+
+.language-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.language-nav a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.language-nav a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.language-nav a[aria-current='page'] {
+  font-weight: bold;
+  color: var(--primary-color);
+}
