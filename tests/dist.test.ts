@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { LANGUAGES, langDir, pageUrl } from '../build/seo-html.ts';
+import { LANGUAGES, langDir, pageUrl, ROOT_FORWARD_SCRIPT } from '../build/seo-html.ts';
 import { translations } from '../src/translations.ts';
 
 function escapeHtml(str: string): string {
@@ -27,6 +27,22 @@ for (const lang of LANGUAGES) {
     const langMatch = html.match(/<html\b[^>]*\blang=["']([^"']+)["']/i);
     assert.ok(langMatch, `lang attribute in <html> found for ${lang}`);
     assert.equal(langMatch[1], lang, `Expected lang="${lang}", got "${langMatch[1]}"`);
+
+    // root must be <html lang="en"> with the forward script
+    if (lang === 'en') {
+      assert.ok(
+        html.includes(`<script>${ROOT_FORWARD_SCRIPT}</script>`),
+        'Root page (en) must contain the forward script'
+      );
+    }
+
+    // dist/ja/index.html must exist with lang ja and og-image-ja.png
+    if (lang === 'ja') {
+      assert.ok(
+        html.includes('https://tyama11.github.io/ShufflePDF/og-image-ja.png'),
+        'ja page must contain og-image-ja.png'
+      );
+    }
 
     // <title> equals the escaped translated title
     const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -121,6 +137,25 @@ for (const lang of LANGUAGES) {
   });
 }
 
+test('dist/en/index.html redirects to root', () => {
+  const enRedirectPath = path.resolve('dist/en/index.html');
+  assert.ok(fs.existsSync(enRedirectPath), 'dist/en/index.html exists');
+  const content = fs.readFileSync(enRedirectPath, 'utf-8');
+
+  assert.ok(
+    content.includes('<link rel="canonical" href="https://tyama11.github.io/ShufflePDF/">'),
+    'dist/en/index.html contains canonical to the root'
+  );
+  assert.ok(
+    content.includes('<meta http-equiv="refresh" content="0; url=https://tyama11.github.io/ShufflePDF/">'),
+    'dist/en/index.html contains refresh to root'
+  );
+  assert.ok(
+    !content.includes('hreflang='),
+    'dist/en/index.html must not contain hreflang'
+  );
+});
+
 test('dist/zh/index.html does not exist', () => {
   assert.ok(!fs.existsSync(path.resolve('dist/zh/index.html')), 'dist/zh/index.html should not exist');
 });
@@ -131,7 +166,7 @@ test('no page URL contains /zh/', () => {
   }
 });
 
-test('dist/sitemap.xml contains all 4 page URLs', () => {
+test('dist/sitemap.xml contains valid page URLs without /en/ or /zh/', () => {
   const sitemapPath = path.resolve('dist/sitemap.xml');
   assert.ok(fs.existsSync(sitemapPath), 'dist/sitemap.xml exists');
   const sitemapContent = fs.readFileSync(sitemapPath, 'utf-8');
@@ -139,11 +174,14 @@ test('dist/sitemap.xml contains all 4 page URLs', () => {
     const url = pageUrl(lang);
     assert.ok(sitemapContent.includes(url), `dist/sitemap.xml contains ${url}`);
   }
+  assert.ok(!sitemapContent.includes('/en/'), 'sitemap contains no /en/ URL');
+  assert.ok(!sitemapContent.includes('/zh/'), 'sitemap contains no /zh/ URL');
 });
 
 test('dist static assets exist', () => {
   const requiredAssets = [
     'dist/og-image.png',
+    'dist/og-image-ja.png',
     'dist/favicon.svg',
     'dist/favicon-48x48.png',
     'dist/apple-touch-icon.png',

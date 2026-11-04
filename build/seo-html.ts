@@ -5,11 +5,11 @@ export const SITE_URL = 'https://tyama11.github.io/ShufflePDF/';
 export const LANGUAGES: Language[] = ['ja', 'en', 'zh-CN', 'zh-TW', 'es'];
 
 export function langDir(lang: Language): string {
-  return lang === 'ja' ? '' : lang.toLowerCase();
+  return lang === 'en' ? '' : lang.toLowerCase();
 }
 
 export function pageUrl(lang: Language): string {
-  return lang === 'ja' ? SITE_URL : `${SITE_URL}${langDir(lang)}/`;
+  return lang === 'en' ? SITE_URL : `${SITE_URL}${langDir(lang)}/`;
 }
 
 function escapeHtml(str: string): string {
@@ -20,6 +20,16 @@ function escapeHtml(str: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+export const ROOT_FORWARD_SCRIPT = `(function () {
+  if (new URLSearchParams(location.search).has('lang')) return;
+  var saved = null;
+  try {
+    saved = localStorage.getItem('shufflepdf_lang');
+  } catch (e) {}
+  var browser = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+  if (saved ? saved === 'ja' : browser.indexOf('ja') === 0) location.replace('/ShufflePDF/ja/');
+})();`;
 
 const OG_LOCALES: Record<Language, string> = {
   ja: 'ja_JP',
@@ -183,5 +193,34 @@ export function renderLocalizedHtml(html: string, lang: Language, t: Translation
     result = `${result}\n${headElements}`;
   }
 
+  if (lang === 'ja') {
+    result = result.replace(
+      /https:\/\/tyama11\.github\.io\/ShufflePDF\/og-image\.png/g,
+      'https://tyama11.github.io/ShufflePDF/og-image-ja.png'
+    );
+  }
+
+  if (lang === 'en') {
+    const forwardTag = `<script>${ROOT_FORWARD_SCRIPT}</script>`;
+    result = result.replace(/<head\b([^>]*)>/i, (match) => `${match}${forwardTag}`);
+  }
+
   return result;
+}
+
+export function renderRedirectHtml(targetUrl: string): string {
+  const targetJson = JSON.stringify(targetUrl);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Page Shuffle</title>
+  <link rel="canonical" href="${escapeHtml(targetUrl)}">
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(targetUrl)}">
+  <script>location.replace(${targetJson})</script>
+</head>
+<body>
+  <a href="${escapeHtml(targetUrl)}">Redirecting...</a>
+</body>
+</html>`;
 }
