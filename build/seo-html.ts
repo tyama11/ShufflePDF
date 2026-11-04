@@ -2,10 +2,14 @@ import type { Language, TranslationRecord } from '../src/types';
 
 export const SITE_URL = 'https://tyama11.github.io/ShufflePDF/';
 
-export const LANGUAGES: Language[] = ['ja', 'en', 'zh', 'es'];
+export const LANGUAGES: Language[] = ['ja', 'en', 'zh-CN', 'zh-TW', 'es'];
+
+export function langDir(lang: Language): string {
+  return lang === 'ja' ? '' : lang.toLowerCase();
+}
 
 export function pageUrl(lang: Language): string {
-  return lang === 'ja' ? SITE_URL : `${SITE_URL}${lang}/`;
+  return lang === 'ja' ? SITE_URL : `${SITE_URL}${langDir(lang)}/`;
 }
 
 function escapeHtml(str: string): string {
@@ -20,7 +24,8 @@ function escapeHtml(str: string): string {
 const OG_LOCALES: Record<Language, string> = {
   ja: 'ja_JP',
   en: 'en_US',
-  zh: 'zh_CN',
+  'zh-CN': 'zh_CN',
+  'zh-TW': 'zh_TW',
   es: 'es_ES',
 };
 
@@ -158,7 +163,13 @@ export function renderLocalizedHtml(html: string, lang: Language, t: Translation
 
   const headElements = [
     `    <link rel="canonical" href="${pageUrl(lang)}">`,
-    ...LANGUAGES.map((l) => `    <link rel="alternate" hreflang="${l}" href="${pageUrl(l)}">`),
+    `    <link rel="alternate" hreflang="ja" href="${pageUrl('ja')}">`,
+    `    <link rel="alternate" hreflang="en" href="${pageUrl('en')}">`,
+    `    <link rel="alternate" hreflang="zh-CN" href="${pageUrl('zh-CN')}">`,
+    `    <link rel="alternate" hreflang="zh-TW" href="${pageUrl('zh-TW')}">`,
+    `    <link rel="alternate" hreflang="zh-HK" href="${pageUrl('zh-TW')}">`,
+    `    <link rel="alternate" hreflang="zh-SG" href="${pageUrl('zh-CN')}">`,
+    `    <link rel="alternate" hreflang="es" href="${pageUrl('es')}">`,
     `    <link rel="alternate" hreflang="x-default" href="${pageUrl('en')}">`,
     `    <meta property="og:url" content="${pageUrl(lang)}">`,
     `    <meta name="twitter:url" content="${pageUrl(lang)}">`,
