@@ -428,14 +428,14 @@ document.addEventListener('DOMContentLoaded', () => {
       uploadArea.classList.remove('dragover');
       const files = e.dataTransfer?.files;
       if (files && files.length > 0) {
-        handleFile(files[0]);
+        void handleFile(files[0]);
       }
     });
 
     fileInput?.addEventListener('change', (e) => {
       const target = e.target as HTMLInputElement;
       if (target.files && target.files.length > 0) {
-        handleFile(target.files[0]);
+        void handleFile(target.files[0]);
       }
     });
   }

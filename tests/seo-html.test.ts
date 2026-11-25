@@ -429,6 +429,7 @@ test('ROOT_FORWARD_SCRIPT behavior test table', () => {
       language: options.browserLanguage,
     };
 
+    // oxlint-disable-next-line no-new-func
     const fn = new Function('location', 'localStorage', 'navigator', 'URLSearchParams', ROOT_FORWARD_SCRIPT);
     fn(locationStub, localStorageStub, navigatorStub, URLSearchParams);
     return replaceCalls;
