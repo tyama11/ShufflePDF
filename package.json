@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsrs --noEmit --fast && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsrs --noEmit --fast",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "node --test tests/seo-html.test.ts",
@@ -25,6 +25,7 @@
     "prettier": "^3.10.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.73.0",
-    "vite": "^8.3.8"
+    "vite": "^8.3.8",
+    "tsrs": "7.1.0-beta.tsrs5"
   }
 }
